@@ -3,7 +3,7 @@ import React from "react";
 export default function Header() {
   return (
     <div className="bg-[#E1F0F2] py-8 md:py-16 px-4 md:px-8">
-      <div className="max-w-2xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center">
         <p className="text-lg md:text-2xl lg:text-[32px] leading-relaxed text-gray-800 font-light">
           Companies spend over{" "}
           <span className="font-bold text-gray-900">$100K</span> every year on

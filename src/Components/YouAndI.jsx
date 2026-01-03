@@ -9,7 +9,7 @@ import Rectangle7 from "../Images/Rectangle7.png";
 import Rectangle8 from "../Images/Rectangle8.png";
 import Rectangle9 from "../Images/Rectangle9.png";
 
-export default function WhyMe() {
+export default function YouAndI() {
   const items = [
     {
       you: "YOU are tired of creative being a constant pain.",
@@ -78,14 +78,15 @@ export default function WhyMe() {
         </div>
 
         {/* Mobile Header */}
-        <div className="md:hidden mb-6 pb-4 border-b-2 border-blue-300">
-          <p className="text-lg font-light text-gray-800 mb-3">
-            You <span className="font-light">don't worry,</span>
-          </p>
-          <p className="text-lg font-light text-gray-800 text-right">
-            <span className="font-light">as</span> I{" "}
-            <span className="font-bold">solve...</span>
-          </p>
+        <div className="md:hidden mb-6 pb-4 border-b-2 border-blue-300 flex justify-center">
+          <div className="w-full max-w-xs">
+            <p className="text-lg font-light text-gray-800 text-left leading-tight">
+              You don&apos;t worry,
+            </p>
+            <p className="text-lg font-light text-gray-800 text-right leading-tight">
+              as I <span className="font-bold">solve...</span>
+            </p>
+          </div>
         </div>
 
         {/* Desktop Grid - Three Columns */}
@@ -97,7 +98,7 @@ export default function WhyMe() {
             >
               {/* Left Column - YOU Statement */}
               <div className="bg-[#F5DEDC] p-6 h-full flex items-center font-family-instrument">
-                <p className="text-gray-700 text-sm font-medium leading-relaxed">
+                <p className="text-gray-700 text-[24px] font-medium leading-relaxed">
                   <span className="font-bold text-gray-900">YOU</span>{" "}
                   {item.you.replace(/^YOU /, "")}
                 </p>
@@ -119,7 +120,7 @@ export default function WhyMe() {
 
               {/* Right Column - I Statement */}
               <div className="bg-[#6BC6D366] p-6 h-full flex items-center">
-                <p className="text-gray-700 text-sm font-medium leading-relaxed">
+                <p className="text-gray-700 text-[24px] font-medium leading-relaxed">
                   <span className="font-bold text-gray-900">I</span>{" "}
                   {item.i.replace(/^I /, "")}
                 </p>
