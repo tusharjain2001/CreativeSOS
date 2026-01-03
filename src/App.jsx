@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Pages/Navbar";
 import Header from "./Components/Header";
@@ -10,11 +10,12 @@ import SLAs from "./Components/SLAs";
 import PricingTabs from "./Components/PricingTabs";
 import WallOfPride from "./Components/WallOfPride";
 import CreativeSOSCTA from "./Components/CreativeSOSCTA";
+import Portfolio from "./Pages/Portfolio";
+import Projects from "./Pages/Projects";
 
-function App() {
+function MainContent() {
   return (
     <>
-      <Navbar />
       <Header />
       <YouAndI />
 
@@ -25,8 +26,19 @@ function App() {
       <PricingTabs />
       <WallOfPride />
       <CreativeSOSCTA />
+    </>
+  );
+}
 
-      {/* Rest of your content */}
+function App() {
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/projects/:id" element={<Projects />} />
+      </Routes>
     </>
   );
 }

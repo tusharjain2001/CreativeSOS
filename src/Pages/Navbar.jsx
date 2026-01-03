@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ export default function Navbar() {
     { label: "Partners", href: "#partners" },
     { label: "My SLAs", href: "#my-slas" },
     { label: "Results", href: "#results" },
+    { label: "Portfolio", href: "/portfolio" },
   ];
 
   return (
@@ -53,13 +55,13 @@ export default function Navbar() {
           {/* Navigation Items */}
           <div className="flex items-center gap-10">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 className="text-gray-700 hover:text-teal-600 text-sm font-medium transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -93,14 +95,14 @@ export default function Navbar() {
             {/* Mobile Navigation Items */}
             <div className="flex flex-col">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   onClick={toggleMenu}
                   className="px-4 py-4 text-center text-gray-700 border-b border-blue-300 hover:bg-blue-50 transition-colors text-sm font-medium"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
 

@@ -139,7 +139,7 @@ export default function Results() {
                   <article
                     key={i}
                     ref={i === 0 ? cardRef : null}
-                    className="flex-shrink-0 w-[86%] sm:w-[48%] md:w-[32%] lg:w-[23%] bg-[#EEF8F8] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start min-h-[320px] md:min-h-[360px] lg:min-h-[400px]"
+                    className="shrink-0 w-[86%] sm:w-[48%] md:w-[32%] lg:w-[23%] bg-[#EEF8F8] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start min-h-80 md:min-h-90 lg:min-h-100"
                     aria-roledescription="slide"
                   >
                     <h4 className="text-4xl md:text-3xl  mb-1 text-gray-900">
