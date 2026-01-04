@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// Add your image imports here
 import sone from "../Images/sone.png";
 import stwo from "../Images/stwo.png";
 import sthree from "../Images/sthree.png";
@@ -12,6 +13,8 @@ import greentick from "../Images/greentick.png";
 
 const PricingTabs = () => {
   const [activeTab, setActiveTab] = useState("partner");
+
+ 
 
   const tabs = [
     {
@@ -36,9 +39,7 @@ const PricingTabs = () => {
 
   const tabData = {
     partner: {
-      title:
-        '"Your embedded creative team with my leadership on subscription."',
-      titleColor: "text-[#1E8898]",
+      title: '"Your embedded creative team with my leadership on subscription."',
       price: "$40",
       badge: "Execution Core",
       features: [
@@ -66,9 +67,7 @@ const PricingTabs = () => {
       ],
     },
     spoc: {
-      title:
-        '"Everything in Creative Partner — plus creative leadership & ownership."',
-      titleColor: "text-[#1E8898]",
+      title: '"Everything in Creative Partner — plus creative leadership & ownership."',
       price: "$45",
       badge: "Leadership + Management",
       features: [
@@ -117,7 +116,6 @@ const PricingTabs = () => {
     },
     sos: {
       title: '"Your emergency creative lane — fast, fearless and predictable."',
-      titleColor: "text-[#1E8898]",
       price: "$55",
       badge: "Urgent Turnaround",
       features: [
@@ -150,11 +148,10 @@ const PricingTabs = () => {
 
   const highlightText = (text, highlight) => {
     if (!highlight) return text;
-
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
-        <strong key={index} className="font-semibold">
+        <strong key={index} className="font-semibold text-gray-900">
           {part}
         </strong>
       ) : (
@@ -164,31 +161,29 @@ const PricingTabs = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gray-50 py-16 px-4">
+      <div className="max-w-6xl mx-auto">
         {/* Header Badge */}
-        <div className="text-center mb-8">
-          <span className="inline-block bg-[#C5EBF0] text-[#1E8898] px-4 py-2 rounded text-sm font-family-instrument ">
+        <div className="text-center mb-6">
+          <span className="inline-block bg-[#C5EBF0] text-[#1E8898] px-5 py-2 rounded-md text-sm font-medium">
             Let's Talk Money!
           </span>
         </div>
 
         {/* Main Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-[#1C1D22] mb-4">
+        <h1 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-6">
           Three Ways to Work with Me!
         </h1>
 
         {/* Subtitle */}
-        <p className="text-center text-[#1C1D22] max-w-2xl mx-auto mb-12 leading-relaxed">
-          No retainers. No vague estimates. Just a flat hourly model with full
-          creative coverage.
+        <p className="text-center text-gray-700 text-base lg:text-lg max-w-3xl mx-auto mb-12 leading-relaxed">
+          No retainers. No vague estimates. Just a flat hourly model with full creative coverage.
           <br />
-          You know exactly what you're paying and how long things take — before
-          we even start.
+          You know exactly what you're paying and how long things take — before we even start.
         </p>
 
         {/* Tabs */}
-        <div className="flex justify-center mb-8 border-b border-gray-300">
+        <div className="flex justify-center mb-12 border-b border-gray-300">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.key;
 
@@ -196,73 +191,79 @@ const PricingTabs = () => {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-3 px-6 py-3 font-medium transition-all
-          ${
-            isActive
-              ? "text-cyan-600 border-b-2 border-cyan-600 bg-[#6BC6D329]"
-              : "text-gray-500 hover:text-gray-700"
-          }
-        `}
+                className={`flex items-center gap-2 px-8 py-3 font-medium transition-all relative
+                  ${isActive ? "text-[#1E8898]" : "text-gray-500 hover:text-gray-700"}
+                `}
               >
-                <img
-                  src={isActive ? tab.activeIcon : tab.icon}
+                {isActive && (
+                  <div className="absolute inset-0 bg-[#C5EBF0] opacity-20 rounded-t-lg" />
+                )}
+                <img 
+                  src={isActive ? tab.activeIcon : tab.icon} 
                   alt={tab.label}
-                  className="w-5 h-5 object-contain"
+                  className="w-5 h-5 object-contain relative"
                 />
-                {tab.label}
+                <span className="relative">{tab.label}</span>
+                {isActive && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1E8898]" />
+                )}
               </button>
             );
           })}
         </div>
 
-        {/* Content Card */}
-        <div className="rounded-lg p-8 md:p-12">
+        {/* Content */}
+        <div className="bg-white rounded-lg px-8 py-10">
           {/* Title Quote */}
-          <h2
-            className={`text-xl md:text-2xl text-center mb-12 ${currentData.titleColor} `}
-          >
+          <h2 className="text-xl lg:text-2xl text-center mb-16 text-[#1E8898] font-normal">
             {currentData.title}
           </h2>
 
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Left Column - Pricing */}
-            <div className="md:w-1/3 bg-[#ffff] shadow-lg">
-              <div className="border-t-4 border-[#6BC6D4] pt-6 p-4">
-                <div className="text-5xl  font-bold text-[#1C1D22] mb-2">
-                  {currentData.price}
-                  <span className="text-2xl">/hr</span>
-                </div>
-
-                <div className="bg-[#BFECF4] text-[#1C1D22] text-center py-2 px-4 rounded mt-4 font-medium">
-                  {currentData.badge}
-                </div>
-
-                <div className="flex gap-2 mt-6">
-                  <div className="bg-[#FEF6CD] text-[#1C1D22] px-3 py-2 rounded text-sm font-medium flex-1 text-center">
-                    <div className="flex gap-2">
-                      10% off <img src={ytag} />
+          <div className="flex flex-col lg:flex-row gap-12 items-start justify-center max-w-5xl mx-auto">
+            {/* Left Column - Pricing Card */}
+            <div className="w-full lg:w-72 flex-shrink-0">
+              <div className="border-t-4 border-[#6BC6D4] bg-white shadow-md rounded-sm">
+                <div className="p-6">
+                  <div className="mb-6">
+                    <div className="text-5xl font-bold text-gray-900">
+                      {currentData.price}
+                      <span className="text-2xl font-bold">/hr</span>
                     </div>
-                    <span className="text-xs text-[#9F8400]">on 50+ Hours</span>
                   </div>
-                  <div className="bg-[#FFE7BC] text-[#1C1D22] px-3 py-2 rounded text-sm font-medium flex-1 text-center">
-                    <div className="flex gap-2">
-                      20% off <img src={otag} />
+
+                  <div className="bg-[#BFECF4] text-gray-900 text-center py-2.5 px-4 rounded-sm mb-6 font-medium">
+                    {currentData.badge}
+                  </div>
+
+                  <div className="flex gap-3">
+                    <div className="bg-[#FEF6CD] px-3 py-3 rounded-sm flex-1">
+                      <div className="flex items-center justify-center gap-1.5 mb-1">
+                        <span className="text-sm font-semibold text-gray-900">10% off</span>
+                        <span className="text-lg"> <img src={ytag} alt="" className="w-4 h-4" /> </span>
+                      </div>
+                      <div className="text-xs text-center text-[#9F8400]">on 50+ Hours</div>
                     </div>
-                    <span className="text-xs text-[#9A5F00]">
-                      on 100+ Hours
-                    </span>
+                    <div className="bg-[#FFE7BC] px-3 py-3 rounded-sm flex-1">
+                      <div className="flex items-center justify-center gap-1.5 mb-1">
+                        <span className="text-sm font-semibold text-gray-900">20% off</span>
+                        <span className="text-lg"><img src={otag} alt="" className="w-4 h-4" /></span>
+                      </div>
+                      <div className="text-xs text-center text-[#9A5F00]">on 100+ Hours</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Features */}
-            <div className="md:w-2/3">
-              <div className="space-y-4">
+            <div className="flex-1 max-w-xl">
+              <div className="space-y-5">
                 {currentData.features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <img src={greentick} />
-                    <p className="text-gray-700 leading-relaxed">
+                    <div className="flex-shrink-0 mt-0.5">
+                      <img src={greentick} alt="" className="w-5 h-5" />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed text-base">
                       {highlightText(feature.text, feature.highlight)}
                     </p>
                   </div>
@@ -272,14 +273,14 @@ const PricingTabs = () => {
           </div>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-12 pt-8 border-t border-gray-200">
-            <p className="text-[#1C1D22] mb-4">
+          <div className="text-center mt-16 pt-8 border-t border-gray-200">
+            <p className="text-gray-700 mb-5 leading-relaxed">
               Get a clear, upfront estimate of how many hours
               <br />
               your project will require before we begin.
             </p>
-            <button className="bg-[#257D89] text-white font-medium px-8 py-3 rounded transition-colors">
-              See your Estimated Hours
+            <button className="bg-[#257D89] hover:bg-[#1f6a74] text-white font-medium px-8 py-3 rounded-md transition-colors">
+              See Your Estimated Hours
             </button>
           </div>
         </div>

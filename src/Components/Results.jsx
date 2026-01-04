@@ -87,7 +87,7 @@ export default function Results() {
         <div className="grid grid-cols-1 md:grid-cols-[0.2fr_1fr] gap-8 items-start">
           {/* Left heading column */}
           <div className="text-white text-center md:text-left px-4 md:px-0">
-            <div className="inline-block bg-[#00434D] text-white text-xs font-medium px-3 py-1 rounded mb-3 md:mb-4">
+            <div className="inline-block bg-[#00434D] text-white font-family-instrument text-xs font-medium px-3 py-1 rounded mb-3 md:mb-4">
               Results
             </div>
 
@@ -162,7 +162,7 @@ export default function Results() {
                   <article
                     key={i}
                     ref={i === 0 ? cardRef : null}
-                    className="shrink-0 w-full md:w-[48%] lg:w-[32%] xl:w-[23%] bg-[#EEF8F8] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start flex flex-col"
+                    className="shrink-0 w-full md:w-[48%] lg:w-[32%] xl:w-[23%] bg-[#E1F0F2] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start flex flex-col"
                     style={{ minHeight: "400px" }}
                     aria-roledescription="slide"
                   >
