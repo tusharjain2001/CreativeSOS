@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FiUsers, FiStar, FiZap } from "react-icons/fi";
-import { HiUsers, HiStar, HiLightningBolt } from "react-icons/hi";
+
 import sone from "../Images/sone.png";
 import stwo from "../Images/stwo.png";
 import sthree from "../Images/sthree.png";
@@ -165,7 +164,7 @@ const PricingTabs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4">
+    <div className="min-h-screen py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header Badge */}
         <div className="text-center mb-8">
@@ -217,7 +216,7 @@ const PricingTabs = () => {
         </div>
 
         {/* Content Card */}
-        <div className="bg-white rounded-lg shadow-sm p-8 md:p-12">
+        <div className="rounded-lg p-8 md:p-12">
           {/* Title Quote */}
           <h2
             className={`text-xl md:text-2xl text-center mb-12 ${currentData.titleColor} `}
@@ -227,9 +226,9 @@ const PricingTabs = () => {
 
           <div className="flex flex-col md:flex-row gap-8">
             {/* Left Column - Pricing */}
-            <div className="md:w-1/3">
-              <div className="border-t-4 border-[#6BC6D4] pt-6">
-                <div className="text-5xl font-bold text-[#1C1D22] mb-2">
+            <div className="md:w-1/3 bg-[#ffff] shadow-lg">
+              <div className="border-t-4 border-[#6BC6D4] pt-6 p-4">
+                <div className="text-5xl  font-bold text-[#1C1D22] mb-2">
                   {currentData.price}
                   <span className="text-2xl">/hr</span>
                 </div>

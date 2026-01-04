@@ -1,4 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
+import Result1 from "../Images/Result1.png";
+import Result2 from "../Images/Result2.png";
+import Result3 from "../Images/Result3.png";
+import Result4 from "../Images/Result4.png";
+import Result5 from "../Images/Result5.png";
 
 export default function Results() {
   const cards = [
@@ -6,36 +11,31 @@ export default function Results() {
       title: "Time Back in Their Day",
       subtitle:
         "Their teams refocus on GTM and pipeline while creative runs smoothly, consistent, on-brand, and conversion-driven.",
-      image:
-        "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop",
+      image: Result1,
     },
     {
       title: "Strategic Clarity in Every Campaign",
       subtitle:
         "They gain sharper narratives that align creative with actual business goals not just pretty visuals.",
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop",
+      image: Result2,
     },
     {
       title: "Lower Creative Spend, Higher Output",
       subtitle:
         "For a fraction of what one senior designer costs, they get full creative leadership plus my entire execution team.",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      image: Result3,
     },
     {
       title: "Predictability and Peace of Mind",
       subtitle:
         "No freelancer chaos, no agency billing games — just one reliable point of contact, transparent process, and consistent delivery.",
-      image:
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop",
+      image: Result4,
     },
     {
       title: "Creative That Scales Without Hiring",
       subtitle:
         "Scaling is effortless - no new hires. Whether it's UI, video, or a brand refresh, I expand bandwidth instantly so your team keeps moving without adding headcount.",
-      image:
-        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop",
+      image: Result5,
     },
   ];
 
@@ -86,28 +86,43 @@ export default function Results() {
       <div className="mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[0.2fr_1fr] gap-8 items-start">
           {/* Left heading column */}
-          <div className="text-white text-center md:text-left">
-            <div className="inline-block bg-[#00434D] text-white text-xs font-medium px-3 py-1 rounded mb-4">
+          <div className="text-white text-center md:text-left px-4 md:px-0">
+            <div className="inline-block bg-[#00434D] text-white text-xs font-medium px-3 py-1 rounded mb-3 md:mb-4">
               Results
             </div>
 
-            <div className="mt-6 space-y-1 text-white">
-              <div className="text-[20px] md:text-[38px] font-semibold">
-                5 Results
-              </div>
-              <div className="text-[20px] md:text-[38px] font-light">
-                Marketing
-              </div>
-              <div className="text-[20px] md:text-[38px] font-extralight">
-                Leaders
+            <div className="mt-4 md:mt-6 text-white">
+              {/* Mobile: 3 lines */}
+              <div className="md:hidden space-y-1">
+                <div className="text-2xl font-semibold leading-tight">
+                  5 Results Marketing
+                </div>
+                <div className="text-2xl font-light leading-tight">
+                  Leaders See After
+                </div>
+                <div className="text-2xl font-extralight leading-tight">
+                  Partnering With Me!
+                </div>
               </div>
 
-              <div className="text-[20px] md:text-[38px] font-normal">
-                See After
-              </div>
-              <div className="text-[20px] md:text-[38px]">Partnering</div>
-              <div className="text-[20px] md:text-[38px] font-semibold">
-                With Me!
+              {/* Desktop: Original layout */}
+              <div className="hidden md:block space-y-4">
+                <div className="text-[38px] font-semibold leading-tight">
+                  5 Results
+                </div>
+                <div className="text-[38px] font-light leading-tight">
+                  Marketing
+                </div>
+                <div className="text-[38px] font-extralight leading-tight">
+                  Leaders
+                </div>
+                <div className="text-[38px] font-normal leading-tight">
+                  See After
+                </div>
+                <div className="text-[38px] leading-tight">Partnering</div>
+                <div className="text-[38px] font-semibold leading-tight">
+                  With Me!
+                </div>
               </div>
             </div>
           </div>
@@ -168,14 +183,6 @@ export default function Results() {
                   </article>
                 ))}
               </div>
-            </div>
-
-            {/* Show card indicator on mobile */}
-            <div className="mt-6 text-sm text-gray-300 text-center md:text-left">
-              <span className="hidden md:inline">
-                Showing {visibleCount} cards at a time — swipe or use arrows.
-              </span>
-              <span className="md:hidden">Scroll to view all cards</span>
             </div>
           </div>
         </div>
