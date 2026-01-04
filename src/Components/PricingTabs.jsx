@@ -161,7 +161,7 @@ const PricingTabs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-4">
+    <div className="min-h-screen bg-[#F8F8F8] py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Badge */}
         <div className="text-center mb-6">
@@ -213,7 +213,7 @@ const PricingTabs = () => {
         </div>
 
         {/* Content */}
-        <div className="bg-white rounded-lg px-8 py-10">
+        <div className=" rounded-lg px-8 py-10">
           {/* Title Quote */}
           <h2 className="text-xl lg:text-2xl text-center mb-16 text-[#1E8898] font-normal">
             {currentData.title}
@@ -222,7 +222,7 @@ const PricingTabs = () => {
           <div className="flex flex-col lg:flex-row gap-12 items-start justify-center max-w-5xl mx-auto">
             {/* Left Column - Pricing Card */}
             <div className="w-full lg:w-72 flex-shrink-0">
-              <div className="border-t-4 border-[#6BC6D4] bg-white shadow-md rounded-sm">
+              <div className="border-t-4 border-[#6BC6D4]  shadow-md rounded-sm">
                 <div className="p-6">
                   <div className="mb-6">
                     <div className="text-5xl font-bold text-gray-900">
