@@ -165,13 +165,13 @@ export default function YouAndI() {
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex gap-4 items-center overflow-hidden"
+              className="flex gap-2 items-center overflow-hidden"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
               {/* Left Column - YOU Statement */}
               <div
-                className={`bg-[#F5DEDC] p-6 h-44 flex items-center font-family-instrument  card-hover left-card ${
+                className={`bg-[#F5DEDC] p-6 h-40 flex items-center font-family-instrument  card-hover left-card ${
                   hoveredIndex === index ? "shrink" : ""
                 }`}
               >
@@ -191,7 +191,7 @@ export default function YouAndI() {
                   <img
                     src={item.image}
                     alt={`Item ${index + 1}`}
-                    className="w-44 h-44 object-cover"
+                    className="w-44 h-48 object-cover"
                     onError={(e) => {
                       e.target.style.display = "none";
                       e.target.parentElement.innerHTML =
@@ -202,7 +202,7 @@ export default function YouAndI() {
               </div>
 
               {/* Right Column - I Statement */}
-              <div className="bg-[#6BC6D366] p-6 flex-1 h-44 flex items-center  card-hover">
+              <div className="bg-[#6BC6D366] p-6 flex-1 h-40 flex items-center  card-hover">
                 <p className="text-gray-700 text-[24px] font-medium leading-relaxed">
                   <span className="font-bold text-gray-900">I</span>{" "}
                   {item.i.replace(/^I /, "")}

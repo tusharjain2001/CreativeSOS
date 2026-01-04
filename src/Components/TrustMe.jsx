@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Icon1 from "../Images/Icon1.png";
 import Icon2 from "../Images/Icon2.png";
 import Icon3 from "../Images/Icon3.png";
@@ -46,70 +46,16 @@ export default function TrustMe() {
     },
   ];
 
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            // unobserve after first intersection to avoid retriggers
-            obs.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    obs.observe(el);
-
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className={`py-12 md:py-20 bg-white ${visible ? "in-view" : ""}`}
-    >
-      <style>
-        {`
-        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Run animations only when section gets the in-view class */
-        .in-view .animate-left-header { animation: fadeInLeft 0.7s ease-out; }
-
-        .feature-item { opacity: 0; }
-        .in-view .feature-item { animation: fadeInUp 0.6s ease-out forwards; }
-
-        .in-view .feature-item:nth-child(1) { animation-delay: 0.2s; }
-        .in-view .feature-item:nth-child(2) { animation-delay: 0.3s; }
-        .in-view .feature-item:nth-child(3) { animation-delay: 0.4s; }
-        .in-view .feature-item:nth-child(4) { animation-delay: 0.5s; }
-        .in-view .feature-item:nth-child(5) { animation-delay: 0.6s; }
-        .in-view .feature-item:nth-child(6) { animation-delay: 0.7s; }
-        .in-view .feature-item:nth-child(7) { animation-delay: 0.8s; }
-
-        .feature-icon-hover { transition: transform 0.3s ease; }
-        .feature-item:hover .feature-icon-hover { transform: scale(1.1) rotate(5deg); }
-
-        .feature-text-hover { transition: color 0.3s ease; }
-        .feature-item:hover .feature-text-hover { color: #0f766e; }
-      `}
-      </style>
+    <section className="py-12 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid md:grid-cols-[0.55fr_1fr] gap-16 items-start">
-          {/* Left column - heading */}
-          <div className="animate-left-header">
-            <div className="inline-block bg-teal-100 text-teal-700 font-light text-xs  px-3 py-1 rounded-full">
+          {/* Left column - sticky heading */}
+          <div className="md:sticky md:top-24">
+            <div className="inline-block bg-teal-100 text-teal-700 font-light text-xs px-3 py-1 rounded-full">
               Why me?
             </div>
-            <h2 className="mt-2 text-[48px]  font-light text-gray-900 leading-snug">
+            <h2 className="mt-2 text-[48px] font-light text-gray-900 leading-snug">
               Why CMOs/
               <br /> Agencies/
               <br /> Marketing Heads
@@ -117,14 +63,18 @@ export default function TrustMe() {
             </h2>
           </div>
 
-          {/* Right column - features list */}
+          {/* Right column - scrolling features list */}
           <div className="space-y-6">
             {features.map((f, i) => (
               <div
                 key={i}
-                className="feature-item flex items-start gap-4 cursor-pointer group"
+                className="flex items-start gap-4 opacity-0 animate-fade-in-up"
+                style={{
+                  animationDelay: `${i * 0.1}s`,
+                  animationFillMode: "forwards",
+                }}
               >
-                <div className="w-32 h-32 flex-shrink-0 flex items-center justify-center feature-icon-hover">
+                <div className="w-32 h-32 flex items-center justify-center">
                   <img
                     src={f.icon}
                     alt={f.title}
@@ -132,11 +82,11 @@ export default function TrustMe() {
                     onError={(e) => (e.currentTarget.style.display = "none")}
                   />
                 </div>
-                <div>
-                  <h3 className="text-[32px] md:text-[30px] sm:text-[30px] font-medium text-gray-900 feature-text-hover transition-colors duration-300">
+                <div className="flex-1">
+                  <h3 className="text-[32px] md:text-[30px] sm:text-[30px] font-medium text-gray-900">
                     {f.title}
                   </h3>
-                  <p className="text-[24px] text-gray-600 mt-1 max-w-xl group-hover:text-gray-700 transition-colors duration-300">
+                  <p className="text-[24px] text-gray-600 mt-1 max-w-xl">
                     {f.desc}
                   </p>
                 </div>
@@ -145,6 +95,23 @@ export default function TrustMe() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.6s ease-out;
+        }
+      `}</style>
     </section>
   );
 }

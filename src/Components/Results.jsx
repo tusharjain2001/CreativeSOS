@@ -62,25 +62,6 @@ export default function Results() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const handleNext = () => {
-    if (!containerRef.current) return;
-    containerRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
-  };
-
-  const handlePrev = () => {
-    if (!containerRef.current) return;
-    containerRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "ArrowRight") handleNext();
-      if (e.key === "ArrowLeft") handlePrev();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  });
-
   return (
     <section className="py-8 md:py-12 bg-[#1C1D22]">
       <div className="mx-auto px-4 md:px-8">
@@ -106,7 +87,7 @@ export default function Results() {
               </div>
 
               {/* Desktop: Original layout */}
-              <div className="hidden md:block space-y-4">
+              <div className="hidden md:block space-y-2">
                 <div className="text-[38px] font-semibold leading-tight">
                   5 Results
                 </div>
@@ -129,29 +110,9 @@ export default function Results() {
 
           {/* Right - carousel area */}
           <div>
-            {/* Navigation buttons - hidden on mobile */}
-            <div className="hidden md:flex items-center justify-end mb-4">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={handlePrev}
-                  aria-label="Previous"
-                  className="p-2 rounded bg-gray-700 text-white hover:opacity-90"
-                >
-                  ‹
-                </button>
-                <button
-                  onClick={handleNext}
-                  aria-label="Next"
-                  className="p-2 rounded bg-teal-600 text-white hover:opacity-90"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-
             <div
               ref={containerRef}
-              className="relative overflow-x-auto md:overflow-x-auto scroll-smooth -mx-4 px-4"
+              className="relative overflow-x-auto md:overflow-x-auto scroll-smooth -mx-4 px-4 results-scroll-container"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               <div
@@ -187,6 +148,17 @@ export default function Results() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        /* Hide scrollbar for all browsers */
+        .results-scroll-container::-webkit-scrollbar {
+          display: none;
+        }
+        .results-scroll-container {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }
