@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Rectangle1 from "../Images/Rectangle1.png";
 import Rectangle2 from "../Images/Rectangle2.png";
 import Rectangle3 from "../Images/Rectangle3.png";
@@ -58,93 +58,82 @@ export default function YouAndI() {
     },
   ];
 
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <div className="bg-gray-50 py-4 md:py-12 px-4 md:px-8 overflow-hidden">
       <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .image-container {
+          width: 160px;
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @keyframes slideInFromLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes slideInFromRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        .animate-header {
-          animation: fadeInUp 0.6s ease-out;
-        }
-        
-        .grid-row {
-          animation: fadeInUp 0.5s ease-out forwards;
+        .image-container.collapsed {
+          width: 0;
           opacity: 0;
         }
         
-        .grid-row:nth-child(1) { animation-delay: 0.1s; }
-        .grid-row:nth-child(2) { animation-delay: 0.2s; }
-        .grid-row:nth-child(3) { animation-delay: 0.3s; }
-        .grid-row:nth-child(4) { animation-delay: 0.4s; }
-        .grid-row:nth-child(5) { animation-delay: 0.5s; }
-        .grid-row:nth-child(6) { animation-delay: 0.6s; }
-        .grid-row:nth-child(7) { animation-delay: 0.7s; }
-        .grid-row:nth-child(8) { animation-delay: 0.8s; }
-        .grid-row:nth-child(9) { animation-delay: 0.9s; }
+        .image-container.expanded {
+          width: 160px;
+          opacity: 1;
+        }
+        
+        .image-inner {
+          width: 160px;
+          height: 160px;
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+          background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        }
+        
+        .image-container.expanded .image-inner {
+          transform: scale(1);
+        }
+        
+        .image-container.collapsed .image-inner {
+          transform: scale(0.8);
+        }
         
         .card-hover {
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .card-hover:hover {
           transform: translateY(-4px);
           box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
-        
-        .mobile-card {
-          animation: scaleIn 0.4s ease-out forwards;
-          opacity: 0;
+
+        .left-card {
+          flex: 1;
+          transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .mobile-card:nth-child(odd) { animation-delay: calc((var(--row-index) * 0.1s) + 0.1s); }
-        .mobile-card:nth-child(even) { animation-delay: calc((var(--row-index) * 0.1s) + 0.15s); }
+
+        .left-card.shrink {
+          flex: 0.7;
+        }
+
+        .mobile-image {
+          height: 80px;
+          width: 100%;
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          overflow: hidden;
+        }
+
+        .mobile-image.collapsed {
+          height: 0;
+          opacity: 0;
+          margin: 0;
+        }
+
+        .mobile-image.expanded {
+          height: 80px;
+          opacity: 1;
+          margin-top: 8px;
+        }
       `}</style>
 
       <div className="mx-auto">
         {/* Header Section */}
-        <div className="hidden md:flex items-center justify-between mb-8 pb-6 border-b-2 border-blue-300 animate-header">
+        <div className="hidden md:flex items-center justify-between mb-8 pb-6 border-b-2 border-blue-300">
           <div className="text-left flex-1">
             <p className="text-[48px] font-light text-gray-800">
               You <span className="font-light">don't worry,</span>
@@ -152,7 +141,7 @@ export default function YouAndI() {
           </div>
           <div className="flex-1"></div>
           <div className="text-right flex-1">
-            <p className="text-[48px] font-light  text-gray-800">
+            <p className="text-[48px] font-light text-gray-800">
               <span className="font-light">as</span> I{" "}
               <span className="font-bold">solve...</span>
             </p>
@@ -160,7 +149,7 @@ export default function YouAndI() {
         </div>
 
         {/* Mobile Header */}
-        <div className="md:hidden mb-6 pb-4 border-b-2 border-blue-300 flex justify-center animate-header">
+        <div className="md:hidden mb-6 pb-4 border-b-2 border-blue-300 flex justify-center">
           <div className="w-full max-w-xs">
             <p className="text-lg font-light text-gray-800 text-left leading-tight">
               You don&apos;t worry,
@@ -172,14 +161,20 @@ export default function YouAndI() {
         </div>
 
         {/* Desktop Grid - Three Columns */}
-        <div className="hidden md:block space-y-6">
+        <div className="hidden md:block space-y-2">
           {items.map((item, index) => (
             <div
               key={index}
-              className="grid grid-cols-[0.75fr_auto_1.25fr] gap-6 items-center overflow-hidden grid-row card-hover"
+              className="flex gap-4 items-center overflow-hidden"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               {/* Left Column - YOU Statement */}
-              <div className="bg-[#F5DEDC] p-6 h-full flex items-center font-family-instrument rounded-lg transition-all duration-300 hover:bg-[#f5d4d0]">
+              <div
+                className={`bg-[#F5DEDC] p-6 h-44 flex items-center font-family-instrument  card-hover left-card ${
+                  hoveredIndex === index ? "shrink" : ""
+                }`}
+              >
                 <p className="text-gray-700 text-[24px] font-medium leading-relaxed">
                   <span className="font-bold text-gray-900">YOU</span>{" "}
                   {item.you.replace(/^YOU /, "")}
@@ -187,21 +182,27 @@ export default function YouAndI() {
               </div>
 
               {/* Middle Column - Image */}
-              <div className="bg-teal-600 w-40 h-40 flex items-center justify-center overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
-                <img
-                  src={item.image}
-                  alt={`Item ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.parentElement.innerHTML =
-                      '<div class="text-white text-center text-sm">Image</div>';
-                  }}
-                />
+              <div
+                className={`image-container ${
+                  hoveredIndex === index ? "expanded" : "collapsed"
+                }`}
+              >
+                <div className="image-inner flex items-center justify-center overflow-hidden ">
+                  <img
+                    src={item.image}
+                    alt={`Item ${index + 1}`}
+                    className="w-44 h-44 object-cover"
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.parentElement.innerHTML =
+                        '<div class="text-white text-center text-sm">Image</div>';
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Right Column - I Statement */}
-              <div className="bg-[#6BC6D366] p-6 h-full flex items-center rounded-lg transition-all duration-300 hover:bg-[#5db5c2cc]">
+              <div className="bg-[#6BC6D366] p-6 flex-1 h-44 flex items-center  card-hover">
                 <p className="text-gray-700 text-[24px] font-medium leading-relaxed">
                   <span className="font-bold text-gray-900">I</span>{" "}
                   {item.i.replace(/^I /, "")}
@@ -218,20 +219,38 @@ export default function YouAndI() {
               <React.Fragment key={index}>
                 {/* YOU Statement */}
                 <div
-                  className="bg-[#F5DEDC] p-4 rounded-lg card-hover mobile-card"
-                  style={{ "--row-index": index }}
+                  className="bg-[#F5DEDC] p-4 rounded-lg card-hover"
+                  onTouchStart={() => setHoveredIndex(index)}
+                  onTouchEnd={() => setHoveredIndex(null)}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <p className="text-gray-700 text-sm font-medium leading-relaxed">
                     <span className="font-bold text-gray-900">YOU</span>{" "}
                     {item.you.replace(/^YOU /, "")}
                   </p>
+                  <div
+                    className={`mobile-image ${
+                      hoveredIndex === index ? "expanded" : "collapsed"
+                    }`}
+                  >
+                    <div className="bg-gradient-to-br from-teal-500 to-teal-700 w-full h-full flex items-center justify-center overflow-hidden rounded">
+                      <img
+                        src={item.image}
+                        alt={`Item ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          e.target.parentElement.innerHTML =
+                            '<div class="text-white text-center text-xs">Image</div>';
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 {/* I Statement */}
-                <div
-                  className="bg-[#6BC6D366] p-4 rounded-lg card-hover mobile-card"
-                  style={{ "--row-index": index }}
-                >
+                <div className="bg-[#6BC6D366] p-4 rounded-lg card-hover">
                   <p className="text-gray-700 text-sm font-medium leading-relaxed">
                     <span className="font-bold text-gray-900">I</span>{" "}
                     {item.i.replace(/^I /, "")}

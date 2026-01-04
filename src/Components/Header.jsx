@@ -1,13 +1,50 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Header() {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            obs.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="bg-[#E1F0F2] py-8 md:py-16 px-4 md:px-8 overflow-hidden">
+    <div
+      ref={sectionRef}
+      className={`bg-[#E1F0F2] py-8 md:py-16 px-4 md:px-8 overflow-hidden ${
+        visible ? "in-view" : ""
+      }`}
+    >
       <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;
             transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
           }
           to {
             opacity: 1;
@@ -27,16 +64,24 @@ export default function Header() {
         }
         
         .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out 0.2s both;
+          opacity: 0;
+        }
+        
+        .in-view .animate-fade-in-up {
+          animation: fadeInDown 0.7s ease-out forwards;
         }
         
         .word-highlight {
+          opacity: 0;
+        }
+        
+        .in-view .word-highlight {
           animation: fadeInWord 0.6s ease-out forwards;
         }
         
-        .word-highlight:nth-child(1) { animation-delay: 0.3s; }
-        .word-highlight:nth-child(2) { animation-delay: 0.5s; }
-        .word-highlight:nth-child(3) { animation-delay: 0.7s; }
+        .in-view .word-highlight:nth-child(1) { animation-delay: 0s; }
+        .in-view .word-highlight:nth-child(2) { animation-delay: 0s; }
+        .in-view .word-highlight:nth-child(3) { animation-delay: 0s; }
         
         .highlight-bold {
           transition: all 0.3s ease;

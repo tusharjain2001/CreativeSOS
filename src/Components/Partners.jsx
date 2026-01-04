@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 import Logo1 from "../Images/Logo1.png";
 import Logo2 from "../Images/Logo2.png";
@@ -62,8 +62,34 @@ export default function Partners() {
   // Duplicate logos for seamless loop
   const logosDoubled = [...logos, ...logos];
 
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            obs.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section className="bg-[#1C1D22] py-4 md:py-6 px-4 md:px-8">
+    <section
+      ref={sectionRef}
+      className={`bg-[#1C1D22] py-4 md:py-6 px-4 md:px-8 ${
+        visible ? "in-view" : ""
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-4">
@@ -72,7 +98,7 @@ export default function Partners() {
           </div>
           <div className="grid md:grid-cols-[1fr_1.2fr] gap-8 items-start">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold text-white leading-snug">
+              <h2 className="text-3xl md:text-5xl font-bold text-white leading-snug partners-header">
                 Clients <span className="font-light">Who&rsquo;ve</span>
                 <br />
                 <span className="font-bold">
@@ -96,12 +122,12 @@ export default function Partners() {
             {logosDoubled.map((logo, index) => (
               <div
                 key={index}
-                className=" flex flex-col items-center justify-center p-4 md:p-5"
+                className="partner-item flex flex-col items-center justify-center p-4 md:p-5"
               >
                 <img
                   src={logo.img}
                   alt={logo.name}
-                  className="max-h-10 md:max-h-16 mb-2 object-contain"
+                  className="partner-logo max-h-10 md:max-h-16 mb-2 object-contain"
                   onError={(e) => (e.currentTarget.style.display = "none")}
                 />
 
@@ -115,6 +141,39 @@ export default function Partners() {
           </Marquee>
         </div>
       </div>
+      <style>{`
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pop { from { opacity: 0; transform: translateY(6px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .partners-header { opacity: 0; }
+        .in-view .partners-header { animation: fadeInUp 0.6s ease-out forwards; }
+
+        .partner-item { opacity: 0; }
+        .in-view .partner-item { animation: pop 0.45s cubic-bezier(.2,.9,.25,1) forwards; }
+
+        /* stagger a bit across the doubled set (max 18 children) */
+        .in-view .partner-item:nth-child(1) { animation-delay: 0.05s; }
+        .in-view .partner-item:nth-child(2) { animation-delay: 0.08s; }
+        .in-view .partner-item:nth-child(3) { animation-delay: 0.11s; }
+        .in-view .partner-item:nth-child(4) { animation-delay: 0.14s; }
+        .in-view .partner-item:nth-child(5) { animation-delay: 0.17s; }
+        .in-view .partner-item:nth-child(6) { animation-delay: 0.20s; }
+        .in-view .partner-item:nth-child(7) { animation-delay: 0.23s; }
+        .in-view .partner-item:nth-child(8) { animation-delay: 0.26s; }
+        .in-view .partner-item:nth-child(9) { animation-delay: 0.29s; }
+        .in-view .partner-item:nth-child(10) { animation-delay: 0.32s; }
+        .in-view .partner-item:nth-child(11) { animation-delay: 0.35s; }
+        .in-view .partner-item:nth-child(12) { animation-delay: 0.38s; }
+        .in-view .partner-item:nth-child(13) { animation-delay: 0.41s; }
+        .in-view .partner-item:nth-child(14) { animation-delay: 0.44s; }
+        .in-view .partner-item:nth-child(15) { animation-delay: 0.47s; }
+        .in-view .partner-item:nth-child(16) { animation-delay: 0.50s; }
+        .in-view .partner-item:nth-child(17) { animation-delay: 0.53s; }
+        .in-view .partner-item:nth-child(18) { animation-delay: 0.56s; }
+
+        .partner-logo { transition: transform 0.28s ease, opacity 0.28s ease; }
+        .partner-item:hover .partner-logo { transform: scale(1.06); }
+      `}</style>
     </section>
   );
 }
