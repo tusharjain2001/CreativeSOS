@@ -43,6 +43,7 @@ export default function Results() {
   const cardRef = useRef(null);
   const [cardWidth, setCardWidth] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
+  const cardRefs = useRef([]);
 
   useEffect(() => {
     const update = () => {
@@ -60,6 +61,34 @@ export default function Results() {
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
+  }, []);
+
+  // Intersection Observer for card animations
+  useEffect(() => {
+    const observers = cardRefs.current.map((card, index) => {
+      if (!card) return null;
+      
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('card-visible');
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px'
+        }
+      );
+
+      observer.observe(card);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer?.disconnect());
+    };
   }, []);
 
   return (
@@ -122,8 +151,11 @@ export default function Results() {
                 {cards.map((c, i) => (
                   <article
                     key={i}
-                    ref={i === 0 ? cardRef : null}
-                    className="shrink-0 w-full md:w-[48%] lg:w-[32%] xl:w-[23%] bg-[#E1F0F2] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start flex flex-col"
+                    ref={(el) => {
+                      if (i === 0) cardRef.current = el;
+                      cardRefs.current[i] = el;
+                    }}
+                    className="result-card shrink-0 w-full md:w-[48%] lg:w-[32%] xl:w-[23%] bg-[#E1F0F2] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start flex flex-col"
                     style={{ minHeight: "400px" }}
                     aria-roledescription="slide"
                   >
@@ -157,6 +189,35 @@ export default function Results() {
         .results-scroll-container {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        /* Card animation */
+        .result-card {
+          opacity: 0;
+          transform: translateX(50px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .result-card.card-visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        /* Stagger animation delay for each card */
+        .result-card:nth-child(1) {
+          transition-delay: 0s;
+        }
+        .result-card:nth-child(2) {
+          transition-delay: 0.1s;
+        }
+        .result-card:nth-child(3) {
+          transition-delay: 0.2s;
+        }
+        .result-card:nth-child(4) {
+          transition-delay: 0.3s;
+        }
+        .result-card:nth-child(5) {
+          transition-delay: 0.4s;
         }
       `}</style>
     </section>
