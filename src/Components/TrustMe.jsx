@@ -52,7 +52,7 @@ export default function TrustMe() {
         <div className="grid md:grid-cols-[0.55fr_1fr] gap-16 items-start">
           {/* Left column - sticky heading */}
           <div className="md:sticky md:top-24">
-            <div className="inline-block bg-teal-100 text-teal-700 font-light text-xs px-3 py-1 rounded-full">
+            <div className="inline-block bg-[#C5EBF0] text-[#1E8898] font-light  px-3 py-1 rounded-full">
               Why me?
             </div>
             <h2 className="mt-2 text-[48px] font-light text-gray-900 leading-snug">
@@ -86,7 +86,7 @@ export default function TrustMe() {
                   <h3 className="text-[32px] md:text-[30px] sm:text-[30px] font-medium text-gray-900">
                     {f.title}
                   </h3>
-                  <p className="text-[24px] text-gray-600 mt-1 max-w-xl">
+                  <p className="text-[24px] text-gray-600 mt-1 max-w-xl font-light  ">
                     {f.desc}
                   </p>
                 </div>

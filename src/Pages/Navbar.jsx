@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logodesktop from "../Images/logodesktop.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,24 +15,23 @@ export default function Navbar() {
     { label: "Partners", href: "#partners" },
     { label: "My SLAs", href: "#my-slas" },
     { label: "Results", href: "#results" },
-    { label: "Portfolio", href: "/portfolio" },
   ];
 
   return (
     <nav className="bg-[#E1F0F2] px-4 md:px-8 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="  flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <span className="text-sm md:text-lg font-bold text-gray-800">
-            <span className="text-teal-600">TCS</span>
-            <span className="hidden md:inline">-The Creative SOS</span>
-          </span>
+          <img src={logodesktop} />
         </div>
 
         {/* Hamburger Icon for Mobile */}
+
         <button
           onClick={toggleMenu}
-          className="md:hidden flex flex-col gap-1.5 z-50"
+          className={`md:hidden flex flex-col gap-1.5 z-50 ${
+            isOpen ? "invisible" : ""
+          }`}
         >
           <span
             className={`w-6 h-0.5 bg-gray-700 transition-all ${
@@ -58,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 to={item.href}
-                className="text-gray-700 hover:text-teal-600 text-sm font-medium transition-colors"
+                className="text-gray-700 hover:text-teal-600  font-family-instrument font-medium transition-colors"
               >
                 {item.label}
               </Link>
@@ -67,10 +67,10 @@ export default function Navbar() {
 
           {/* Buttons */}
           <div className="flex items-center gap-4">
-            <button className="px-6 py-2 border-2 bg-white border-teal-500 text-teal-600 font-medium rounded hover:bg-teal-50 transition-colors">
+            <button className="px-6 py-2 border-2 bg-white border-[#257D89] text-[#257D89] font-medium rounded  transition-colors">
               Let's Talk Money!
             </button>
-            <button className="px-6 py-2 bg-[#257D89] text-white font-medium rounded hover:bg-teal-700 transition-colors">
+            <button className="px-6 py-2 bg-[#257D89] text-white font-medium rounded  transition-colors">
               Let's Collaborate
             </button>
           </div>
@@ -78,12 +78,13 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="absolute top-0 left-0 w-full bg-[#E1F0F2] flex flex-col md:hidden z-40">
+          <div className="absolute top-0 left-0 w-full bg-[#C0E4E9] flex flex-col md:hidden z-40">
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between px-4 py-4 border-b border-blue-300">
-              <span className="text-sm font-bold text-gray-800">
-                <span className="text-teal-600">TCS</span>-The Creative SOS
-              </span>
+            <div className="flex items-center justify-between px-4 py-4 ">
+              <div className="flex items-center">
+                <img src={logodesktop} />
+              </div>
+
               <button
                 onClick={toggleMenu}
                 className="text-gray-700 text-2xl font-light"
@@ -93,13 +94,13 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Navigation Items */}
-            <div className="flex flex-col">
+            <div className="flex flex-col px-4">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
                   onClick={toggleMenu}
-                  className="px-4 py-4 text-center text-gray-700 border-b border-blue-300 hover:bg-blue-50 transition-colors text-sm font-medium"
+                  className="px-4 py-4 text-center text-gray-700 border-b font-family-instrument border-[#1C1D22] transition-colors  font-medium"
                 >
                   {item.label}
                 </Link>
@@ -107,8 +108,8 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Buttons */}
-            <div className="flex flex-col gap-3 p-4">
-              <button className="w-full px-6 py-2 border-2 bg-white border-teal-500 text-teal-600 font-medium rounded hover:bg-teal-50 transition-colors text-sm">
+            <div className="flex  gap-3 p-4">
+              <button className="w-full px-6 py-2 border-2 bg-white border-[#257D89] text-[#257D89] font-medium rounded hover:bg-teal-50 transition-colors text-sm">
                 Let's Talk Money!
               </button>
               <button className="w-full px-6 py-2 bg-[#257D89] text-white font-medium rounded hover:bg-teal-700 transition-colors text-sm">

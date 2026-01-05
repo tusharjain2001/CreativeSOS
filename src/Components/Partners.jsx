@@ -93,7 +93,7 @@ export default function Partners() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-4">
-          <div className="inline-block bg-[#00434D] text-white text-xs font-medium px-4 py-2  mb-2">
+          <div className="inline-block bg-[#00434D] text-[#C5EBF0]  px-4 py-2  mb-2">
             Partners
           </div>
           <div className="grid md:grid-cols-[1fr_1.2fr] gap-8 items-start">
