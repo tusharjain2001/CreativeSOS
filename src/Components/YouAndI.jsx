@@ -19,7 +19,7 @@ export default function YouAndI() {
     {
       you: "YOU have wasted hours chasing freelancers or agencies & still do not get leadership-level thinking.",
       image: Rectangle2,
-      i: "I, as your Creative Partner, am your single point of contact for creative strategy and direction.",
+      i: "I as your Creative Partner, am your single point of contact for creative strategy and direction.",
     },
     {
       you: "YOU prefer accountability over coordination.",
@@ -61,7 +61,7 @@ export default function YouAndI() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="bg-gray-50 py-4 md:py-12 px-4 md:px-8 overflow-hidden">
+    <div className=" py-4 md:py-12 px-2 md:px-8 overflow-hidden">
       <style>{`
         .image-container {
           width: 160px;

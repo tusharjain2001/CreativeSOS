@@ -82,29 +82,29 @@ export default function Results() {
       <div className=" pl-4 md:pl-8 ">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
           {/* Left heading column */}
-          <div className="text-white lg:w-64 flex-shrink-0">
+          <div
+            className="text-white lg:w-64 flex-shrink-0
+                text-center lg:text-left"
+          >
             <div className="inline-block bg-[#00434D] text-white px-4 py-1.5 rounded-md mb-6 font-family-instrument">
               Results
             </div>
 
-            <div className="space-y-1">
-              <div className="text-4xl md:text-5xl font-bold leading-tight">
+            <div className="space-y-1 lg:space-y-1">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
                 5 Results
               </div>
-              <div className="text-4xl md:text-5xl font-light leading-tight">
-                Marketing
+
+              <div className="text-3xl sm:text-4xl md:text-5xl font-light leading-tight">
+                Marketing Leaders
               </div>
-              <div className="text-4xl md:text-5xl font-light leading-tight">
-                Leaders
-              </div>
-              <div className="text-4xl md:text-5xl font-light leading-tight">
+
+              <div className="text-3xl sm:text-4xl md:text-5xl font-light leading-tight">
                 See After
               </div>
-              <div className="text-4xl md:text-5xl font-bold leading-tight mt-2">
-                Partnering
-              </div>
-              <div className="text-4xl md:text-5xl font-bold leading-tight">
-                With Me!
+
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mt-2">
+                Partnering With Me!
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function Results() {
                 {cards.map((c, i) => (
                   <article
                     key={i}
-                    className="flex-shrink-0 w-[280px] md:w-[400px] bg-[#E1F0F2] rounded-lg p-6 flex flex-col select-none"
+                    className="flex-shrink-0 w-[320px] md:w-[400px] bg-[#E1F0F2] rounded-lg p-6 flex flex-col select-none"
                     style={{ minHeight: "420px" }}
                   >
                     <h4 className="text-4xl mb-3 text-[#1C1D22]  leading-tight">
