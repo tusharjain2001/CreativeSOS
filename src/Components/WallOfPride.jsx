@@ -32,7 +32,7 @@ const WallOfPride = () => {
           The Wall of Pride
         </h1>
 
-        {/* Testimonials Grid - Masonry Layout */}
+        {/* Testimonials Grid - 3 Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12 items-start">
           {/* Column 1 */}
           <div className="flex flex-col gap-5">
@@ -53,23 +53,24 @@ const WallOfPride = () => {
                       2nd
                     </span>
                   </div>
-                  <p className="text-xs text-gray-600 leading-tight">
-                    Social Media Management & Consulting
+                  <p className="text-xs text-gray-600 leading-tight mb-1">
+                    Social Media Management & Consulting.
+                  </p>
+                  <p className="text-xs text-gray-600 leading-tight mb-1">
+                    Helping small business owners & entrepreneurs Don't let
+                    digital marketing confuse you! Let me show you how I can
+                    help with the mini computer in your pocket.
                   </p>
                   <p className="text-xs text-gray-600 leading-tight">
-                    CEO at Small Scale Marketing
+                    October 20, 2023, Stetson was Abhishek's client
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mb-2.5">October 20, 2023</p>
-              <p className="text-gray-700 text-sm leading-snug whitespace-pre-line">
-                If you're interested in a way to streamline your "Message me to
-                see how I can help with the __" campaign in your pocket contact
-                list, Abhishek is your guy. I have worked with Abhishek and his
-                team for over 2 years now. They excel in efficiency with
-                communication, efficiency, understanding exactly what I need,
-                and Delivering on exactly what was asked for. I highly
-                recommend! 10/10!
+              <p className="text-gray-700 text-sm leading-relaxed">
+                I have worked with Abhishek and his team for over 2 years now.
+                They excel in efficiency with communication, efficiency,
+                understanding exactly what I need, and Delivering on exactly
+                what was asked for. I highly recommend! 10/10!
               </p>
             </div>
 
@@ -86,26 +87,33 @@ const WallOfPride = () => {
                     <h3 className="font-bold text-gray-900 text-sm">
                       Marshall England
                     </h3>
+                    <span className="inline-block bg-orange-500 text-white text-xs font-bold px-1.5 py-0.5 rounded">
+                      in
+                    </span>
                     <span className="text-xs text-gray-500 flex-shrink-0">
                       2nd
                     </span>
                   </div>
-                  <p className="text-xs text-gray-600 leading-tight">CEO</p>
-                  <p className="text-xs text-gray-600 leading-tight">
+                  <p className="text-xs text-gray-600 leading-tight mb-1">
+                    CEO
+                  </p>
+                  <p className="text-xs text-gray-600 leading-tight mb-1">
                     Arrowfish Consulting
+                  </p>
+                  <p className="text-xs text-gray-600 leading-tight">
+                    October 20, 2023, Marshall was Abhishek's client
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mb-2.5">October 20, 2023</p>
-              <p className="text-gray-700 text-sm leading-snug whitespace-pre-line">
-                Marshall was Abhishek's client. Working with Abhishek as a
-                creative partner has been exceptional. His attention-to-detail
-                and ability to understand our vision has been evident throughout
-                our collaboration. From brand alignments, His end-to-end setup
-                streamlined creative operations, removed the need for multiple
-                agencies and built a system that lasts for times. Highly
-                recommended for any organization seeking a full-service creative
-                solution that delivers results.
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Working with Abhishek as a creative partner has been
+                exceptional. His direction brought our video and design projects
+                to life with high-quality productions and consistent brand
+                representation. His end-to-end setup streamlined creative
+                operations, removed the need for multiple vendors, and improved
+                turnaround times. Highly recommended for any organization
+                seeking a full-service creative partner who connects vision to
+                execution.
               </p>
             </div>
           </div>
@@ -124,11 +132,11 @@ const WallOfPride = () => {
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <h3 className="font-bold text-gray-900 text-sm">Erin L</h3>
                     <span className="text-xs text-gray-500 flex-shrink-0">
-                      3rd
+                      2nd
                     </span>
                   </div>
                   <p className="text-xs text-gray-600 leading-tight">
-                    Email Marketing at Armodilo
+                    Content Marketing at Arwailles
                   </p>
                 </div>
               </div>
@@ -138,13 +146,13 @@ const WallOfPride = () => {
                 </span>
               </div>
               <StarRating rating={5.0} date="December 4, 2024" />
-              <p className="text-gray-700 text-sm leading-snug whitespace-pre-line">
-                While at Mydas, I worked with Abhishek on ongoing projects. He
-                helped us create and fix email banners in Klaviyo (Mailchimp),
-                various email banners and GIF/video projects. Abhishek works
-                quickly and communicates well, offering options and solutions.
-                His work helped us create fantastic end results. I'd definitely
-                recommend working with him. (feedback redone)
+              <p className="text-gray-700 text-[13px] leading-relaxed">
+                While at Nylas, I worked with Abhishek on numerous projects. He
+                helped us create design and fixed email banners in Klaviyo
+                (Mailchimp), email banners and GIF/video projects. Abhishek
+                works quickly and communicates well, offering opportunities to
+                chat live about feedback and create fantastic end results. I'd
+                definitely recommend working with him. (feedback edited)
               </p>
             </div>
 
@@ -161,48 +169,55 @@ const WallOfPride = () => {
                     <h3 className="font-bold text-gray-900 text-sm">
                       Rishika Raj
                     </h3>
+                    <span className="inline-block bg-orange-500 text-white text-xs font-bold px-1.5 py-0.5 rounded">
+                      in
+                    </span>
                     <span className="text-xs text-gray-500 flex-shrink-0">
                       2nd
                     </span>
                   </div>
+                  <p className="text-xs text-gray-600 leading-tight mb-2">
+                    Branding & Marketing Professional | Ex - IPI, Home Loans |
+                    Ex - UNLO | Webchief | DU
+                  </p>
                   <p className="text-xs text-gray-600 leading-tight">
-                    Branding & Positioning | Ex - IPI, Anthill Ventures,
-                    GrowthJockey & Ola
+                    October 22, 2023, Rishika was Abhishek's client
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mb-2.5">October 22, 2023</p>
-              <p className="text-gray-700 text-sm leading-snug whitespace-pre-line">
-                Rishika was Abhishek's client. Working with Abhishek has been a
-                great experience. He has been a great startup consultant for our
-                performance marketing videos, sets from planning to execution.
-                He has been proactive and quite quick! Abhishek really gets the
-                trust, which meant there was very little back and forth in terms
-                of iterations. Would def recommend!
+              <p className="text-gray-700 text-sm leading-relaxed mb-2">
+                Working with Abhishek has been a great experience. He supported
+                us like a creative consultant for performance marketing startup
+                videos, and from planning to execution, he made everything feel
+                smooth and easy.
+              </p>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                Abhishek really gets the brief, which meant there was very
+                little back and forth in ...see more
               </p>
             </div>
           </div>
 
           {/* Column 3 */}
           <div className="flex flex-col gap-5">
-            {/* Card 5 - Abhishek Maurya */}
+            {/* Card 5 - Abhilash Maurya */}
             <div className="bg-white rounded-2xl p-5 shadow-lg">
               <div className="flex items-start gap-2.5 mb-2.5">
                 <img
-                  src="https://ui-avatars.com/api/?name=Abhishek+Maurya&background=ec4899&color=fff&size=80"
-                  alt="Abhishek Maurya"
+                  src="https://ui-avatars.com/api/?name=Abhilash+Maurya&background=ec4899&color=fff&size=80"
+                  alt="Abhilash Maurya"
                   className="w-11 h-11 rounded-full flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <h3 className="font-bold text-gray-900 text-sm">
-                      Abhishek Maurya
+                      Abhilash Maurya
                     </h3>
                     <span className="text-xs text-gray-500 flex-shrink-0">
                       2nd
                     </span>
                   </div>
-                  <p className="text-xs text-gray-600 leading-tight">
+                  <p className="text-xs text-gray-600 leading-tight mb-1">
                     Cofounder & CEO at Navatra Labs.
                   </p>
                   <p className="text-xs text-gray-600 leading-tight">
@@ -216,7 +231,7 @@ const WallOfPride = () => {
                 </span>
               </div>
               <StarRating rating={5.0} date="December 2, 2024" />
-              <p className="text-gray-700 text-sm leading-snug">
+              <p className="text-gray-700 text-sm leading-relaxed">
                 Delivered excellent work in very short timeline
               </p>
             </div>
@@ -234,21 +249,26 @@ const WallOfPride = () => {
                     <h3 className="font-bold text-gray-900 text-sm">
                       Stephen Jones
                     </h3>
+                    <span className="text-xs text-gray-500 flex-shrink-0">
+                      2nd
+                    </span>
                   </div>
-                  <p className="text-xs text-gray-600 leading-tight">
-                    Founder of Maro - track every story across 200+ social media
-                    consultant | Media and comms training @ PA
+                  <p className="text-sm text-gray-600 leading-tight mb-1">
+                    Founder of Maro - track every story across platforms |
+                    Digital media consultant | Media and comms training @ PA
+                  </p>
+                  <p className="text-sm text-gray-600 leading-tight mb-3">
+                    October 20, 2023, Stephen was <br />
+                    Abhishek's client
                   </p>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mb-2.5">October 20, 2023</p>
-              <p className="text-gray-700 text-sm leading-snug whitespace-pre-line">
-                Stephen was Abhishek's client. Abhishek oversaw our graphic
-                designs and a video explainer for our new website. We were
-                really pleased with the outcome - they looked super slick and
-                our feedback had been implemented brilliantly. I also liked
-                Abhishek's speedy and clear which helped as we were on a tight
-                timeline. Would happily recommend.
+              <p className="text-gray-700 text-md leading-relaxed">
+                Abhishek oversaw our graphic designs and a video explainer for
+                our new website. We were really pleased with the outcome - they
+                looked super slick and our feedback had been absorbed really
+                well. Communication was speedy and clear which helped as we were
+                on a tight timeline. Would happily recommend.
               </p>
             </div>
           </div>
