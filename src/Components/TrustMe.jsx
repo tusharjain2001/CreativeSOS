@@ -47,15 +47,15 @@ export default function TrustMe() {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-white">
+    <section className="py-8 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-[0.55fr_1fr] gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[0.55fr_1fr] gap-8 md:gap-16 items-start">
           {/* Left column - sticky heading */}
-          <div className="md:sticky md:top-24">
-            <div className="inline-block bg-[#C5EBF0] text-[#1E8898] font-light  px-3 py-1 rounded-full">
+          <div className="md:sticky md:top-24 hidden md:block">
+            <div className="inline-block bg-[#C5EBF0] font-family-instrument text-[#1E8898] font-light px-3 py-1 rounded-full ">
               Why me?
             </div>
-            <h2 className="mt-2 text-[48px] font-light text-gray-900 leading-snug">
+            <h2 className="mt-4 md:mt-2 text-2xl sm:text-3xl md:text-5xl font-light text-gray-900 leading-snug">
               Why CMOs/
               <br /> Agencies/
               <br /> Marketing Heads
@@ -63,18 +63,34 @@ export default function TrustMe() {
             </h2>
           </div>
 
+          {/* Mobile heading */}
+          <div className="md:hidden">
+            <div className="flex justify-center mb-3">
+              <div className="inline-block bg-[#C5EBF0] text-[#1E8898] font-helvetica px-3 py-1  text-xs">
+                Why me?
+              </div>
+            </div>
+            <div className="text-center px-4">
+              <h2 className="text-xl font-light text-gray-900 leading-snug">
+                Why CMOs/ Agencies/
+                <br />
+                Marketing Heads
+                <br /> <span className="font-bold">Trust Me?</span>
+              </h2>
+            </div>
+          </div>
           {/* Right column - scrolling features list */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {features.map((f, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 opacity-0 animate-fade-in-up"
+                className="flex items-start gap-3 md:gap-4 opacity-0 animate-fade-in-up"
                 style={{
                   animationDelay: `${i * 0.1}s`,
                   animationFillMode: "forwards",
                 }}
               >
-                <div className="w-32 h-32 flex items-center justify-center">
+                <div className="w-12 h-12 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center">
                   <img
                     src={f.icon}
                     alt={f.title}
@@ -83,10 +99,10 @@ export default function TrustMe() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-[32px] md:text-[30px] sm:text-[30px] font-medium text-gray-900">
+                  <h3 className="text-base md:text-3xl font-medium text-gray-900">
                     {f.title}
                   </h3>
-                  <p className="text-[24px] text-gray-600 mt-1 max-w-xl font-light  ">
+                  <p className="text-xs md:text-lg text-gray-600 mt-1 max-w-xl font-light">
                     {f.desc}
                   </p>
                 </div>

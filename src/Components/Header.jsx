@@ -80,8 +80,8 @@ export default function Header() {
         }
       `}</style>
 
-      <div className="max-w-[95%] sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto text-center animate-fade-in-up">
-        <p className="text-[16px] sm:text-[22px] md:text-[26px] lg:text-[32px] leading-[1.7] sm:leading-[1.6] md:leading-[1.5] text-gray-800 font-light px-2">
+      <div className="max-w-[90%] sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto text-center animate-fade-in-up">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed md:leading-relaxed lg:leading-relaxed text-gray-800 font-light">
           Companies spend over{" "}
           <span className="font-semibold text-gray-900 highlight-bold word-highlight whitespace-nowrap">
             $100K
