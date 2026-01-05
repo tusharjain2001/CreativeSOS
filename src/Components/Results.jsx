@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+
 import Result1 from "../Images/Result1.png";
 import Result2 from "../Images/Result2.png";
 import Result3 from "../Images/Result3.png";
@@ -16,7 +17,7 @@ export default function Results() {
     {
       title: "Strategic Clarity in Every Campaign",
       subtitle:
-        "They gain sharper narratives that align creative with actual business goals not just pretty visuals.",
+        "They gain sharper narratives and fresh campaign ideas that align creative with actual business goals not just pretty visuals.",
       image: Result2,
     },
     {
@@ -40,137 +41,108 @@ export default function Results() {
   ];
 
   const containerRef = useRef(null);
-  const cardRef = useRef(null);
-  const [cardWidth, setCardWidth] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
-  const cardRefs = useRef([]);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
-  useEffect(() => {
-    const update = () => {
-      if (!cardRef.current || !containerRef.current) return;
-      const cw = cardRef.current.getBoundingClientRect().width;
-      setCardWidth(cw + 16);
+  // Mouse drag handlers
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+    containerRef.current.style.cursor = "grabbing";
+  };
 
-      const w = window.innerWidth;
-      if (w < 640) setVisibleCount(1);
-      else if (w < 1024) setVisibleCount(2);
-      else if (w < 1280) setVisibleCount(3);
-      else setVisibleCount(4);
-    };
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (containerRef.current) {
+      containerRef.current.style.cursor = "grab";
+    }
+  };
 
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
 
-  // Intersection Observer for card animations
-  useEffect(() => {
-    const observers = cardRefs.current.map((card, index) => {
-      if (!card) return null;
-      
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('card-visible');
-            }
-          });
-        },
-        {
-          threshold: 0.2,
-          rootMargin: '0px'
-        }
-      );
-
-      observer.observe(card);
-      return observer;
-    });
-
-    return () => {
-      observers.forEach((observer) => observer?.disconnect());
-    };
-  }, []);
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "grab";
+      }
+    }
+  };
 
   return (
-    <section className="py-8 md:py-12 bg-[#1C1D22]">
-      <div className="mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-[0.2fr_1fr] gap-8 items-start">
+    <section className="py-12 md:py-16 bg-[#1C1D22]">
+      <div className=" pl-4 md:pl-8 ">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
           {/* Left heading column */}
-          <div className="text-white text-center md:text-left px-4 md:px-0">
-            <div className="inline-block bg-[#00434D] text-white font-family-instrument text-xs font-medium px-3 py-1 rounded mb-3 md:mb-4">
+          <div className="text-white lg:w-64 flex-shrink-0">
+            <div className="inline-block bg-[#00434D] text-white px-4 py-1.5 rounded-md mb-6 font-family-instrument">
               Results
             </div>
 
-            <div className="mt-4 md:mt-6 text-white">
-              {/* Mobile: 3 lines */}
-              <div className="md:hidden space-y-1">
-                <div className="text-2xl font-semibold leading-tight">
-                  5 Results Marketing
-                </div>
-                <div className="text-2xl font-light leading-tight">
-                  Leaders See After
-                </div>
-                <div className="text-2xl font-extralight leading-tight">
-                  Partnering With Me!
-                </div>
+            <div className="space-y-1">
+              <div className="text-4xl md:text-5xl font-bold leading-tight">
+                5 Results
               </div>
-
-              {/* Desktop: Original layout */}
-              <div className="hidden md:block space-y-2">
-                <div className="text-[38px] font-semibold leading-tight">
-                  5 Results
-                </div>
-                <div className="text-[38px] font-light leading-tight">
-                  Marketing
-                </div>
-                <div className="text-[38px] font-extralight leading-tight">
-                  Leaders
-                </div>
-                <div className="text-[38px] font-normal leading-tight">
-                  See After
-                </div>
-                <div className="text-[38px] leading-tight">Partnering</div>
-                <div className="text-[38px] font-semibold leading-tight">
-                  With Me!
-                </div>
+              <div className="text-4xl md:text-5xl font-light leading-tight">
+                Marketing
+              </div>
+              <div className="text-4xl md:text-5xl font-light leading-tight">
+                Leaders
+              </div>
+              <div className="text-4xl md:text-5xl font-light leading-tight">
+                See After
+              </div>
+              <div className="text-4xl md:text-5xl font-bold leading-tight mt-2">
+                Partnering
+              </div>
+              <div className="text-4xl md:text-5xl font-bold leading-tight">
+                With Me!
               </div>
             </div>
           </div>
 
           {/* Right - carousel area */}
-          <div>
+          <div className="flex-1 overflow-hidden">
             <div
               ref={containerRef}
-              className="relative overflow-x-auto md:overflow-x-auto scroll-smooth -mx-4 px-4 results-scroll-container"
-              style={{ WebkitOverflowScrolling: "touch" }}
+              className="overflow-x-auto scroll-smooth results-scroll-container"
+              style={{
+                cursor: "grab",
+                WebkitOverflowScrolling: "touch",
+              }}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
-              <div
-                className="flex md:flex-row flex-col gap-4 md:gap-6 items-stretch"
-                style={{ scrollSnapType: "x mandatory" }}
-              >
+              <div className="flex gap-5 pb-4">
                 {cards.map((c, i) => (
                   <article
                     key={i}
-                    ref={(el) => {
-                      if (i === 0) cardRef.current = el;
-                      cardRefs.current[i] = el;
-                    }}
-                    className="result-card shrink-0 w-full md:w-[48%] lg:w-[32%] xl:w-[23%] bg-[#E1F0F2] rounded border p-5 md:p-6 shadow relative scroll-snap-align-start flex flex-col"
-                    style={{ minHeight: "400px" }}
-                    aria-roledescription="slide"
+                    className="flex-shrink-0 w-[280px] md:w-[400px] bg-[#E1F0F2] rounded-lg p-6 flex flex-col select-none"
+                    style={{ minHeight: "420px" }}
                   >
-                    <h4 className="text-2xl md:text-3xl mb-2 text-gray-900 font-semibold">
+                    <h4 className="text-4xl mb-3 text-[#1C1D22]  leading-tight">
                       {c.title}
                     </h4>
-                    <p className="text-sm md:text-sm text-gray-700 mb-4 leading-snug flex-shrink-0">
+                    <p className="text-xl text-[#1C1D22] font-light  leading-relaxed flex-shrink-0">
                       {c.subtitle}
                     </p>
 
-                    <div className="mt-auto rounded border bg-white overflow-hidden mx-1 mb-1">
+                    <div className=" mt-4 rounded-lg bg-white overflow-hidden shadow-sm">
                       <img
                         src={c.image}
                         alt={c.title}
-                        className="w-full h-48 md:h-auto object-cover"
+                        className="w-full h-48 object-cover"
+                        draggable="false"
                       />
                     </div>
                   </article>
@@ -191,33 +163,9 @@ export default function Results() {
           scrollbar-width: none;
         }
 
-        /* Card animation */
-        .result-card {
-          opacity: 0;
-          transform: translateX(50px);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .result-card.card-visible {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        /* Stagger animation delay for each card */
-        .result-card:nth-child(1) {
-          transition-delay: 0s;
-        }
-        .result-card:nth-child(2) {
-          transition-delay: 0.1s;
-        }
-        .result-card:nth-child(3) {
-          transition-delay: 0.2s;
-        }
-        .result-card:nth-child(4) {
-          transition-delay: 0.3s;
-        }
-        .result-card:nth-child(5) {
-          transition-delay: 0.4s;
+        /* Prevent text selection while dragging */
+        .results-scroll-container.dragging {
+          user-select: none;
         }
       `}</style>
     </section>
