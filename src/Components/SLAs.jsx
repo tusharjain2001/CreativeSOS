@@ -32,22 +32,23 @@ export default function SLAs() {
     <section className="bg-[#f6f6f6] py-12">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <div className="inline-block bg-[#C5EBF0] text-[#1E8898] font-family-instrument p-4 rounded">
-        
           My SLAs
         </div>
-        <div className="text-[#1C1D22] text-[40px] mt-5">Quality and speed standards</div>
+        <div className="text-[#1C1D22] font-light text-[40px] mt-5">
+          Quality and speed standards
+        </div>
 
         <div className="mt-10 space-y-6 text-left">
           {items.map((it, idx) => (
             <div key={idx} className="group cursor-pointer">
               <div className="flex items-center gap-4">
                 {/* Number */}
-                <div className="text-[28px] font-semibold text-gray-800">
+                <div className="text-[16px] md:text-[28px] text-[#1C1D22]">
                   ({it.num})
                 </div>
 
                 {/* Icon (unique per row) */}
-                {/* Icon (unique per row) */}
+
                 <div
                   className="
     opacity-0 w-0 overflow-hidden
@@ -66,7 +67,7 @@ export default function SLAs() {
                 {/* Text */}
                 <div
                   className="
-                    text-[28px] text-gray-700
+                    text-[16px] md:text-[28px] text-[#1C1D22]
                     transition-transform duration-300 ease-out
                     group-hover:translate-x-2
                   "

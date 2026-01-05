@@ -65,36 +65,38 @@ export default function Portfolio() {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center">
-          <div className="inline-block bg-[#D9F1F4] text-[#0B6B70] text-xs font-semibold px-3 py-1 rounded">
-            Portfolio
+        <div className="text-center justify-center items-center flex flex-col">
+          <div className="mt-6 text-2xl md:text-5xl max-w-4xl  text-[#1C1D22]">
+            <span className="font-bold">Explore </span> my work from various{" "}
+            <span className="font-bold">Industries </span>and{" "}
+            <span className="font-bold">Styles </span>
           </div>
 
-          <h1 className="mt-6 text-2xl md:text-3xl font-semibold text-gray-900">
-            Explore my work from various{" "}
-            <span className="font-bold">Industries and Styles</span>
-          </h1>
-
-          <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-5 text-2xl text-[#797979] max-w-2xl mx-auto">
             Forget hourly rates and hidden costs. Calculate, approve, and launch
             your creative projects — all in a few clicks.
           </p>
         </div>
 
         {/* Search / controls */}
-        <div className="mt-8 flex flex-col md:flex-row items-center gap-4">
-          <div className="flex-1 flex gap-3">
-            <div className="flex items-center bg-white border rounded w-full">
+        <div className="mt-8 flex flex-col md:flex-row items-center gap-4 w-full">
+          {/* Search + Button */}
+          <div className="flex flex-1 items-center">
+            <div className="flex w-full overflow-hidden border border-gray-300 rounded-md bg-white">
               <input
                 aria-label="Search projects"
                 placeholder="Search for your desired project..."
-                className="flex-1 px-4 py-2 text-sm outline-none"
+                className="flex-1 px-4 py-2.5 text-sm text-gray-700 outline-none"
               />
-              <button className="px-4 bg-teal-600 text-white rounded-r">
+              <button className="px-6 bg-[#257D89] text-white ">
                 Search
               </button>
             </div>
-            <select className="w-48 border rounded px-3 py-2 text-sm bg-white">
+          </div>
+
+          {/* Sort Dropdown */}
+          <div>
+            <select className="w-52 border border-gray-300 rounded-md px-4 py-2.5 text-sm bg-white text-gray-700 outline-none cursor-pointer">
               <option>Sort By: Brand Identity</option>
               <option>Sort By: Most Recent</option>
               <option>Sort By: Case Studies</option>
@@ -145,7 +147,7 @@ export default function Portfolio() {
                   <span className="text-xs text-gray-500">
                     Brand • Creative
                   </span>
-                  <button 
+                  <button
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/projects/${p.id}`);
