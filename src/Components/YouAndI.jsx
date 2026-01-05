@@ -133,7 +133,7 @@ export default function YouAndI() {
 
       <div className="mx-auto">
         {/* Header Section */}
-        <div className="hidden md:flex items-center justify-between mb-8 pb-6 border-b-2 border-blue-300">
+        <div className="hidden md:flex items-center justify-between mb-8 pb-6 ">
           <div className="text-left flex-1">
             <p className="text-[48px] font-light text-gray-800">
               You <span className="font-light">don't worry,</span>
@@ -149,12 +149,12 @@ export default function YouAndI() {
         </div>
 
         {/* Mobile Header */}
-        <div className="md:hidden mb-6 pb-4 border-b-2 border-blue-300 flex justify-center">
-          <div className="w-full max-w-xs">
-            <p className="text-lg font-light text-gray-800 text-left leading-tight">
+        <div className="md:hidden mt-6 pb-4 flex justify-center">
+          <div className="w-full max-w-xs flex justify-between items-center">
+            <p className="text-lg font-light text-gray-800 leading-tight">
               You don&apos;t worry,
             </p>
-            <p className="text-lg font-light text-gray-800 text-right leading-tight">
+            <p className="text-lg font-light text-gray-800 leading-tight">
               as I <span className="font-bold">solve...</span>
             </p>
           </div>
@@ -203,7 +203,7 @@ export default function YouAndI() {
 
               {/* Right Column - I Statement */}
               <div className="bg-[#6BC6D366] p-6 flex-1 h-40 flex items-center  card-hover">
-                <p className="text-gray-700 text-[24px] font-medium leading-relaxed">
+                <p className="text-gray-700 text-[24px] text-end font-medium leading-relaxed">
                   <span className="font-bold text-gray-900">I</span>{" "}
                   {item.i.replace(/^I /, "")}
                 </p>
@@ -219,13 +219,13 @@ export default function YouAndI() {
               <React.Fragment key={index}>
                 {/* YOU Statement */}
                 <div
-                  className="bg-[#F5DEDC] p-4 rounded-lg card-hover"
+                  className="bg-[#F5DEDC] p-4 rounded-lg card-hover "
                   onTouchStart={() => setHoveredIndex(index)}
                   onTouchEnd={() => setHoveredIndex(null)}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
-                  <p className="text-gray-700 text-sm font-medium leading-relaxed">
+                  <p className="text-gray-700 text-xs font-medium leading-relaxed">
                     <span className="font-bold text-gray-900">YOU</span>{" "}
                     {item.you.replace(/^YOU /, "")}
                   </p>
@@ -251,7 +251,7 @@ export default function YouAndI() {
 
                 {/* I Statement */}
                 <div className="bg-[#6BC6D366] p-4 rounded-lg card-hover">
-                  <p className="text-gray-700 text-sm font-medium leading-relaxed">
+                  <p className="text-gray-700 text-xs font-medium leading-relaxed text-end">
                     <span className="font-bold text-gray-900">I</span>{" "}
                     {item.i.replace(/^I /, "")}
                   </p>
