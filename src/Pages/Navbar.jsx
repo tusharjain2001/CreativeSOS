@@ -13,6 +13,7 @@ export default function Navbar() {
     { label: "You-I", href: "#you-i" },
     { label: "Why me?", href: "#why-me" },
     { label: "Partners", href: "#partners" },
+    { label: "Portfolio", href: "/portfolio" },
     { label: "My SLAs", href: "#my-slas" },
     { label: "Results", href: "#results" },
   ];

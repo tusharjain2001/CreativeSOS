@@ -140,7 +140,7 @@ const WallOfPride = () => {
                   </p>
                 </div>
               </div>
-              <div className="mb-2.5">
+              <div className="mb-3">
                 <span className="inline-block bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-1 rounded">
                   Visual Design
                 </span>
@@ -237,7 +237,7 @@ const WallOfPride = () => {
             </div>
 
             {/* Card 6 - Stephen Jones */}
-            <div className="bg-white rounded-2xl p-5 shadow-lg">
+            <div className="bg-white rounded-2xl p-6 shadow-lg">
               <div className="flex items-start gap-2.5 mb-2.5">
                 <img
                   src="https://ui-avatars.com/api/?name=Stephen+Jones&background=6366f1&color=fff&size=80"
@@ -253,11 +253,11 @@ const WallOfPride = () => {
                       2nd
                     </span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-tight mb-1">
+                  <p className="text-sm text-gray-600 leading-tight mb-2">
                     Founder of Maro - track every story across platforms |
                     Digital media consultant | Media and comms training @ PA
                   </p>
-                  <p className="text-sm text-gray-600 leading-tight mb-3">
+                  <p className="text-sm text-gray-600 leading-tight mb-2">
                     October 20, 2023, Stephen was <br />
                     Abhishek's client
                   </p>
