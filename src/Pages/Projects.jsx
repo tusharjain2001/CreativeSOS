@@ -194,7 +194,7 @@ export default function Projects() {
         {/* Left Sidebar */}
         <div
           className={`bg-white border-r border-gray-200 p-6 overflow-y-auto transition-all duration-300 ${
-            sidebarOpen ? "w-64" : "w-16"
+            sidebarOpen ? "w-74" : "w-16"
           }`}
         >
           {/* Toggle Button */}
