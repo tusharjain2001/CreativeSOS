@@ -1,5 +1,73 @@
 // src/data/projectsData.js
 import image from "../Images/Result4.png";
+import Project1 from "../Images/Project1.png";
+
+// Lightweight list for portfolio overview (id, title, desc, tags, image)
+export const PROJECTS_LIST = [
+  {
+    id: "brand-refresh",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "demand-gen",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "product-launch",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "content-hub",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "retention",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "sales",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "social",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "landing",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+  {
+    id: "ui-teasers",
+    title: "Project Title",
+    desc: "Quidem is rerum et consequatur rerum est rem facturos. Ex id voluptate dolor et qui beatae.",
+    tags: ["Brand Refresh", "Social Media"],
+    image: Project1,
+  },
+];
 
 export const PROJECTS_DATA = {
   "brand-refresh": {
@@ -839,5 +907,99 @@ export const PROJECTS_DATA = {
         "/images/projects/landing-page-optimization/responsive.jpg",
     },
   },
-  
+  "landing-page-optimizatio": {
+    portfolioTitle: "Landing Page Optimization",
+    portfolioDesc:
+      "Redesigned high-converting landing pages increasing conversion rate from 2% to 8% through data-driven optimization.",
+    portfolioImage: "/images/portfolio/landing.jpg",
+    tags: ["Landing Page", "CRO"],
+
+    step1: {
+      projectName: "Landing Page Optimization",
+      overview:
+        "Comprehensive landing page redesign and optimization program using A/B testing, heat mapping, and user research to dramatically improve conversion rates.",
+      industry: "Conversion Optimization",
+      client: "ConvertCo Digital",
+      deliverables:
+        "Landing Page Design, A/B Tests, Conversion Optimization Strategy, Analytics Setup",
+      overviewImage:
+        "/images/projects/landing-page-optimization/overview-banner.jpg",
+    },
+
+    step2: {
+      clientGoal: {
+        description:
+          "Increase landing page conversion rates through systematic optimization",
+        image: "/images/projects/landing-page-optimization/client-goal.jpg",
+        pointers: [
+          "Increase conversion rate from 2% to 8%",
+          "Reduce cost per acquisition by 50%",
+          "Improve page load speed to under 2s",
+          "Increase mobile conversion rate",
+          "Create scalable testing framework",
+        ],
+      },
+      targetAudience: {
+        description: "High-intent visitors from paid campaigns",
+        image: "/images/projects/landing-page-optimization/target-audience.jpg",
+        pointers: [
+          "Users clicking on paid search ads",
+          "Social media campaign traffic",
+          "Retargeting campaign audiences",
+          "Email campaign recipients",
+          "Partner referral traffic",
+        ],
+      },
+      constraints: {
+        description: "Technical and timeline constraints",
+        image: "/images/projects/landing-page-optimization/constraints.jpg",
+        pointers: [
+          "Cannot change backend infrastructure",
+          "Must maintain brand guidelines",
+          "Need statistical significance in tests",
+          "Limited development resources",
+          "Active campaigns cannot be paused",
+        ],
+      },
+    },
+
+    step3: {
+      brandImage:
+        "/images/projects/landing-page-optimization/brand-identity-full.jpg",
+    },
+
+    step4: {
+      sitemapImage: "/images/projects/landing-page-optimization/sitemap.jpg",
+      wireframeImage:
+        "/images/projects/landing-page-optimization/wireframe.jpg",
+      finalDesignImage:
+        "/images/projects/landing-page-optimization/final-design.jpg",
+    },
+
+    step5: {
+      images: [
+        "/images/projects/landing-page-optimization/system-1.jpg",
+        "/images/projects/landing-page-optimization/system-2.jpg",
+        "/images/projects/landing-page-optimization/system-3.jpg",
+        "/images/projects/landing-page-optimization/system-4.jpg",
+        "/images/projects/landing-page-optimization/system-5.jpg",
+      ],
+    },
+
+    step6: {
+      images: [
+        "/images/projects/landing-page-optimization/detail-1.jpg",
+        "/images/projects/landing-page-optimization/detail-2.jpg",
+        "/images/projects/landing-page-optimization/detail-3.jpg",
+        "/images/projects/landing-page-optimization/detail-4.jpg",
+        "/images/projects/landing-page-optimization/detail-5.jpg",
+        "/images/projects/landing-page-optimization/detail-6.jpg",
+      ],
+    },
+
+    step7: {
+      responsiveImage:
+        "/images/projects/landing-page-optimization/responsive.jpg",
+    },
+  },
 };
