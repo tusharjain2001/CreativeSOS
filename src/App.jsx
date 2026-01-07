@@ -18,7 +18,6 @@ function MainContent() {
     <>
       <Header />
       <YouAndI />
-
       <TrustMe />
       <Partners />
       <SLAs />
@@ -37,7 +36,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/projects" element={<Projects />} />
+        {/* Dynamic route for individual projects */}
+        <Route path="/projects/:projectId" element={<Projects />} />
       </Routes>
     </>
   );
