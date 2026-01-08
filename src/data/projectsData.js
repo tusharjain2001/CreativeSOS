@@ -25,22 +25,10 @@ export const PROJECTS_DATA = {
 
     // ========== STEP 2: SCOPE OF PROJECT ==========
     step2: {
-      clientGoal: {
-        description:
-          "Revamp the existing website into a modern, visually appealing platform",
-        image: "/images/projects/brand-refresh/client-goal.jpg",
-        pointers: [
-          "Create a modern, premium AI product aesthetic",
-          "Maintain simplicity for smooth development",
-          "Elevate brand perception from IT services to AI product",
-          "Implement clean UI with minimal animations",
-          "Strong structure and intuitive navigation",
-        ],
-      },
       targetAudience: {
         description:
           "Enterprise clients seeking AI-powered industrial automation solutions",
-        image: "/images/projects/brand-refresh/target-audience.jpg",
+        image: image,
         pointers: [
           "C-level executives in manufacturing",
           "Operations managers and safety officers",
@@ -49,10 +37,22 @@ export const PROJECTS_DATA = {
           "Quality assurance and compliance teams",
         ],
       },
+      clientGoal: {
+        description:
+          "Revamp the existing website into a modern, visually appealing platform",
+        image: image,
+        pointers: [
+          "Create a modern, premium AI product aesthetic",
+          "Maintain simplicity for smooth development",
+          "Elevate brand perception from IT services to AI product",
+          "Implement clean UI with minimal animations",
+          "Strong structure and intuitive navigation",
+        ],
+      },
       constraints: {
         description:
           "Technical and business limitations that shaped the project scope",
-        image: "/images/projects/brand-refresh/constraints.jpg",
+        image: image,
         pointers: [
           "Limited development timeline of 8 weeks",
           "Must work with existing tech stack",
@@ -65,14 +65,14 @@ export const PROJECTS_DATA = {
 
     // ========== STEP 3: BRAND IDENTITY ==========
     step3: {
-      brandImage: "/images/projects/brand-refresh/brand-identity-full.jpg", // Large right-side image
+      brandImage: image, // Large right-side image
     },
 
     // ========== STEP 4: OUR PROCESS ==========
     step4: {
-      sitemapImage: "/images/projects/brand-refresh/sitemap.jpg",
-      wireframeImage: "/images/projects/brand-refresh/wireframe.jpg",
-      finalDesignImage: "/images/projects/brand-refresh/final-design.jpg",
+      sitemapImage: image,
+      wireframeImage: image,
+      finalDesignImage: image,
     },
 
     // ========== STEP 5: SYSTEM DESIGN ==========
@@ -88,14 +88,7 @@ export const PROJECTS_DATA = {
 
     // ========== STEP 6: DESIGN DETAILS ==========
     step6: {
-      images: [
-        "/images/projects/brand-refresh/detail-1.jpg",
-        "/images/projects/brand-refresh/detail-2.jpg",
-        "/images/projects/brand-refresh/detail-3.jpg",
-        "/images/projects/brand-refresh/detail-4.jpg",
-        "/images/projects/brand-refresh/detail-5.jpg",
-        "/images/projects/brand-refresh/detail-6.jpg",
-      ],
+      images: [image, image, image, image, image, image],
     },
 
     // ========== STEP 7: RESPONSIVE DESIGN ==========

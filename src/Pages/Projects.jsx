@@ -44,36 +44,53 @@ const Info = ({ label, value }) => (
   </div>
 );
 
-
 const ScopeOfProject = ({ project }) => {
-  const { clientGoal, targetAudience, constraints } = project.step2;
+  const { targetAudience, clientGoal, constraints } = project.step2;
 
-  const Card = ({ title, data }) => (
+  const Card = ({ title, data, reversed = false }) => (
     <div className="bg-white border border-gray-200 rounded-xl p-6">
-      <img
-        src={data.image}
-        alt={title}
-        className="rounded-lg h-48 w-full object-cover mb-4"
-      />
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm mb-4">{data.description}</p>
-      <ul className="text-sm text-gray-600 space-y-1">
-        {data.pointers.map((p, i) => (
-          <li key={i}>• {p}</li>
-        ))}
-      </ul>
+      {reversed ? (
+        <>
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <p className="text-gray-600 text-sm mb-4">{data.description}</p>
+          <ul className="text-sm text-gray-600 space-y-1 mb-4">
+            {data.pointers.map((p, i) => (
+              <li key={i}>• {p}</li>
+            ))}
+          </ul>
+          <img
+            src={data.image}
+            alt={title}
+            className="rounded-lg h-48 w-full object-cover"
+          />
+        </>
+      ) : (
+        <>
+          <img
+            src={data.image}
+            alt={title}
+            className="rounded-lg h-48 w-full object-cover mb-4"
+          />
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <p className="text-gray-600 text-sm mb-4">{data.description}</p>
+          <ul className="text-sm text-gray-600 space-y-1">
+            {data.pointers.map((p, i) => (
+              <li key={i}>• {p}</li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-      <Card title="Client's Goal" data={clientGoal} />
       <Card title="Target Audience" data={targetAudience} />
+      <Card title="Client's Goal" data={clientGoal} reversed={true} />
       <Card title="Constraints" data={constraints} />
     </div>
   );
 };
-
 
 const BrandIdentity = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
@@ -85,35 +102,71 @@ const BrandIdentity = ({ project }) => (
   </div>
 );
 
-
 const OurProcess = ({ project }) => {
-  const { sitemapImage, wireframeImage, finalDesignImage } = project.step4;
+  const { sitemapImage, wireframeImage, finalDesignImage, sitemapDescription, wireframeDescription, finalDesignDescription } = project.step4;
 
-  const images = [
-    { label: "Sitemap", src: sitemapImage },
-    { label: "Wireframe", src: wireframeImage },
-    { label: "Final Design", src: finalDesignImage },
+  const steps = [
+    { 
+      title: "Sitemap/ Backend", 
+      src: sitemapImage,
+      description: sitemapDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+    },
+    { 
+      title: "Wireframing", 
+      src: wireframeImage,
+      description: wireframeDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+    },
+    { 
+      title: "Final Designs", 
+      src: finalDesignImage,
+      description: finalDesignDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+    },
   ];
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-10">
-      <h2 className="text-3xl font-bold mb-8">Our Process</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {images.map((item, i) => (
-          <div key={i}>
-            <img
-              src={item.src}
-              alt={item.label}
-              className="rounded-lg mb-2"
-            />
-            <p className="text-center text-sm text-gray-600">{item.label}</p>
+    <div className="bg-gradient-to-b from-gray-50 to-white py-16 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {steps.map((step, i) => (
+            <div key={i} className="relative">
+              <div className="bg-white border border-gray-200 rounded-lg p-4 h-64 mb-6 flex items-center justify-center">
+                <img 
+                  src={step.src} 
+                  alt={step.title} 
+                  className="max-w-full max-h-full object-contain rounded"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Progress Line */}
+        <div className="relative mb-8">
+          <div className="absolute top-1/2 left-0 right-0 h-1 bg-teal-500 -translate-y-1/2"></div>
+          <div className="relative grid grid-cols-3 gap-8">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex justify-center">
+                <div className="w-4 h-4 bg-teal-500 rounded-full border-4 border-white shadow-md"></div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Text Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {steps.map((step, i) => (
+            <div key={i}>
+              <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
-
 
 const SystemDesign = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
@@ -126,7 +179,6 @@ const SystemDesign = ({ project }) => (
   </div>
 );
 
-
 const DesignDetails = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
     <h2 className="text-3xl font-bold mb-8">Design Details</h2>
@@ -138,7 +190,6 @@ const DesignDetails = ({ project }) => (
   </div>
 );
 
-
 const ResponsiveDesign = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
     <h2 className="text-3xl font-bold mb-8">Responsive Design</h2>
@@ -149,7 +200,6 @@ const ResponsiveDesign = ({ project }) => (
     />
   </div>
 );
-
 
 // Main Component
 export default function Projects() {
@@ -354,13 +404,13 @@ export default function Projects() {
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto bg-[#F7FBFA]">
           <div className="p-10 max-w-7xl mx-auto">
-            <button
+            {/* <button
               onClick={() => navigate("/portfolio")}
               className="flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6 font-medium"
             >
               <ArrowLeft size={20} />
               Back to Portfolio
-            </button>
+            </button> */}
             {sections[activeStep]}
           </div>
         </div>
