@@ -83,10 +83,10 @@ export default function Results() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
           {/* Left heading column */}
           <div
-            className="text-white lg:w-64 flex-shrink-0
+            className="text-white lg:w-64 shrink-0
                 text-center lg:text-left"
           >
-            <div className="inline-block bg-[#00434D] text-white px-4 py-1.5 rounded-md mb-6 font-family-instrument">
+            <div className=" bg-[#00434D] text-white px-10 py-2 inline-block  mb-6 font-family-instrument">
               Results
             </div>
 
@@ -127,17 +127,19 @@ export default function Results() {
                 {cards.map((c, i) => (
                   <article
                     key={i}
-                    className="flex-shrink-0 w-[320px] md:w-[400px] bg-[#E1F0F2] rounded-lg p-6 flex flex-col select-none"
-                    style={{ minHeight: "420px" }}
+                    className="shrink-0 w-[320px] md:w-[400px] bg-[#E1F0F2] rounded-lg p-6 flex flex-col justify-between select-none"
+                    style={{ minHeight: "490px" }}
                   >
-                    <h4 className="text-4xl mb-3 text-[#1C1D22]  leading-tight">
-                      {c.title}
-                    </h4>
-                    <p className="text-xl text-[#1C1D22] font-light  leading-relaxed flex-shrink-0">
-                      {c.subtitle}
-                    </p>
+                    <div>
+                      <h4 className="text-4xl mb-3 text-[#1C1D22]  leading-tight">
+                        {c.title}
+                      </h4>
+                      <p className="text-xl text-[#1C1D22] font-light  leading-relaxed">
+                        {c.subtitle}
+                      </p>
+                    </div>
 
-                    <div className=" mt-4 rounded-lg bg-white overflow-hidden shadow-sm">
+                    <div className="rounded-lg bg-white overflow-hidden shadow-sm mt-auto">
                       <img
                         src={c.image}
                         alt={c.title}

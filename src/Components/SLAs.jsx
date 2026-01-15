@@ -29,12 +29,12 @@ export default function SLAs() {
   ];
 
   return (
-    <section className="bg-[#f6f6f6] py-12">
+    <section className="bg-[#f6f6f6] py-14">
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <div className="inline-block bg-[#C5EBF0] text-[#1E8898] font-family-instrument p-4 rounded">
+        <div className=" bg-[#C5EBF0] text-[#1E8898] font-family-instrument px-8 py-2 inline-block">
           My SLAs
         </div>
-        <div className="text-[#1C1D22] font-light text-[40px] mt-5">
+        <div className="text-[#1C1D22] font-medium text-[48px] mt-5">
           Quality and speed standards
         </div>
 

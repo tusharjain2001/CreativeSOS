@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <section
       ref={sectionRef}
-      className={`bg-[#E1F0F2] px-4 sm:px-6 md:px-10 lg:px-12 py-10 sm:py-14 md:py-20 overflow-hidden ${
+      className={`bg-[#E1F0F2] px-4 sm:px-6 md:px-10 lg:px-12 py-20 sm:py-28 md:py-35 overflow-hidden ${
         visible ? "in-view" : ""
       }`}
     >
@@ -80,8 +80,8 @@ export default function Header() {
         }
       `}</style>
 
-      <div className="max-w-[90%] sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto text-center animate-fade-in-up">
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed md:leading-relaxed lg:leading-relaxed text-gray-800 font-light">
+      <div className="max-w-[90%] mt-10 sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-[880px] mx-auto text-center animate-fade-in-up">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed md:leading-relaxed lg:leading-relaxed text-gray-800 font-medium">
           Companies spend over{" "}
           <span className="font-semibold text-gray-900 highlight-bold word-highlight whitespace-nowrap">
             $100K

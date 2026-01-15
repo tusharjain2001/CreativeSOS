@@ -47,12 +47,12 @@ export default function TrustMe() {
   ];
 
   return (
-    <section className="py-8 md:py-20 bg-white">
+    <section className="py-8 md:py-20 bg-[#F8F8F8]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[0.55fr_1fr] gap-8 md:gap-16 items-start">
           {/* Left column - sticky heading */}
           <div className="md:sticky md:top-24 hidden md:block">
-            <div className="inline-block bg-[#C5EBF0] font-family-instrument text-[#1E8898] font-light px-3 py-1 rounded-full ">
+            <div className=" bg-[#C5EBF0] font-family-instrument text-[#1E8898] font-light px-5 py-2 inline-block">
               Why me?
             </div>
             <h2 className="mt-4 md:mt-2 text-2xl sm:text-3xl md:text-5xl font-light text-gray-900 leading-snug">

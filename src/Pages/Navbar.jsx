@@ -1,25 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logodesktop from "../Images/logodesktop.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if scrolled past the first screen (approximately 80vh or more)
+      setIsScrolled(window.scrollY > window.innerHeight * 0.8);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navItems = [
     { label: "You-I", href: "#you-i" },
     { label: "Why me?", href: "#why-me" },
     { label: "Partners", href: "#partners" },
-    { label: "Portfolio", href: "/portfolio" },
     { label: "My SLAs", href: "#my-slas" },
     { label: "Results", href: "#results" },
+    { label: "Portfolio", href: "/portfolio" },
   ];
 
   return (
-    <nav className="bg-[#E1F0F2] px-4 md:px-8 py-4">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4 transition-colors duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-[#E1F0F2]"
+      }`}
+    >
       <div className="  flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
@@ -54,14 +69,15 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-14">
           {/* Navigation Items */}
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className="text-gray-700 hover:text-teal-600  font-family-instrument font-medium transition-colors"
+                className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument transition-colors relative group"
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gray-800  group-hover:w-full"></span>
               </Link>
             ))}
           </div>
