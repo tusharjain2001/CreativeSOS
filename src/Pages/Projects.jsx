@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, PanelRight } from "lucide-react";
 import { PROJECTS_DATA } from "../data/projectsData";
 
 // Section Components
@@ -44,7 +44,6 @@ const Info = ({ label, value }) => (
   </div>
 );
 
-
 const ScopeOfProject = ({ project }) => {
   const { clientGoal, targetAudience, constraints } = project.step2;
 
@@ -74,7 +73,6 @@ const ScopeOfProject = ({ project }) => {
   );
 };
 
-
 const BrandIdentity = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
     <img
@@ -84,7 +82,6 @@ const BrandIdentity = ({ project }) => (
     />
   </div>
 );
-
 
 const OurProcess = ({ project }) => {
   const { sitemapImage, wireframeImage, finalDesignImage } = project.step4;
@@ -101,11 +98,7 @@ const OurProcess = ({ project }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {images.map((item, i) => (
           <div key={i}>
-            <img
-              src={item.src}
-              alt={item.label}
-              className="rounded-lg mb-2"
-            />
+            <img src={item.src} alt={item.label} className="rounded-lg mb-2" />
             <p className="text-center text-sm text-gray-600">{item.label}</p>
           </div>
         ))}
@@ -113,7 +106,6 @@ const OurProcess = ({ project }) => {
     </div>
   );
 };
-
 
 const SystemDesign = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
@@ -126,7 +118,6 @@ const SystemDesign = ({ project }) => (
   </div>
 );
 
-
 const DesignDetails = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
     <h2 className="text-3xl font-bold mb-8">Design Details</h2>
@@ -138,7 +129,6 @@ const DesignDetails = ({ project }) => (
   </div>
 );
 
-
 const ResponsiveDesign = ({ project }) => (
   <div className="bg-white border border-gray-200 rounded-xl p-10">
     <h2 className="text-3xl font-bold mb-8">Responsive Design</h2>
@@ -149,7 +139,6 @@ const ResponsiveDesign = ({ project }) => (
     />
   </div>
 );
-
 
 // Main Component
 export default function Projects() {
@@ -194,46 +183,36 @@ export default function Projects() {
         {/* Left Sidebar */}
         <div
           className={`bg-white border-r border-gray-200 p-6 overflow-y-auto transition-all duration-300 ${
-            sidebarOpen ? "w-74" : "w-16"
+            sidebarOpen ? "w-74" : "w-auto"
           }`}
         >
-          {/* Toggle Button */}
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-6 h-6 flex items-center justify-center mb-6 text-teal-600 hover:bg-gray-100 rounded transition-colors"
-            aria-label="Toggle sidebar"
-          >
-            <svg
-              className={`w-5 h-5 transition-transform ${
-                sidebarOpen ? "" : "rotate-180"
-              }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          {/* Toggle Button with Tags */}
+          <div className="flex items-center gap-3 mb-6">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="flex items-center justify-center text-teal-600 hover:bg-gray-100 rounded transition-colors p-1"
+              aria-label="Toggle sidebar"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+              <PanelRight size={24} />
+            </button>
+
+            {sidebarOpen && (
+              <div className="flex gap-1">
+                {project.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
 
           {sidebarOpen && (
             <>
-              <div className="flex items-center gap-2 mb-6">
-                <div className="flex gap-1">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <div></div>
 
               <nav className="space-y-0">
                 {steps.map((step, idx) => (
@@ -320,32 +299,32 @@ export default function Projects() {
           )}
 
           {!sidebarOpen && (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center pt-4">
               {steps.map((step, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveStep(idx)}
-                  className="relative my-1"
-                >
+                <div key={idx} className="flex flex-col items-center">
                   {/* Vertical line above */}
-                  {idx !== 0 && (
-                    <div className="absolute w-0.5 h-3 bg-gray-300 left-1/2 -translate-x-1/2 -top-3"></div>
-                  )}
+                  {idx !== 0 && <div className="w-0.5 h-4 bg-gray-300"></div>}
 
-                  {/* Dot */}
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full border-2 ${
-                      idx === activeStep
-                        ? "bg-teal-600 border-teal-600"
-                        : "bg-white border-gray-400"
-                    }`}
-                  ></div>
+                  {/* Box/Square */}
+                  <button
+                    onClick={() => {
+                      setActiveStep(idx);
+                    }}
+                    className="transition-transform hover:scale-110"
+                    title={step}
+                  >
+                    <div
+                      className={`w-4 h-4 rounded-sm ${
+                        idx === activeStep ? "bg-teal-500" : "bg-teal-300"
+                      }`}
+                    ></div>
+                  </button>
 
                   {/* Vertical line below */}
                   {idx !== steps.length - 1 && (
-                    <div className="absolute w-0.5 h-3 bg-gray-300 left-1/2 -translate-x-1/2 top-2.5"></div>
+                    <div className="w-0.5 h-4 bg-gray-300"></div>
                   )}
-                </button>
+                </div>
               ))}
             </div>
           )}
