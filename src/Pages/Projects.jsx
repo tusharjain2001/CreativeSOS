@@ -45,29 +45,48 @@ const Info = ({ label, value }) => (
 );
 
 const ScopeOfProject = ({ project }) => {
-  const { clientGoal, targetAudience, constraints } = project.step2;
+  const { targetAudience, clientGoal, constraints } = project.step2;
 
-  const Card = ({ title, data }) => (
+  const Card = ({ title, data, reversed = false }) => (
     <div className="bg-white border border-gray-200 rounded-xl p-6">
-      <img
-        src={data.image}
-        alt={title}
-        className="rounded-lg h-48 w-full object-cover mb-4"
-      />
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm mb-4">{data.description}</p>
-      <ul className="text-sm text-gray-600 space-y-1">
-        {data.pointers.map((p, i) => (
-          <li key={i}>• {p}</li>
-        ))}
-      </ul>
+      {reversed ? (
+        <>
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <p className="text-gray-600 text-sm mb-4">{data.description}</p>
+          <ul className="text-sm text-gray-600 space-y-1 mb-4">
+            {data.pointers.map((p, i) => (
+              <li key={i}>• {p}</li>
+            ))}
+          </ul>
+          <img
+            src={data.image}
+            alt={title}
+            className="rounded-lg h-48 w-full object-cover"
+          />
+        </>
+      ) : (
+        <>
+          <img
+            src={data.image}
+            alt={title}
+            className="rounded-lg h-48 w-full object-cover mb-4"
+          />
+          <h3 className="text-xl font-semibold mb-2">{title}</h3>
+          <p className="text-gray-600 text-sm mb-4">{data.description}</p>
+          <ul className="text-sm text-gray-600 space-y-1">
+            {data.pointers.map((p, i) => (
+              <li key={i}>• {p}</li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-      <Card title="Client's Goal" data={clientGoal} />
       <Card title="Target Audience" data={targetAudience} />
+      <Card title="Client's Goal" data={clientGoal} reversed={true} />
       <Card title="Constraints" data={constraints} />
     </div>
   );
@@ -84,12 +103,24 @@ const BrandIdentity = ({ project }) => (
 );
 
 const OurProcess = ({ project }) => {
-  const { sitemapImage, wireframeImage, finalDesignImage } = project.step4;
+  const { sitemapImage, wireframeImage, finalDesignImage, sitemapDescription, wireframeDescription, finalDesignDescription } = project.step4;
 
-  const images = [
-    { label: "Sitemap", src: sitemapImage },
-    { label: "Wireframe", src: wireframeImage },
-    { label: "Final Design", src: finalDesignImage },
+  const steps = [
+    { 
+      title: "Sitemap/ Backend", 
+      src: sitemapImage,
+      description: sitemapDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+    },
+    { 
+      title: "Wireframing", 
+      src: wireframeImage,
+      description: wireframeDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+    },
+    { 
+      title: "Final Designs", 
+      src: finalDesignImage,
+      description: finalDesignDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+    },
   ];
 
   return (
@@ -333,13 +364,13 @@ export default function Projects() {
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto bg-[#F7FBFA]">
           <div className="p-10 max-w-7xl mx-auto">
-            <button
+            {/* <button
               onClick={() => navigate("/portfolio")}
               className="flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6 font-medium"
             >
               <ArrowLeft size={20} />
               Back to Portfolio
-            </button>
+            </button> */}
             {sections[activeStep]}
           </div>
         </div>
