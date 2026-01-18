@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Navbar from "./Pages/Navbar";
+import Navbar2 from "./Pages/NavBar2";
 import Header from "./Components/Header";
 import YouAndI from "./Components/YouAndI";
 import TrustMe from "./Components/TrustMe";
@@ -12,10 +12,12 @@ import WallOfPride from "./Components/WallOfPride";
 import CreativeSOSCTA from "./Components/CreativeSOSCTA";
 import Portfolio from "./Pages/Portfolio";
 import Projects from "./Pages/Projects";
+import Navbar from "./Pages/Navbar";
 
 function MainContent() {
   return (
     <>
+       <Navbar />
       <Header />
       <YouAndI />
       <TrustMe />
@@ -32,7 +34,6 @@ function MainContent() {
 function App() {
   return (
     <>
-      <Navbar />
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/portfolio" element={<Portfolio />} />

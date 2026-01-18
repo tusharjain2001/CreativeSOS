@@ -1,26 +1,32 @@
 // src/data/projectsData.js
 import image from "../Images/Result4.png";
 import Project1 from "../Images/Project1.png";
+import Infinitus from "../Images/Infinitus.png";
+import Desifesst from "../Images/Desifesst.png";
+import Mapmy from "../Images/Mapmy.png";
+import Timor from "../Images/Timor.png";
+import Naxatra from "../Images/Naxatra.png";
+import InfintusBanner from "../Images/InfintusBanner.png";
 
 export const PROJECTS_DATA = {
   "brand-refresh": {
     // ========== PORTFOLIO PAGE DATA ==========
-    portfolioTitle: "Brand Refresh — Acme Co.",
+    portfolioTitle: "Infinitus Management Consulting",
     portfolioDesc:
-      "Complete brand identity redesign with modern UI/UX approach for enterprise SaaS platform. Transformed outdated visual language into contemporary design system.",
-    portfolioImage: image, // Your image path
-    tags: ["Brand Refresh", "UI/UX"],
+      "Infinitus installs GTM systems for cybersecurity companies that need to scale continuously and fast. ",
+    portfolioImage: Infinitus, // Your image path
+    tags: ["Brand Identity"],
 
     // ========== STEP 1: PROJECT OVERVIEW ==========
     step1: {
-      projectName: "Brand Refresh — Acme Co.",
+      projectName: "INFINITUS Management Consulting",
       overview:
         "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development. The goal is to elevate the brand from a typical IT services look to a premium AI product platform with clean UI, strong structure, and minimal animations.",
       industry: "AI Industrial Automation",
       client: "Safe Sight AI",
       deliverables:
         "Responsive Website Design, Brand Guidelines, Design System, Component Library",
-      overviewImage: "/images/projects/brand-refresh/overview-banner.jpg",
+      overviewImage: InfintusBanner,
     },
 
     // ========== STEP 2: SCOPE OF PROJECT ==========
@@ -102,7 +108,7 @@ export const PROJECTS_DATA = {
     portfolioDesc:
       "Multi-channel marketing campaign driving 300% increase in qualified leads through strategic content and targeted advertising.",
     portfolioImage: image,
-    tags: ["Marketing", "Lead Gen"],
+    tags: ["Video - Animated"],
 
     step1: {
       projectName: "Demand Generation Campaign",
@@ -191,8 +197,8 @@ export const PROJECTS_DATA = {
     portfolioTitle: "Product Launch Strategy",
     portfolioDesc:
       "Successfully launched new AI feature to 50K+ users with comprehensive go-to-market strategy and user onboarding.",
-    portfolioImage: image,
-    tags: ["Product", "Launch"],
+    portfolioImage: Desifesst,
+    tags: ["UX/UI - Wesbite"],
 
     step1: {
       projectName: "Product Launch Strategy",
@@ -282,8 +288,8 @@ export const PROJECTS_DATA = {
     portfolioTitle: "Content Hub Development",
     portfolioDesc:
       "Built comprehensive content management system with advanced search, personalization, and analytics for 100K+ monthly visitors.",
-    portfolioImage: image,
-    tags: ["Content", "CMS"],
+    portfolioImage: Mapmy,
+    tags: ["Brand Identity"],
 
     step1: {
       projectName: "Content Hub Development",
@@ -373,8 +379,8 @@ export const PROJECTS_DATA = {
     portfolioTitle: "Customer Retention Program",
     portfolioDesc:
       "Designed data-driven retention strategy reducing churn by 45% through personalized engagement and proactive support.",
-    portfolioImage: image,
-    tags: ["Retention", "CX"],
+    portfolioImage: Timor,
+    tags: ["Print - Report"],
 
     step1: {
       projectName: "Customer Retention Program",
@@ -463,8 +469,8 @@ export const PROJECTS_DATA = {
     portfolioTitle: "Sales Enablement Platform",
     portfolioDesc:
       "Created comprehensive sales enablement system with collateral management, training, and analytics resulting in 60% faster deal cycles.",
-    portfolioImage: "/images/portfolio/sales.jpg",
-    tags: ["Sales", "Enablement"],
+    portfolioImage: Naxatra,
+    tags: ["Video - Corporate"],
 
     step1: {
       projectName: "Sales Enablement Platform",
@@ -926,6 +932,471 @@ export const PROJECTS_DATA = {
     step7: {
       responsiveImage:
         "/images/projects/landing-page-optimization/responsive.jpg",
+    },
+  },
+  refresh: {
+    // ========== PORTFOLIO PAGE DATA ==========
+    portfolioTitle: "Brand Refresh — Acme Co.",
+    portfolioDesc:
+      "Complete brand identity redesign with modern UI/UX approach for enterprise SaaS platform. Transformed outdated visual language into contemporary design system.",
+    portfolioImage: image, // Your image path
+    tags: ["Brand Refresh", "UI/UX"],
+
+    // ========== STEP 1: PROJECT OVERVIEW ==========
+    step1: {
+      projectName: "Brand Refresh — Acme Co.",
+      overview:
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development. The goal is to elevate the brand from a typical IT services look to a premium AI product platform with clean UI, strong structure, and minimal animations.",
+      industry: "AI Industrial Automation",
+      client: "Safe Sight AI",
+      deliverables:
+        "Responsive Website Design, Brand Guidelines, Design System, Component Library",
+      overviewImage: "/images/projects/brand-refresh/overview-banner.jpg",
+    },
+
+    // ========== STEP 2: SCOPE OF PROJECT ==========
+    step2: {
+      targetAudience: {
+        description:
+          "Enterprise clients seeking AI-powered industrial automation solutions",
+        image: image,
+        pointers: [
+          "C-level executives in manufacturing",
+          "Operations managers and safety officers",
+          "IT decision makers in industrial sectors",
+          "Forward-thinking companies adopting AI",
+          "Quality assurance and compliance teams",
+        ],
+      },
+      clientGoal: {
+        description:
+          "Revamp the existing website into a modern, visually appealing platform",
+        image: image,
+        pointers: [
+          "Create a modern, premium AI product aesthetic",
+          "Maintain simplicity for smooth development",
+          "Elevate brand perception from IT services to AI product",
+          "Implement clean UI with minimal animations",
+          "Strong structure and intuitive navigation",
+        ],
+      },
+      constraints: {
+        description:
+          "Technical and business limitations that shaped the project scope",
+        image: image,
+        pointers: [
+          "Limited development timeline of 8 weeks",
+          "Must work with existing tech stack",
+          "Budget constraints for custom development",
+          "Maintain brand recognition during transition",
+          "Ensure mobile responsiveness across devices",
+        ],
+      },
+    },
+
+    // ========== STEP 3: BRAND IDENTITY ==========
+    step3: {
+      brandImage: image, // Large right-side image
+    },
+
+    // ========== STEP 4: OUR PROCESS ==========
+    step4: {
+      sitemapImage: image,
+      wireframeImage: image,
+      finalDesignImage: image,
+    },
+
+    // ========== STEP 5: SYSTEM DESIGN ==========
+    step5: {
+      images: [
+        "/images/projects/brand-refresh/system-1.jpg",
+        "/images/projects/brand-refresh/system-2.jpg",
+        "/images/projects/brand-refresh/system-3.jpg",
+        "/images/projects/brand-refresh/system-4.jpg",
+        "/images/projects/brand-refresh/system-5.jpg",
+      ],
+    },
+
+    // ========== STEP 6: DESIGN DETAILS ==========
+    step6: {
+      images: [image, image, image, image, image, image],
+    },
+
+    // ========== STEP 7: RESPONSIVE DESIGN ==========
+    step7: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+    },
+  },
+  brand: {
+    // ========== PORTFOLIO PAGE DATA ==========
+    portfolioTitle: "Brand Refresh — Acme Co.",
+    portfolioDesc:
+      "Complete brand identity redesign with modern UI/UX approach for enterprise SaaS platform. Transformed outdated visual language into contemporary design system.",
+    portfolioImage: image, // Your image path
+    tags: ["Brand Refresh", "UI/UX"],
+
+    // ========== STEP 1: PROJECT OVERVIEW ==========
+    step1: {
+      projectName: "Brand Refresh — Acme Co.",
+      overview:
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development. The goal is to elevate the brand from a typical IT services look to a premium AI product platform with clean UI, strong structure, and minimal animations.",
+      industry: "AI Industrial Automation",
+      client: "Safe Sight AI",
+      deliverables:
+        "Responsive Website Design, Brand Guidelines, Design System, Component Library",
+      overviewImage: "/images/projects/brand-refresh/overview-banner.jpg",
+    },
+
+    // ========== STEP 2: SCOPE OF PROJECT ==========
+    step2: {
+      targetAudience: {
+        description:
+          "Enterprise clients seeking AI-powered industrial automation solutions",
+        image: image,
+        pointers: [
+          "C-level executives in manufacturing",
+          "Operations managers and safety officers",
+          "IT decision makers in industrial sectors",
+          "Forward-thinking companies adopting AI",
+          "Quality assurance and compliance teams",
+        ],
+      },
+      clientGoal: {
+        description:
+          "Revamp the existing website into a modern, visually appealing platform",
+        image: image,
+        pointers: [
+          "Create a modern, premium AI product aesthetic",
+          "Maintain simplicity for smooth development",
+          "Elevate brand perception from IT services to AI product",
+          "Implement clean UI with minimal animations",
+          "Strong structure and intuitive navigation",
+        ],
+      },
+      constraints: {
+        description:
+          "Technical and business limitations that shaped the project scope",
+        image: image,
+        pointers: [
+          "Limited development timeline of 8 weeks",
+          "Must work with existing tech stack",
+          "Budget constraints for custom development",
+          "Maintain brand recognition during transition",
+          "Ensure mobile responsiveness across devices",
+        ],
+      },
+    },
+
+    // ========== STEP 3: BRAND IDENTITY ==========
+    step3: {
+      brandImage: image, // Large right-side image
+    },
+
+    // ========== STEP 4: OUR PROCESS ==========
+    step4: {
+      sitemapImage: image,
+      wireframeImage: image,
+      finalDesignImage: image,
+    },
+
+    // ========== STEP 5: SYSTEM DESIGN ==========
+    step5: {
+      images: [
+        "/images/projects/brand-refresh/system-1.jpg",
+        "/images/projects/brand-refresh/system-2.jpg",
+        "/images/projects/brand-refresh/system-3.jpg",
+        "/images/projects/brand-refresh/system-4.jpg",
+        "/images/projects/brand-refresh/system-5.jpg",
+      ],
+    },
+
+    // ========== STEP 6: DESIGN DETAILS ==========
+    step6: {
+      images: [image, image, image, image, image, image],
+    },
+
+    // ========== STEP 7: RESPONSIVE DESIGN ==========
+    step7: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+    },
+  },
+  redesign: {
+    // ========== PORTFOLIO PAGE DATA ==========
+    portfolioTitle: "Brand Refresh — Acme Co.",
+    portfolioDesc:
+      "Complete brand identity redesign with modern UI/UX approach for enterprise SaaS platform. Transformed outdated visual language into contemporary design system.",
+    portfolioImage: image, // Your image path
+    tags: ["Brand Refresh", "UI/UX"],
+
+    // ========== STEP 1: PROJECT OVERVIEW ==========
+    step1: {
+      projectName: "Brand Refresh — Acme Co.",
+      overview:
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development. The goal is to elevate the brand from a typical IT services look to a premium AI product platform with clean UI, strong structure, and minimal animations.",
+      industry: "AI Industrial Automation",
+      client: "Safe Sight AI",
+      deliverables:
+        "Responsive Website Design, Brand Guidelines, Design System, Component Library",
+      overviewImage: "/images/projects/brand-refresh/overview-banner.jpg",
+    },
+
+    // ========== STEP 2: SCOPE OF PROJECT ==========
+    step2: {
+      targetAudience: {
+        description:
+          "Enterprise clients seeking AI-powered industrial automation solutions",
+        image: image,
+        pointers: [
+          "C-level executives in manufacturing",
+          "Operations managers and safety officers",
+          "IT decision makers in industrial sectors",
+          "Forward-thinking companies adopting AI",
+          "Quality assurance and compliance teams",
+        ],
+      },
+      clientGoal: {
+        description:
+          "Revamp the existing website into a modern, visually appealing platform",
+        image: image,
+        pointers: [
+          "Create a modern, premium AI product aesthetic",
+          "Maintain simplicity for smooth development",
+          "Elevate brand perception from IT services to AI product",
+          "Implement clean UI with minimal animations",
+          "Strong structure and intuitive navigation",
+        ],
+      },
+      constraints: {
+        description:
+          "Technical and business limitations that shaped the project scope",
+        image: image,
+        pointers: [
+          "Limited development timeline of 8 weeks",
+          "Must work with existing tech stack",
+          "Budget constraints for custom development",
+          "Maintain brand recognition during transition",
+          "Ensure mobile responsiveness across devices",
+        ],
+      },
+    },
+
+    // ========== STEP 3: BRAND IDENTITY ==========
+    step3: {
+      brandImage: image, // Large right-side image
+    },
+
+    // ========== STEP 4: OUR PROCESS ==========
+    step4: {
+      sitemapImage: image,
+      wireframeImage: image,
+      finalDesignImage: image,
+    },
+
+    // ========== STEP 5: SYSTEM DESIGN ==========
+    step5: {
+      images: [
+        "/images/projects/brand-refresh/system-1.jpg",
+        "/images/projects/brand-refresh/system-2.jpg",
+        "/images/projects/brand-refresh/system-3.jpg",
+        "/images/projects/brand-refresh/system-4.jpg",
+        "/images/projects/brand-refresh/system-5.jpg",
+      ],
+    },
+
+    // ========== STEP 6: DESIGN DETAILS ==========
+    step6: {
+      images: [image, image, image, image, image, image],
+    },
+
+    // ========== STEP 7: RESPONSIVE DESIGN ==========
+    step7: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+    },
+  },
+  Maintain: {
+    // ========== PORTFOLIO PAGE DATA ==========
+    portfolioTitle: "Brand Refresh — Acme Co.",
+    portfolioDesc:
+      "Complete brand identity redesign with modern UI/UX approach for enterprise SaaS platform. Transformed outdated visual language into contemporary design system.",
+    portfolioImage: image, // Your image path
+    tags: ["Brand Refresh", "UI/UX"],
+
+    // ========== STEP 1: PROJECT OVERVIEW ==========
+    step1: {
+      projectName: "Brand Refresh — Acme Co.",
+      overview:
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development. The goal is to elevate the brand from a typical IT services look to a premium AI product platform with clean UI, strong structure, and minimal animations.",
+      industry: "AI Industrial Automation",
+      client: "Safe Sight AI",
+      deliverables:
+        "Responsive Website Design, Brand Guidelines, Design System, Component Library",
+      overviewImage: "/images/projects/brand-refresh/overview-banner.jpg",
+    },
+
+    // ========== STEP 2: SCOPE OF PROJECT ==========
+    step2: {
+      targetAudience: {
+        description:
+          "Enterprise clients seeking AI-powered industrial automation solutions",
+        image: image,
+        pointers: [
+          "C-level executives in manufacturing",
+          "Operations managers and safety officers",
+          "IT decision makers in industrial sectors",
+          "Forward-thinking companies adopting AI",
+          "Quality assurance and compliance teams",
+        ],
+      },
+      clientGoal: {
+        description:
+          "Revamp the existing website into a modern, visually appealing platform",
+        image: image,
+        pointers: [
+          "Create a modern, premium AI product aesthetic",
+          "Maintain simplicity for smooth development",
+          "Elevate brand perception from IT services to AI product",
+          "Implement clean UI with minimal animations",
+          "Strong structure and intuitive navigation",
+        ],
+      },
+      constraints: {
+        description:
+          "Technical and business limitations that shaped the project scope",
+        image: image,
+        pointers: [
+          "Limited development timeline of 8 weeks",
+          "Must work with existing tech stack",
+          "Budget constraints for custom development",
+          "Maintain brand recognition during transition",
+          "Ensure mobile responsiveness across devices",
+        ],
+      },
+    },
+
+    // ========== STEP 3: BRAND IDENTITY ==========
+    step3: {
+      brandImage: image, // Large right-side image
+    },
+
+    // ========== STEP 4: OUR PROCESS ==========
+    step4: {
+      sitemapImage: image,
+      wireframeImage: image,
+      finalDesignImage: image,
+    },
+
+    // ========== STEP 5: SYSTEM DESIGN ==========
+    step5: {
+      images: [
+        "/images/projects/brand-refresh/system-1.jpg",
+        "/images/projects/brand-refresh/system-2.jpg",
+        "/images/projects/brand-refresh/system-3.jpg",
+        "/images/projects/brand-refresh/system-4.jpg",
+        "/images/projects/brand-refresh/system-5.jpg",
+      ],
+    },
+
+    // ========== STEP 6: DESIGN DETAILS ==========
+    step6: {
+      images: [image, image, image, image, image, image],
+    },
+
+    // ========== STEP 7: RESPONSIVE DESIGN ==========
+    step7: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+    },
+  },
+  Complete: {
+    // ========== PORTFOLIO PAGE DATA ==========
+    portfolioTitle: "Brand Refresh — Acme Co.",
+    portfolioDesc:
+      "Complete brand identity redesign with modern UI/UX approach for enterprise SaaS platform. Transformed outdated visual language into contemporary design system.",
+    portfolioImage: image, // Your image path
+    tags: ["Brand Refresh", "UI/UX"],
+
+    // ========== STEP 1: PROJECT OVERVIEW ==========
+    step1: {
+      projectName: "Brand Refresh — Acme Co.",
+      overview:
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development. The goal is to elevate the brand from a typical IT services look to a premium AI product platform with clean UI, strong structure, and minimal animations.",
+      industry: "AI Industrial Automation",
+      client: "Safe Sight AI",
+      deliverables:
+        "Responsive Website Design, Brand Guidelines, Design System, Component Library",
+      overviewImage: "/images/projects/brand-refresh/overview-banner.jpg",
+    },
+
+    // ========== STEP 2: SCOPE OF PROJECT ==========
+    step2: {
+      targetAudience: {
+        description:
+          "Enterprise clients seeking AI-powered industrial automation solutions",
+        image: image,
+        pointers: [
+          "C-level executives in manufacturing",
+          "Operations managers and safety officers",
+          "IT decision makers in industrial sectors",
+          "Forward-thinking companies adopting AI",
+          "Quality assurance and compliance teams",
+        ],
+      },
+      clientGoal: {
+        description:
+          "Revamp the existing website into a modern, visually appealing platform",
+        image: image,
+        pointers: [
+          "Create a modern, premium AI product aesthetic",
+          "Maintain simplicity for smooth development",
+          "Elevate brand perception from IT services to AI product",
+          "Implement clean UI with minimal animations",
+          "Strong structure and intuitive navigation",
+        ],
+      },
+      constraints: {
+        description:
+          "Technical and business limitations that shaped the project scope",
+        image: image,
+        pointers: [
+          "Limited development timeline of 8 weeks",
+          "Must work with existing tech stack",
+          "Budget constraints for custom development",
+          "Maintain brand recognition during transition",
+          "Ensure mobile responsiveness across devices",
+        ],
+      },
+    },
+
+    // ========== STEP 3: BRAND IDENTITY ==========
+    step3: {
+      brandImage: image, // Large right-side image
+    },
+
+    // ========== STEP 4: OUR PROCESS ==========
+    step4: {
+      sitemapImage: image,
+      wireframeImage: image,
+      finalDesignImage: image,
+    },
+
+    // ========== STEP 5: SYSTEM DESIGN ==========
+    step5: {
+      images: [
+        "/images/projects/brand-refresh/system-1.jpg",
+        "/images/projects/brand-refresh/system-2.jpg",
+        "/images/projects/brand-refresh/system-3.jpg",
+        "/images/projects/brand-refresh/system-4.jpg",
+        "/images/projects/brand-refresh/system-5.jpg",
+      ],
+    },
+
+    // ========== STEP 6: DESIGN DETAILS ==========
+    step6: {
+      images: [image, image, image, image, image, image],
+    },
+
+    // ========== STEP 7: RESPONSIVE DESIGN ==========
+    step7: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
     },
   },
 };

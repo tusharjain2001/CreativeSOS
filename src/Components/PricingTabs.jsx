@@ -13,6 +13,23 @@ import greentick from "../Images/greentick.png";
 
 const PricingTabs = () => {
   const [activeTab, setActiveTab] = useState("partner");
+  const [prevTab, setPrevTab] = useState("partner");
+  const [slideDirection, setSlideDirection] = useState("right");
+
+  const handleTabChange = (newTab) => {
+    const tabOrder = ["partner", "spoc", "sos"];
+    const currentIndex = tabOrder.indexOf(activeTab);
+    const newIndex = tabOrder.indexOf(newTab);
+
+    if (newIndex > currentIndex) {
+      setSlideDirection("left");
+    } else {
+      setSlideDirection("right");
+    }
+
+    setPrevTab(activeTab);
+    setActiveTab(newTab);
+  };
 
   const tabs = [
     {
@@ -160,7 +177,48 @@ const PricingTabs = () => {
     );
   };
 
+  const slideInClass = slideDirection === "left" ? "animate-slideInLeft" : "animate-slideInRight";
+
+  const style = `
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-slideInLeft {
+      animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .animate-slideInRight {
+      animation: slideInRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .slide-container {
+      position: relative;
+      overflow: hidden;
+    }
+  `;
+
   return (
+    <>
+      <style>{style}</style>
     <div className="min-h-screen bg-[#F8F8F8] py-8 sm:py-12 lg:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Mobile Layout */}
@@ -191,7 +249,7 @@ const PricingTabs = () => {
               return (
                 <button
                   key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
+                  onClick={() => handleTabChange(tab.key)}
                   className="flex flex-col items-center"
                 >
                   <div
@@ -223,8 +281,8 @@ const PricingTabs = () => {
           </h2>
 
           {/* Pricing Card */}
-          <div className="w-full max-w-sm mx-auto mb-6">
-            <div className="border-t-4 border-[#6BC6D4] shadow-md rounded-sm bg-white">
+          <div className="w-full max-w-sm mx-auto mb-6 slide-container">
+            <div key={activeTab} className={`border-t-4 border-[#6BC6D4] shadow-md rounded-sm bg-white ${slideInClass}`}>
               <div className="p-5">
                 <div className="mb-5 text-center">
                   <div className="text-5xl font-bold text-gray-900">
@@ -266,7 +324,7 @@ const PricingTabs = () => {
           </div>
 
           {/* Features */}
-          <div className="max-w-sm mx-auto mb-8">
+          <div key={`features-${activeTab}`} className={`max-w-sm mx-auto mb-8 slide-container ${slideInClass}`}>
             <div className="space-y-3">
               {currentData.features.map((feature, index) => (
                 <div key={index} className="flex items-start gap-2">
@@ -324,7 +382,7 @@ const PricingTabs = () => {
               return (
                 <button
                   key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
+                  onClick={() => handleTabChange(tab.key)}
                   className={`flex items-center gap-2 px-8 py-3 font-medium transition-all relative whitespace-nowrap
                     ${
                       isActive
@@ -351,7 +409,7 @@ const PricingTabs = () => {
           </div>
 
           {/* Content */}
-          <div className="rounded-lg px-8 py-10">
+          <div key={`desktop-${activeTab}`} className={`rounded-lg px-8 py-10 slide-container ${slideInClass}`}>
             {/* Title Quote */}
             <h2 className="text-2xl text-center mb-16 text-[#1E8898] font-normal">
               {currentData.title}
@@ -433,6 +491,7 @@ const PricingTabs = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

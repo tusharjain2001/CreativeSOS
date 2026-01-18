@@ -1,39 +1,95 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, PanelRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { PROJECTS_DATA } from "../data/projectsData";
+import Navbar2 from "./NavBar2";
+import ProjectSidebar from "../Components/ProjectSidebar";
 
 // Section Components
 const ProjectOverview = ({ project }) => {
   const data = project.step1;
 
   return (
-    <div>
-      <div className="border border-gray-200 rounded-xl h-[420px] flex items-center justify-center mb-10 bg-white">
-        <img
-          src={data.overviewImage}
-          alt={data.projectName}
-          className="w-full h-full object-cover rounded-xl"
-        />
-      </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white rounded-3xl border-2 border-gray-300 p-8"
+    >
+      {/* Inner Container */}
+      <div className="bg-white rounded-2xl border border-gray-200">
+        {/* Image Section */}
+        <motion.div
+          whileHover={{ scale: 1.01 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl h-[500px] flex items-center justify-center mb-0 border-b border-gray-200 overflow-hidden"
+        >
+          <img
+            src={data.overviewImage}
+            alt={data.projectName}
+            className="w-full h-full object-cover rounded-t-2xl"
+          />
+        </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-2">
-          <h1 className="text-4xl font-semibold text-gray-900 mb-2">
-            {data.projectName}
-          </h1>
-          <p className="text-gray-700 leading-relaxed max-w-2xl mt-6">
-            {data.overview}
-          </p>
-        </div>
+        {/* Text and Info Section */}
+        <div className="p-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left - Title, Description and Tags */}
+            <div className="lg:col-span-2">
+              <motion.h1
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="text-3xl font-bold text-gray-900 mb-2"
+              >
+                {data.projectName}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="text-gray-600 leading-relaxed text-sm mb-4"
+              >
+                {data.overview}
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, staggerChildren: 0.1 }}
+                className="flex gap-2 flex-wrap"
+              >
+                {data.projectType && typeof data.projectType === "string"
+                  ? data.projectType.split(",").map((type, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 + i * 0.1 }}
+                        whileHover={{ scale: 1.05, backgroundColor: "#0d9488" }}
+                        className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-xs font-medium cursor-pointer transition-colors"
+                      >
+                        {type.trim()}
+                      </motion.span>
+                    ))
+                  : null}
+              </motion.div>
+            </div>
 
-        <div className="border-l border-gray-200 pl-8 space-y-6">
-          <Info label="Industry" value={data.industry} />
-          <Info label="Client" value={data.client} />
-          <Info label="Deliverables" value={data.deliverables} />
+            {/* Right - Info Details */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="space-y-3"
+            >
+              <Info label="Industry" value={data.industry} />
+              <Info label="Client" value={data.client} />
+              <Info label="Deliverables" value={data.deliverables} />
+            </motion.div>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -48,7 +104,11 @@ const ScopeOfProject = ({ project }) => {
   const { targetAudience, clientGoal, constraints } = project.step2;
 
   const Card = ({ title, data, reversed = false }) => (
-    <div className="bg-white border border-gray-200 rounded-xl p-6">
+    <motion.div
+      whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="bg-white border border-gray-200 rounded-xl p-6"
+    >
       {reversed ? (
         <>
           <h3 className="text-xl font-semibold mb-2">{title}</h3>
@@ -80,102 +140,256 @@ const ScopeOfProject = ({ project }) => {
           </ul>
         </>
       )}
-    </div>
+    </motion.div>
   );
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-      <Card title="Target Audience" data={targetAudience} />
-      <Card title="Client's Goal" data={clientGoal} reversed={true} />
-      <Card title="Constraints" data={constraints} />
-    </div>
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div variants={itemVariants}>
+        <Card title="Target Audience" data={targetAudience} />
+      </motion.div>
+      <motion.div variants={itemVariants}>
+        <Card title="Client's Goal" data={clientGoal} reversed={true} />
+      </motion.div>
+      <motion.div variants={itemVariants}>
+        <Card title="Constraints" data={constraints} />
+      </motion.div>
+    </motion.div>
   );
 };
 
 const BrandIdentity = ({ project }) => (
-  <div className="bg-white border border-gray-200 rounded-xl p-10">
-    <img
+  <motion.div
+    whileHover={{ y: -8 }}
+    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    className="bg-white border border-gray-200 rounded-xl p-10"
+  >
+    <motion.img
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
       src={project.step3.brandImage}
       alt="Brand Identity"
       className="w-full rounded-xl"
     />
-  </div>
+  </motion.div>
 );
 
 const OurProcess = ({ project }) => {
-  const { sitemapImage, wireframeImage, finalDesignImage, sitemapDescription, wireframeDescription, finalDesignDescription } = project.step4;
+  const {
+    sitemapImage,
+    wireframeImage,
+    finalDesignImage,
+    sitemapDescription,
+    wireframeDescription,
+    finalDesignDescription,
+  } = project.step4;
 
   const steps = [
-    { 
-      title: "Sitemap/ Backend", 
+    {
+      title: "Sitemap/ Backend",
       src: sitemapImage,
-      description: sitemapDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+      description:
+        sitemapDescription ||
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development.",
     },
-    { 
-      title: "Wireframing", 
+    {
+      title: "Wireframing",
       src: wireframeImage,
-      description: wireframeDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+      description:
+        wireframeDescription ||
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development.",
     },
-    { 
-      title: "Final Designs", 
+    {
+      title: "Final Designs",
       src: finalDesignImage,
-      description: finalDesignDescription || "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development."
+      description:
+        finalDesignDescription ||
+        "Revamp the existing website into a modern, visually appealing, product-like AI website while maintaining simplicity for smooth web development.",
     },
   ];
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-10">
-      <h2 className="text-3xl font-bold mb-8">Our Process</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white border border-gray-200 rounded-xl p-10"
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="text-3xl font-bold mb-8"
+      >
+        Our Process
+      </motion.h2>
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          staggerChildren: 0.1,
+          delayChildren: 0.3,
+        }}
+      >
         {images.map((item, i) => (
-          <div key={i}>
-            <img src={item.src} alt={item.label} className="rounded-lg mb-2" />
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -8 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <motion.img
+              src={item.src}
+              alt={item.label}
+              className="rounded-lg mb-2 w-full"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
             <p className="text-center text-sm text-gray-600">{item.label}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
 const SystemDesign = ({ project }) => (
-  <div className="bg-white border border-gray-200 rounded-xl p-10">
-    <h2 className="text-3xl font-bold mb-8">System Design</h2>
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    className="bg-white border border-gray-200 rounded-xl p-10"
+  >
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="text-3xl font-bold mb-8"
+    >
+      System Design
+    </motion.h2>
+    <motion.div
+      className="grid grid-cols-2 md:grid-cols-3 gap-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      }}
+    >
       {project.step5.images.map((img, i) => (
-        <img key={i} src={img} alt="" className="rounded-lg" />
+        <motion.img
+          key={i}
+          src={img}
+          alt=""
+          className="rounded-lg cursor-pointer"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05, rotate: 2 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
       ))}
-    </div>
-  </div>
+    </motion.div>
+  </motion.div>
 );
 
 const DesignDetails = ({ project }) => (
-  <div className="bg-white border border-gray-200 rounded-xl p-10">
-    <h2 className="text-3xl font-bold mb-8">Design Details</h2>
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    className="bg-white border border-gray-200 rounded-xl p-10"
+  >
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="text-3xl font-bold mb-8"
+    >
+      Design Details
+    </motion.h2>
+    <motion.div
+      className="grid grid-cols-2 md:grid-cols-3 gap-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      }}
+    >
       {project.step6.images.map((img, i) => (
-        <img key={i} src={img} alt="" className="rounded-lg" />
+        <motion.img
+          key={i}
+          src={img}
+          alt=""
+          className="rounded-lg cursor-pointer"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05, rotate: -2 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
       ))}
-    </div>
-  </div>
+    </motion.div>
+  </motion.div>
 );
 
 const ResponsiveDesign = ({ project }) => (
-  <div className="bg-white border border-gray-200 rounded-xl p-10">
-    <h2 className="text-3xl font-bold mb-8">Responsive Design</h2>
-    <img
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    className="bg-white border border-gray-200 rounded-xl p-10"
+  >
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="text-3xl font-bold mb-8"
+    >
+      Responsive Design
+    </motion.h2>
+    <motion.img
       src={project.step7.responsiveImage}
       alt="Responsive Design"
       className="rounded-xl mx-auto"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.5 }}
+      whileHover={{ scale: 1.02 }}
     />
-  </div>
+  </motion.div>
 );
 
 // Main Component
 export default function Projects() {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
 
   // Get project data from PROJECTS_DATA
@@ -188,13 +402,13 @@ export default function Projects() {
   }
 
   const steps = [
-    "01. Project Overview",
-    "02. Scope of the Project",
-    "03. Brand Identity",
-    "04. Our Process",
-    "05. System Design",
-    "06. Design Details",
-    "07. Responsive Design",
+    "Project Overview",
+    "Scope of the Project",
+    "Brand Identity",
+    "Our Process",
+    "System Design",
+    "Design Details",
+    "Responsive Design",
   ];
 
   // Map sections to components
@@ -210,159 +424,18 @@ export default function Projects() {
 
   return (
     <section className="bg-white min-h-screen">
-      <div className="flex h-screen overflow-hidden">
-        {/* Left Sidebar */}
-        <div
-          className={`bg-white border-r border-gray-200 p-6 overflow-y-auto transition-all duration-300 ${
-            sidebarOpen ? "w-74" : "w-auto"
-          }`}
-        >
-          {/* Toggle Button with Tags */}
-          <div className="flex items-center gap-3 mb-6">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="flex items-center justify-center text-teal-600 hover:bg-gray-100 rounded transition-colors p-1"
-              aria-label="Toggle sidebar"
-            >
-              <PanelRight size={24} />
-            </button>
-
-            {sidebarOpen && (
-              <div className="flex gap-1">
-                {project.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {sidebarOpen && (
-            <>
-              <div></div>
-
-              <nav className="space-y-0">
-                {steps.map((step, idx) => (
-                  <div key={idx} className="relative">
-                    {/* Highlight box for active item */}
-                    {idx === activeStep && (
-                      <div className="absolute inset-0 bg-teal-50 border border-teal-100 rounded-lg -mx-2 px-2"></div>
-                    )}
-
-                    <button
-                      onClick={() => setActiveStep(idx)}
-                      className="w-full"
-                    >
-                      <div className="flex items-start gap-3 relative py-3">
-                        {/* Vertical line and dot container */}
-                        <div
-                          className="flex flex-col items-center relative"
-                          style={{ width: "20px" }}
-                        >
-                          {/* Vertical line above */}
-                          {idx !== 0 && (
-                            <div
-                              className="absolute w-0.5 bg-gray-300"
-                              style={{
-                                top: "-12px",
-                                height: "12px",
-                                left: "50%",
-                                transform: "translateX(-50%)",
-                              }}
-                            ></div>
-                          )}
-
-                          {/* Dot/Circle */}
-                          <div className="relative z-10">
-                            <div
-                              className={`w-2.5 h-2.5 rounded-full border-2 ${
-                                idx === activeStep
-                                  ? "bg-teal-600 border-teal-600"
-                                  : "bg-white border-gray-400"
-                              }`}
-                            />
-                          </div>
-
-                          {/* Vertical line below */}
-                          {idx !== steps.length - 1 && (
-                            <div
-                              className="absolute w-0.5 bg-gray-300"
-                              style={{
-                                bottom: "-12px",
-                                height: "12px",
-                                left: "50%",
-                                transform: "translateX(-50%)",
-                              }}
-                            ></div>
-                          )}
-                        </div>
-
-                        {/* Horizontal line */}
-                        <div className="w-4 h-0.5 bg-gray-300 self-center"></div>
-
-                        {/* Square icon */}
-                        <div
-                          className={`w-5 h-5 rounded-sm ${
-                            idx === activeStep ? "bg-teal-400" : "bg-teal-300"
-                          }`}
-                        />
-
-                        {/* Text */}
-                        <div
-                          className={`text-sm font-medium text-left flex-1 ${
-                            idx === activeStep
-                              ? "text-gray-800"
-                              : "text-gray-600"
-                          }`}
-                        >
-                          {step}
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                ))}
-              </nav>
-            </>
-          )}
-
-          {!sidebarOpen && (
-            <div className="flex flex-col items-center pt-4">
-              {steps.map((step, idx) => (
-                <div key={idx} className="flex flex-col items-center">
-                  {/* Vertical line above */}
-                  {idx !== 0 && <div className="w-0.5 h-4 bg-gray-300"></div>}
-
-                  {/* Box/Square */}
-                  <button
-                    onClick={() => {
-                      setActiveStep(idx);
-                    }}
-                    className="transition-transform hover:scale-110"
-                    title={step}
-                  >
-                    <div
-                      className={`w-4 h-4 rounded-sm ${
-                        idx === activeStep ? "bg-teal-500" : "bg-teal-300"
-                      }`}
-                    ></div>
-                  </button>
-
-                  {/* Vertical line below */}
-                  {idx !== steps.length - 1 && (
-                    <div className="w-0.5 h-4 bg-gray-300"></div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+      <Navbar2 />
+      <div className="flex">
+        {/* Project Sidebar Component */}
+        <ProjectSidebar
+          project={project}
+          steps={steps}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
 
         {/* Main Content */}
-        <div className="flex-1 overflow-y-auto bg-[#F7FBFA]">
+        <div className="flex-1 bg-[#F7FBFA]">
           <div className="p-10 max-w-7xl mx-auto">
             {/* <button
               onClick={() => navigate("/portfolio")}
