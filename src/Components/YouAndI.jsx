@@ -61,9 +61,12 @@ const items = [
 export default function YouAndI() {
   return (
     <div className="py-20 px-4 md:px-10 bg-[#F8F8F8] min-h-screen">
-      <div className="mx-auto space-y-4">
+      <div className="mx-auto space-y-4 md:space-y-4">
         {items.map((item, index) => (
-          <Row key={index} item={item} />
+          <>
+            <Row key={`desktop-${index}`} item={item} />
+            <MobileRow key={`mobile-${index}`} item={item} />
+          </>
         ))}
       </div>
     </div>
@@ -85,7 +88,7 @@ function Row({ item }) {
         height: isHovered ? 170 : 170,
       }}
       transition={figmaSpring}
-      className="relative flex w-full gap-3 overflow-hidden"
+      className="relative hidden md:flex w-full gap-3 overflow-hidden"
     >
       {/* LEFT PANEL (YOU) - Reduces width on hover */}
       <motion.div
@@ -159,5 +162,42 @@ function Row({ item }) {
         </p>
       </motion.div>
     </motion.div>
+  );
+}
+
+// Mobile Row Component
+function MobileRow({ item }) {
+  const [showImage, setShowImage] = useState(false);
+
+  return (
+    <div 
+      className="flex md:hidden w-full gap-2 overflow-hidden h-[140px] rounded-lg cursor-pointer"
+      onClick={() => setShowImage(!showImage)}
+    >
+      {/* LEFT PANEL (YOU) */}
+      <div className="bg-[#F5DEDC] p-3 flex items-center justify-center flex-1 overflow-hidden">
+        <p className="text-xs text-[#333] leading-tight text-center">
+          <span className="font-bold">YOU</span> {item.you.replace(/^YOU /, "")}
+        </p>
+      </div>
+
+      {/* CENTER IMAGE - Shows only on click */}
+      {showImage && (
+        <div className="w-[120px] h-full overflow-hidden flex-shrink-0">
+          <img
+            src={item.image}
+            className="w-full h-full object-cover"
+            alt="Visual"
+          />
+        </div>
+      )}
+
+      {/* RIGHT PANEL (I) */}
+      <div className="bg-[#D7EEF1] p-3 flex items-center justify-center flex-1 overflow-hidden">
+        <p className="text-xs text-[#333] leading-tight text-center">
+          <span className="font-bold">I</span> {item.i.replace(/^I /, "")}
+        </p>
+      </div>
+    </div>
   );
 }

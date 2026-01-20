@@ -33,7 +33,7 @@ export default function ProjectSidebar({
   return (
     <div
       className={`bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 flex flex-col ${
-        isOpen ? "w-64" : "w-20"
+        isOpen ? "w-80" : "w-20"
       }`}
     >
       {/* Toggle Bar */}
