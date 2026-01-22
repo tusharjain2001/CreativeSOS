@@ -6,7 +6,7 @@ import Desifesst from "../Images/Desifesst.png";
 import Mapmy from "../Images/Mapmy.png";
 import Timor from "../Images/Timor.png";
 import Naxatra from "../Images/Naxatra.png";
-import InfintusBanner from "../Images/InfintusBanner.png";
+import InfintusBanner from "../Images/InfinitusOv.png";
 
 export const PROJECTS_DATA = {
   "brand-refresh": {
@@ -16,6 +16,23 @@ export const PROJECTS_DATA = {
       "Infinitus installs GTM systems for cybersecurity companies that need to scale continuously and fast. ",
     portfolioImage: Infinitus, // Your image path
     tags: ["Brand Identity"],
+
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Logo Variations",
+      "Mood Board",
+      "Color",
+      "Typography",
+      "Shapes and Patterns",
+      "UI Elements",
+      "Icons",
+      "Stationary",
+      "Social Media",
+      "Collage",
+      "View Project",
+    ],
 
     // ========== STEP 1: PROJECT OVERVIEW ==========
     step1: {
@@ -34,7 +51,7 @@ export const PROJECTS_DATA = {
       targetAudience: {
         description:
           "Enterprise clients seeking AI-powered industrial automation solutions",
-        image: image,
+        image: InfintusBanner,
         pointers: [
           "C-level executives in manufacturing",
           "Operations managers and safety officers",
@@ -101,6 +118,12 @@ export const PROJECTS_DATA = {
     step7: {
       responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
     },
+    step8: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+    },
+    step9: {
+      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+    },
   },
 
   "demand-gen": {
@@ -109,6 +132,17 @@ export const PROJECTS_DATA = {
       "Multi-channel marketing campaign driving 300% increase in qualified leads through strategic content and targeted advertising.",
     portfolioImage: image,
     tags: ["Video - Animated"],
+
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
 
     step1: {
       projectName: "Demand Generation Campaign",
@@ -199,6 +233,17 @@ export const PROJECTS_DATA = {
       "Successfully launched new AI feature to 50K+ users with comprehensive go-to-market strategy and user onboarding.",
     portfolioImage: Desifesst,
     tags: ["UX/UI - Wesbite"],
+
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
 
     step1: {
       projectName: "Product Launch Strategy",
@@ -291,6 +336,17 @@ export const PROJECTS_DATA = {
     portfolioImage: Mapmy,
     tags: ["Brand Identity"],
 
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
+
     step1: {
       projectName: "Content Hub Development",
       overview:
@@ -382,6 +438,17 @@ export const PROJECTS_DATA = {
     portfolioImage: Timor,
     tags: ["Print - Report"],
 
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
+
     step1: {
       projectName: "Customer Retention Program",
       overview:
@@ -471,6 +538,17 @@ export const PROJECTS_DATA = {
       "Created comprehensive sales enablement system with collateral management, training, and analytics resulting in 60% faster deal cycles.",
     portfolioImage: Naxatra,
     tags: ["Video - Corporate"],
+
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
 
     step1: {
       projectName: "Sales Enablement Platform",
@@ -562,6 +640,17 @@ export const PROJECTS_DATA = {
       "Viral social media campaign reaching 5M+ impressions and generating 50K engagements across multiple platforms.",
     portfolioImage: "/images/portfolio/social.jpg",
     tags: ["Social Media", "Viral"],
+
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
 
     step1: {
       projectName: "Social Media Campaign",
@@ -655,6 +744,17 @@ export const PROJECTS_DATA = {
       "Redesigned high-converting landing pages increasing conversion rate from 2% to 8% through data-driven optimization.",
     portfolioImage: "/images/portfolio/landing.jpg",
     tags: ["Landing Page", "CRO"],
+
+    // ========== PROJECT STEPS ==========
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Brand Identity",
+      "Our Process",
+      "System Design",
+      "Design Details",
+      "Responsive Design",
+    ],
 
     step1: {
       projectName: "Landing Page Optimization",

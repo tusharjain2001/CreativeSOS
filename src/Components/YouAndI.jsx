@@ -170,7 +170,7 @@ function MobileRow({ item }) {
   const [showImage, setShowImage] = useState(false);
 
   return (
-    <div 
+    <div
       className="flex md:hidden w-full gap-2 overflow-hidden h-[140px] rounded-lg cursor-pointer"
       onClick={() => setShowImage(!showImage)}
     >
