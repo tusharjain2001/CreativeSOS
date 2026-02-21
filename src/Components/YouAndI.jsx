@@ -64,7 +64,11 @@ export default function YouAndI() {
       <div className="mx-auto space-y-4 md:space-y-4">
         {items.map((item, index) => (
           <>
-            <Row key={`desktop-${index}`} item={item} noAnimation={index === 0} />
+            <Row
+              key={`desktop-${index}`}
+              item={item}
+              noAnimation={index === 0}
+            />
             <MobileRow key={`mobile-${index}`} item={item} />
           </>
         ))}
@@ -92,7 +96,7 @@ function Row({ item, noAnimation }) {
       {/* LEFT PANEL (YOU) - Reduces width on hover */}
       <motion.div
         animate={{
-          flex: hovered ? 0.6 : 1,
+          flex: noAnimation || hovered ? 0.6 : 1,
           backgroundColor: "#F5DEDC",
         }}
         transition={figmaSpring}
@@ -150,7 +154,7 @@ function Row({ item, noAnimation }) {
       {/* RIGHT PANEL (I) - Stays large */}
       <motion.div
         animate={{
-          flex: 1,
+          flex: noAnimation ? 1.0 : 1,
           backgroundColor: hovered ? "#6BC6D366" : "#D7EEF1",
         }}
         transition={figmaSpring}
