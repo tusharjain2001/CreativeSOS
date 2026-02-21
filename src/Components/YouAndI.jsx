@@ -125,7 +125,7 @@ function Row({ item, noAnimation }) {
           transition={textTransition}
           className="absolute inset-0 flex items-center justify-center"
         >
-          <div className="w-[450px] px-8">
+          <div className="w-112.5 px-8">
             <p className="text-lg md:text-2xl text-[#333] leading-snug text-center md:text-left">
               <span className="font-bold">YOU</span>{" "}
               {item.you.replace(/^YOU /, "")}
@@ -175,7 +175,7 @@ function MobileRow({ item }) {
 
   return (
     <div
-      className="flex md:hidden w-full gap-2 overflow-hidden h-[140px] rounded-lg cursor-pointer"
+      className="flex md:hidden w-full gap-2 overflow-hidden h-35 rounded-lg cursor-pointer"
       onClick={() => setShowImage(!showImage)}
     >
       {/* LEFT PANEL (YOU) */}
@@ -187,7 +187,7 @@ function MobileRow({ item }) {
 
       {/* CENTER IMAGE - Shows only on click */}
       {showImage && (
-        <div className="w-[120px] h-full overflow-hidden flex-shrink-0">
+        <div className="w-30 h-full overflow-hidden shrink-0">
           <img
             src={item.image}
             className="w-full h-full object-cover"

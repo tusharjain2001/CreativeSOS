@@ -90,7 +90,7 @@ export default function TrustMe() {
                   animationFillMode: "forwards",
                 }}
               >
-                <div className="w-12 h-12 md:w-32 md:h-32 flex-shrink-0 flex items-center justify-center">
+                <div className="w-12 h-12 md:w-32 md:h-32 shrink-0 flex items-center justify-center">
                   <img
                     src={f.icon}
                     alt={f.title}

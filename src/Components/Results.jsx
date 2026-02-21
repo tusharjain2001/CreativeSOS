@@ -193,7 +193,7 @@ export default function Results() {
                 {cards.map((c, i) => (
                   <article
                     key={i}
-                    className="shrink-0 w-[320px] md:w-[400px] bg-[#E1F0F2] rounded-lg p-6 flex flex-col justify-between select-none"
+                    className="shrink-0 w-[320px] md:w-100 bg-[#E1F0F2] rounded-lg p-6 flex flex-col justify-between select-none"
                     style={{ minHeight: "490px" }}
                   >
                     <div>

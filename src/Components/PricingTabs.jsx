@@ -334,7 +334,7 @@ const PricingTabs = () => {
               <div className="space-y-3">
                 {currentData.features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-2">
-                    <div className="flex-shrink-0 mt-0.5">
+                    <div className="shrink-0 mt-0.5">
                       <img src={greentick} alt="" className="w-4 h-4" />
                     </div>
                     <p className="text-gray-700 leading-relaxed text-xs">
@@ -428,7 +428,7 @@ const PricingTabs = () => {
                 className={`flex gap-12 items-start justify-center max-w-5xl mx-auto ${slideInClass}`}
               >
                 {/* Pricing Card */}
-                <div className="w-72 flex-shrink-0">
+                <div className="w-72 shrink-0">
                   <div className="border-t-4 border-[#6BC6D4] shadow-md rounded-sm bg-white">
                     <div className="p-6">
                       <div className="mb-6">
@@ -475,7 +475,7 @@ const PricingTabs = () => {
                   <div className="space-y-5">
                     {currentData.features.map((feature, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <div className="flex-shrink-0 mt-0.5">
+                        <div className="shrink-0 mt-0.5">
                           <img src={greentick} alt="" className="w-5 h-5" />
                         </div>
                         <p className="text-gray-700 leading-relaxed text-base">

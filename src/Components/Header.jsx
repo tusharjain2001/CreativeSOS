@@ -54,7 +54,7 @@ export default function Header() {
         }
       `}</style>
 
-      <div className="max-w-[90%] mt-10 sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-[880px] mx-auto text-center">
+      <div className="max-w-[90%] mt-10 sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-220 mx-auto text-center">
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed md:leading-relaxed lg:leading-relaxed text-gray-800 font-medium hero-text">
           <span>
             Companies spend over{" "}
