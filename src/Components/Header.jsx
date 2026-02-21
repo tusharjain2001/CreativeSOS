@@ -30,10 +30,10 @@ export default function Header() {
       }`}
     >
       <style>{`
-        @keyframes fadeInDown {
+        @keyframes fadeLineIn {
           from {
             opacity: 0;
-            transform: translateY(-24px);
+            transform: translateY(16px);
           }
           to {
             opacity: 1;
@@ -41,60 +41,54 @@ export default function Header() {
           }
         }
 
-        @keyframes fadeInWord {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in-up {
+        .line-chunk {
           opacity: 0;
+          display: inline;
         }
 
-        .in-view .animate-fade-in-up {
-          animation: fadeInDown 0.7s ease-out forwards;
+        .in-view .line-chunk-1 {
+          animation: fadeLineIn 0.7s ease-out 0.1s forwards;
         }
-
-        .word-highlight {
-          opacity: 0;
-          display: inline-block;
-          white-space: nowrap;
+        .in-view .line-chunk-2 {
+          animation: fadeLineIn 0.7s ease-out 0.45s forwards;
         }
-
-        .in-view .word-highlight {
-          animation: fadeInWord 0.6s ease-out forwards;
+        .in-view .line-chunk-3 {
+          animation: fadeLineIn 0.7s ease-out 0.8s forwards;
         }
 
         .highlight-bold {
-          transition: transform 0.25s ease, color 0.25s ease;
+          transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease;
+          cursor: default;
         }
 
         .highlight-bold:hover {
-          transform: scale(1.04);
+          transform: scale(1.05);
           color: #1a5f6f;
         }
       `}</style>
 
-      <div className="max-w-[90%] mt-10 sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-[880px] mx-auto text-center animate-fade-in-up">
+      <div className="max-w-[90%] mt-10 sm:max-w-[85%] md:max-w-2xl lg:max-w-3xl xl:max-w-[880px] mx-auto text-center">
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed md:leading-relaxed lg:leading-relaxed text-gray-800 font-medium">
-          Companies spend over{" "}
-          <span className="font-semibold text-gray-900 highlight-bold word-highlight whitespace-nowrap">
-            $100K
-          </span>{" "}
-          every year on one senior designer. You can bring me on{" "}
-          <span className="font-semibold text-gray-900 highlight-bold word-highlight">
-            predictable hourly billing
-          </span>{" "}
-          and get both{" "}
-          <span className="font-semibold text-gray-900 highlight-bold word-highlight">
-            strategic direction + my full-stack creative
-          </span>{" "}
-          design execution team at a fraction of the cost.
+          <span className="line-chunk line-chunk-1">
+            Companies spend over{" "}
+            <span className="font-semibold text-gray-900 highlight-bold whitespace-nowrap">
+              $100K
+            </span>{" "}
+            every year on one senior designer.{" "}
+          </span>
+          <span className="line-chunk line-chunk-2">
+            You can bring me on{" "}
+            <span className="font-semibold text-gray-900 highlight-bold">
+              predictable hourly billing
+            </span>{" "}
+            and get both{" "}
+            <span className="font-semibold text-gray-900 highlight-bold">
+              strategic direction + my full-stack creative
+            </span>{" "}
+          </span>
+          <span className="line-chunk line-chunk-3">
+            design execution team at a fraction of the cost.
+          </span>
         </p>
       </div>
     </section>
