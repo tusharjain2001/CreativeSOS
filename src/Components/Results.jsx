@@ -128,6 +128,7 @@ export default function Results() {
         await animateScroll(el, 0, Math.round(maxScroll * 0.9), 1200);
         await new Promise((r) => setTimeout(r, 350));
         await animateScroll(el, Math.round(maxScroll * 0.9), 0, 1100);
+      // eslint-disable-next-line no-unused-vars
       } catch (e) {
         // ignore
       } finally {
@@ -141,7 +142,7 @@ export default function Results() {
   }, []);
 
   return (
-    <section className="py-12 md:py-16 bg-[#1C1D22]">
+    <section id="results" className="py-12 md:py-16 bg-[#1C1D22]">
       <div className=" pl-4 md:pl-8 ">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
           {/* Left heading column */}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import Rectangle1 from "../Images/Rectangle1.png";
 import Rectangle2 from "../Images/Rectangle2.png";
@@ -60,7 +61,7 @@ const items = [
 
 export default function YouAndI() {
   return (
-    <div className="py-20 px-4 md:px-10 bg-[#F8F8F8] min-h-screen">
+    <div id="you-i" className="py-20 px-4 md:px-10 bg-[#F8F8F8] min-h-screen">
       <div className="mx-auto space-y-4 md:space-y-4">
         {items.map((item, index) => (
           <>

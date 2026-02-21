@@ -12,7 +12,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if scrolled past the first screen (approximately 80vh or more)
       setIsScrolled(window.scrollY > window.innerHeight * 0.8);
     };
 
@@ -21,12 +20,12 @@ export default function Navbar() {
   }, []);
 
   const navItems = [
-    { label: "You-I", href: "#you-i" },
-    { label: "Why me?", href: "#why-me" },
-    { label: "Partners", href: "#partners" },
-    { label: "My SLAs", href: "#my-slas" },
-    { label: "Results", href: "#results" },
-    { label: "Portfolio", href: "/portfolio" },
+    { label: "You-I", href: "#you-i", type: "section" },
+    { label: "Why me?", href: "#why-me", type: "section" },
+    { label: "Partners", href: "#partners", type: "section" },
+    { label: "My SLAs", href: "#my-slas", type: "section" },
+    { label: "Results", href: "#results", type: "section" },
+    { label: "Portfolio", href: "/portfolio", type: "route" },
   ];
 
   return (
@@ -35,59 +34,57 @@ export default function Navbar() {
         isScrolled ? "bg-white shadow-md" : "bg-[#E1F0F2]"
       }`}
     >
-      <div className="  flex items-center justify-between">
+      <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <img src={logodesktop} />
+          <img src={logodesktop} alt="logo" />
         </div>
 
-        {/* Hamburger Icon for Mobile */}
-
+        {/* Hamburger */}
         <button
           onClick={toggleMenu}
           className={`md:hidden flex flex-col gap-1.5 z-50 ${
             isOpen ? "invisible" : ""
           }`}
         >
-          <span
-            className={`w-6 h-0.5 bg-gray-700 transition-all ${
-              isOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          ></span>
-          <span
-            className={`w-6 h-0.5 bg-gray-700 transition-all ${
-              isOpen ? "opacity-0" : ""
-            }`}
-          ></span>
-          <span
-            className={`w-6 h-0.5 bg-gray-700 transition-all ${
-              isOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          ></span>
+          <span className="w-6 h-0.5 bg-gray-700"></span>
+          <span className="w-6 h-0.5 bg-gray-700"></span>
+          <span className="w-6 h-0.5 bg-gray-700"></span>
         </button>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-14">
-          {/* Navigation Items */}
           <div className="flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument transition-colors relative group"
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gray-800  group-hover:w-full"></span>
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.type === "route" ? (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument"
+                >
+                  {item.label}
+                </a>
+              ),
+            )}
           </div>
 
           {/* Buttons */}
           <div className="flex items-center gap-4">
-            <button className="px-6 py-2 border-2 bg-white border-[#257D89] text-[#257D89] font-medium rounded  transition-colors">
+            <a
+              href="#contact"
+              className="px-6 py-2 border-2 bg-white border-[#257D89] text-[#257D89] font-medium rounded inline-block"
+            >
               Let's Talk Money!
-            </button>
-            <button className="px-6 py-2 bg-[#257D89] text-white font-medium rounded  transition-colors">
+            </a>
+            <button className="px-6 py-2 bg-[#257D89] text-white font-medium rounded">
               Let's Collaborate
             </button>
           </div>
@@ -96,42 +93,35 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="absolute top-0 left-0 w-full bg-[#C0E4E9] flex flex-col md:hidden z-40">
-            {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between px-4 py-4 ">
-              <div className="flex items-center">
-                <img src={logodesktop} />
-              </div>
-
-              <button
-                onClick={toggleMenu}
-                className="text-gray-700 text-2xl font-light"
-              >
+            <div className="flex items-center justify-between px-4 py-4">
+              <img src={logodesktop} alt="logo" />
+              <button onClick={toggleMenu} className="text-2xl">
                 ✕
               </button>
             </div>
 
-            {/* Mobile Navigation Items */}
             <div className="flex flex-col px-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  onClick={toggleMenu}
-                  className="px-4 py-4 text-center text-gray-700 border-b font-family-instrument border-[#1C1D22] transition-colors  font-medium"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            {/* Mobile Buttons */}
-            <div className="flex  gap-3 p-4">
-              <button className="w-full px-6 py-2 border-2 bg-white border-[#257D89] text-[#257D89] font-medium rounded hover:bg-teal-50 transition-colors text-sm">
-                Let's Talk Money!
-              </button>
-              <button className="w-full px-6 py-2 bg-[#257D89] text-white font-medium rounded hover:bg-teal-700 transition-colors text-sm">
-                Let's Collaborate
-              </button>
+              {navItems.map((item) =>
+                item.type === "route" ? (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={toggleMenu}
+                    className="px-4 py-4 text-center border-b"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={toggleMenu}
+                    className="px-4 py-4 text-center border-b"
+                  >
+                    {item.label}
+                  </a>
+                ),
+              )}
             </div>
           </div>
         )}

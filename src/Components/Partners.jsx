@@ -86,6 +86,7 @@ export default function Partners() {
   return (
     <section
       ref={sectionRef}
+      id="partners"
       className={`bg-[#1C1D22] py-4 md:py-6 px-4 md:px-8 ${
         visible ? "in-view" : ""
       }`}

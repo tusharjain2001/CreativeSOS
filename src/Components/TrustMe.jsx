@@ -47,7 +47,7 @@ export default function TrustMe() {
   ];
 
   return (
-    <section className="py-8 md:py-20 bg-[#F8F8F8]">
+    <section id="why-me" className="py-8 md:py-20 bg-[#F8F8F8]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[0.55fr_1fr] gap-8 md:gap-16 items-start">
           {/* Left column - sticky heading */}
