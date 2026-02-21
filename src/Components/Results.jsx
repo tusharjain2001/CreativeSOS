@@ -41,6 +41,9 @@ export default function Results() {
   ];
 
   const containerRef = useRef(null);
+  const isAnimatingRef = useRef(false);
+  const wasVisibleRef = useRef(false);
+  const isPointerOverRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -76,6 +79,66 @@ export default function Results() {
       }
     }
   };
+
+  // Smooth scroll helper using requestAnimationFrame (easeInOutCubic)
+  const animateScroll = (element, from, to, duration = 1100) => {
+    if (!element) return Promise.resolve();
+    const start = performance.now();
+    return new Promise((resolve) => {
+      const easeInOutCubic = (t) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const frame = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(1, elapsed / duration);
+        const eased = easeInOutCubic(progress);
+        element.scrollLeft = Math.round(from + (to - from) * eased);
+        if (progress < 1) requestAnimationFrame(frame);
+        else resolve();
+      };
+
+      requestAnimationFrame(frame);
+    });
+  };
+
+  // Trigger entry animation when the container enters viewport (runs again after leaving+re-entering)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const onIntersect = async ([entry]) => {
+      // when leaving viewport, mark as not visible so re-enter will trigger
+      if (!entry.isIntersecting) {
+        wasVisibleRef.current = false;
+        return;
+      }
+
+      // if user's pointer is over the cards, skip auto-scroll to avoid interference
+      if (isPointerOverRef.current) return;
+
+      // avoid retrigger while already animating or if already visible
+      if (wasVisibleRef.current || isAnimatingRef.current) return;
+      wasVisibleRef.current = true;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 8) return;
+
+      isAnimatingRef.current = true;
+      try {
+        await animateScroll(el, 0, Math.round(maxScroll * 0.9), 1200);
+        await new Promise((r) => setTimeout(r, 350));
+        await animateScroll(el, Math.round(maxScroll * 0.9), 0, 1100);
+      } catch (e) {
+        // ignore
+      } finally {
+        isAnimatingRef.current = false;
+      }
+    };
+
+    const obs = new IntersectionObserver(onIntersect, { threshold: 0.2 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <section className="py-12 md:py-16 bg-[#1C1D22]">
@@ -118,6 +181,8 @@ export default function Results() {
                 cursor: "grab",
                 WebkitOverflowScrolling: "touch",
               }}
+              onPointerEnter={() => (isPointerOverRef.current = true)}
+              onPointerLeave={() => (isPointerOverRef.current = false)}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
