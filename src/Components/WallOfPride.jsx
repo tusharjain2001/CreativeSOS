@@ -1,84 +1,90 @@
 import React from "react";
-import Pride1 from "../Images/Pride1.png";
-import Pride2 from "../Images/Pride2.png";
-import Pride3 from "../Images/Pride3.png";
-import Pride4 from "../Images/Pride4.png";
-import Pride5 from "../Images/Pride5.png";
-import Pride6 from "../Images/Pride6.png";
-import WallPride from "../Images/WallPride.png";
+import one from "../assets/wallofpride/one.png";
+import two from "../assets/wallofpride/two.png";
+import three from "../assets/wallofpride/three.png";
+import four from "../assets/wallofpride/four.png";
+import five from "../assets/wallofpride/five.png";
+import six from "../assets/wallofpride/six.png";
+
+/**
+ * Layout:
+ *  Desktop (md+):        Tablet (sm):           Mobile (xs):
+ *  Col1   Col2   Col3    2-column masonry        Single column
+ *  [one]  [three] [five]  [one]   [two]           [one]
+ *  [two]  [four]  [six]   [three] [four]           [two]
+ *                          [five]  [six]           [three]
+ *                                                  [four]
+ *                                                  [five]
+ *                                                  [six]
+ */
 
 const WallOfPride = () => {
-  return (
-    // Updated background to a deeper black-gray to match the screenshot exactly
-    <div className="min-h-screen bg-[#111214] py-20 px-6">
-      <div className="max-w-[1400px] mx-auto">
-        {/* Header - Increased size and font weight */}
-        <h1 className="text-6xl md:text-8xl font-bold text-white text-center mb-16 tracking-tight">
-          The Wall of Pride
-        </h1>
+  const imgClass =
+    "w-full rounded-2xl shadow-md object-contain hover:scale-105 border-[4px] border-[#6BC6D4] transition-transform duration-300 bg-white";
 
-        {/* Testimonials Grid - Desktop View */}
-        <div className="hidden md:block mb-16">
+  return (
+    <section className="px-4 sm:px-6 md:px-8 py-12 w-full overflow-x-hidden bg-[#1C1D22]">
+      <div className="font-bold text-white text-[clamp(32px,8vw,72px)] text-center mb-5">
+        THE WALL OF PRIDE
+      </div>
+
+      {/* Mobile: single column (below sm) */}
+      <div className="flex flex-col gap-4 sm:hidden">
+        <img src={one} alt="testimonial-1" className={imgClass} />
+        <img src={two} alt="testimonial-2" className={imgClass} />
+        <img src={three} alt="testimonial-3" className={imgClass} />
+        <img src={four} alt="testimonial-4" className={imgClass} />
+        <img src={five} alt="testimonial-5" className={imgClass} />
+        <img src={six} alt="testimonial-6" className={imgClass} />
+      </div>
+
+      {/* Tablet: 2-column grid (sm to md) */}
+      <div className="hidden sm:grid md:hidden grid-cols-2 gap-4 max-w-[600px] mx-auto">
+        <div className="flex flex-col gap-4">
+          <img src={one} alt="testimonial-1" className={imgClass} />
+          <img src={three} alt="testimonial-3" className={imgClass} />
+          <img src={five} alt="testimonial-5" className={imgClass} />
+        </div>
+        <div className="flex flex-col gap-4">
+          <img src={two} alt="testimonial-2" className={imgClass} />
+          <img src={four} alt="testimonial-4" className={imgClass} />
+          <img src={six} alt="testimonial-6" className={imgClass} />
+        </div>
+      </div>
+
+      {/* Desktop: original 3-column layout (md+) */}
+      <div className="hidden md:grid max-w-[1100px] mx-auto grid-cols-3 gap-4 items-start">
+        {/* Column 1 */}
+        <div className="flex flex-col gap-4">
+          <img src={one} alt="testimonial-1" className={imgClass} />
+          <img src={two} alt="testimonial-2" className={imgClass} />
+        </div>
+
+        {/* Column 2 */}
+        <div className="flex flex-col gap-4">
+          <img src={three} alt="testimonial-3" className={imgClass} />
           <img
-            src={WallPride}
-            alt="Wall of Pride"
-            className="w-full h-auto object-contain rounded-3xl shadow-lg"
+            src={four}
+            alt="testimonial-4"
+            className={`${imgClass} h-[190px]`}
           />
         </div>
 
-        {/* Testimonials Grid - Mobile View */}
-        <div className="md:hidden grid grid-cols-1 gap-2 mb-16">
-          {/* Column 1 */}
-          <div className="flex flex-col gap-2">
-            <img
-              src={Pride1}
-              alt="Testimonial 1"
-              className="w-full h-auto object-contain"
-            />
-            <img
-              src={Pride4}
-              alt="Testimonial 4"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-
-          {/* Column 2 */}
-          <div className="flex flex-col gap-2">
-            <img
-              src={Pride2}
-              alt="Testimonial 2"
-              className="w-full h-auto object-contain"
-            />
-            <img
-              src={Pride5}
-              alt="Testimonial 5"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-
-          {/* Column 3 */}
-          <div className="flex flex-col gap-2">
-            <img
-              src={Pride3}
-              alt="Testimonial 3"
-              className="w-full h-auto object-contain"
-            />
-            <img
-              src={Pride6}
-              alt="Testimonial 6"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center pb-10">
-          <p className="text-white text-2xl font-semibold opacity-90 italic">
-            And Many more...
-          </p>
+        {/* Column 3 */}
+        <div className="flex flex-col gap-4">
+          <img src={five} alt="testimonial-5" className={imgClass} />
+          <img
+            src={six}
+            alt="testimonial-6"
+            className={`${imgClass} h-[320px]`}
+          />
         </div>
       </div>
-    </div>
+
+      <div className="font-bold text-white text-[clamp(16px,3vw,24px)] text-center mt-5">
+        And Many more...
+      </div>
+    </section>
   );
 };
 

@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import pp from "../Images/pp.png";
 import HeroLogo from "../Images/The Creative SOS.png";
 
 const CreativeSOSCTA = () => {
+  useEffect(() => {
+    // Load the Nimbus/Zoho Bookings embed script
+    const script = document.createElement("script");
+    script.src = "https://bookings.nimbuspop.com/assets/embed.js";
+    script.async = true;
+    script.onload = () => {
+      if (window.Bookings) {
+        window.Bookings.inlineEmbed({
+          url: "https://godesyn.zohobookings.in/portal-embed#/godesyn",
+          parent: "#inline-container",
+          height: "600px",
+        });
+      }
+    };
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F8F8F8] py-16 md:py-2 flex flex-col">
       {/* Header */}
@@ -45,6 +66,11 @@ const CreativeSOSCTA = () => {
             Book a 30-minute fit call
           </button>
         </div>
+      </div>
+
+      {/* Zoho Bookings Embed — below footer */}
+      <div className="bg-[#F8F8F8] px-4 py-8">
+        <div id="inline-container" className="w-full max-w-5xl mx-auto" />
       </div>
 
       {/* Footer */}
