@@ -64,7 +64,7 @@ export default function YouAndI() {
       <div className="mx-auto space-y-4 md:space-y-4">
         {items.map((item, index) => (
           <>
-            <Row key={`desktop-${index}`} item={item} />
+            <Row key={`desktop-${index}`} item={item} noAnimation={index === 0} />
             <MobileRow key={`mobile-${index}`} item={item} />
           </>
         ))}
@@ -73,36 +73,35 @@ export default function YouAndI() {
   );
 }
 
-function Row({ item }) {
+function Row({ item, noAnimation }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Precision Transition: Standard Figma "Gentle" Spring
   const figmaSpring = { type: "spring", stiffness: 200, damping: 28, mass: 1 };
   const textTransition = { duration: 0.2 };
 
+  const hovered = noAnimation ? false : isHovered;
+
   return (
     <motion.div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      animate={{
-        height: isHovered ? 170 : 170,
-      }}
+      onMouseEnter={() => !noAnimation && setIsHovered(true)}
+      onMouseLeave={() => !noAnimation && setIsHovered(false)}
+      animate={{ height: 170 }}
       transition={figmaSpring}
       className="relative hidden md:flex w-full gap-3 overflow-hidden"
     >
       {/* LEFT PANEL (YOU) - Reduces width on hover */}
       <motion.div
         animate={{
-          flex: isHovered ? 0.6 : 1,
+          flex: hovered ? 0.6 : 1,
           backgroundColor: "#F5DEDC",
         }}
         transition={figmaSpring}
-        className="relative flex items-center justify-center overflow-hidden h-full "
+        className="relative flex items-center justify-center overflow-hidden h-full"
       >
         {/* Full Width Text - Shows when NOT hovered */}
         <motion.div
           animate={{
-            opacity: isHovered ? 0 : 1,
+            opacity: hovered ? 0 : 1,
           }}
           transition={textTransition}
           className="absolute inset-0 flex items-center justify-center px-8"
@@ -116,7 +115,7 @@ function Row({ item }) {
         {/* Adjusted Width Text - Shows when hovered */}
         <motion.div
           animate={{
-            opacity: isHovered ? 1 : 0,
+            opacity: hovered ? 1 : 0,
           }}
           transition={textTransition}
           className="absolute inset-0 flex items-center justify-center"
@@ -130,20 +129,20 @@ function Row({ item }) {
         </motion.div>
       </motion.div>
 
-      {/* CENTER IMAGE - Slides out from the middle */}
+      {/* CENTER IMAGE - Always visible for noAnimation, otherwise slides in on hover */}
       <motion.div
         animate={{
-          width: isHovered ? "180px" : "0px",
-          opacity: isHovered ? 1 : 0,
+          width: noAnimation ? "180px" : hovered ? "180px" : "0px",
+          opacity: noAnimation ? 1 : hovered ? 1 : 0,
         }}
         transition={figmaSpring}
         className="relative h-full overflow-hidden"
       >
         <motion.img
-          animate={{ scale: isHovered ? 1 : 1 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 0.7 }}
           src={item.image}
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover"
           alt="Visual"
         />
       </motion.div>
@@ -152,10 +151,10 @@ function Row({ item }) {
       <motion.div
         animate={{
           flex: 1,
-          backgroundColor: isHovered ? "#6BC6D366" : "#D7EEF1",
+          backgroundColor: hovered ? "#6BC6D366" : "#D7EEF1",
         }}
         transition={figmaSpring}
-        className="relative flex items-center justify-center overflow-hidden h-full  px-8"
+        className="relative flex items-center justify-center overflow-hidden h-full px-8"
       >
         <p className="text-lg md:text-2xl text-[#333] leading-snug text-center">
           <span className="font-bold">I</span> {item.i.replace(/^I /, "")}
