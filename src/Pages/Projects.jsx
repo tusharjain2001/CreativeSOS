@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { PROJECTS_DATA } from "../data/projectsData";
 import Navbar2 from "./NavBar2";
 import ProjectSidebar from "../Components/ProjectSidebar";
-import SectionRenderer from "../Components/SectionRenderer";
+import { getSectionRenderer } from "../Components/SectionRenderers";
 
-// Main Component
+// Main Componentw
 export default function Projects() {
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export default function Projects() {
 
   // Get project data from PROJECTS_DATA
   const project = PROJECTS_DATA[projectId];
+  console.log("Project Data:", project);
 
   // If project not found, redirect to portfolio
   if (!project) {
@@ -32,6 +33,30 @@ export default function Projects() {
     "Responsive Design",
   ];
 
+  // Get the appropriate SectionRenderer for this project
+  const SectionRenderer = getSectionRenderer(projectId);
+
+  if (!SectionRenderer) {
+    return (
+      <section className="bg-white min-h-screen">
+        <Navbar2 />
+        <div className="flex">
+          <ProjectSidebar
+            project={project}
+            steps={steps}
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+          />
+          <div className="flex-1 bg-[#F7FBFA] p-10">
+            <p className="text-red-500">
+              Error: No SectionRenderer found for project "{projectId}"
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-white min-h-screen">
       <Navbar2 />
@@ -47,7 +72,7 @@ export default function Projects() {
         {/* Main Content */}
         <div className="flex-1 bg-[#F7FBFA]">
           <div className="p-10 max-w-7xl mx-auto">
-            {/* Render section based on active step */}
+            {/* Render section based on active step with project-specific renderer */}
             <SectionRenderer
               project={project}
               sectionName={steps[activeStep]}
