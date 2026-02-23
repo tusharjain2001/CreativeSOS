@@ -130,7 +130,7 @@ export default function Portfolio() {
           >
             {firstGroup.map((project, index) => {
               const base =
-                "break-inside-avoid bg-white rounded-lg border border-gray-200 overflow-hidden relative shadow-sm";
+                "break-inside-avoid bg-white rounded-lg  overflow-hidden relative shadow-sm";
               let layout = "";
               if (index === 0)
                 layout =
@@ -166,9 +166,9 @@ export default function Portfolio() {
 
                   {/* Image Placeholder */}
                   <div
-                    className={`w-full bg-[#E1F0F2]  overflow-hidden flex items-center justify-center ${
+                    className={`mx-3 mt-3 bg-[#E1F0F2] overflow-hidden rounded-xl flex items-center justify-center ${
                       index === 0
-                        ? "h-60 md:h-80 lg:h-130 p-3 rounded-xl"
+                        ? "h-60 md:h-80 lg:h-130 p-3"
                         : index === 1 || index === 2
                           ? "h-60 md:h-72 lg:h-82 p-3"
                           : index === 3
@@ -229,7 +229,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* Image Placeholder */}
-                <div className="w-full bg-[#E1F0F2] overflow-hidden h-48 p-3">
+                <div className="mx-3 mt-3 bg-[#E1F0F2] overflow-hidden rounded-xl h-48 p-3">
                   <div
                     className={`w-full h-full ${
                       project.image
@@ -302,11 +302,11 @@ export default function Portfolio() {
 
                     {/* Image Placeholder */}
                     <div
-                      className={`w-full bg-[#E1F0F2] overflow-hidden flex items-center justify-center ${
+                      className={`mx-3 mt-3 bg-[#E1F0F2] overflow-hidden rounded-xl flex items-center justify-center ${
                         index === 0
-                          ? "h-80 lg:h-96 p-3 rounded-xl"
+                          ? "h-80 lg:h-96 p-3"
                           : index === 1
-                            ? "h-56 md:h-60 lg:h-64 p-3 rounded-xl"
+                            ? "h-56 md:h-60 lg:h-64 p-3"
                             : index === 4
                               ? "h-56 md:h-60 lg:h-107.5 p-3"
                               : "h-56 md:h-30 lg:h-72 p-3"
@@ -363,7 +363,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Image Placeholder */}
-                  <div className="w-full bg-[#E1F0F2] overflow-hidden h-48 p-3">
+                  <div className="mx-3 mt-3 bg-[#E1F0F2] overflow-hidden rounded-xl h-48 p-3">
                     <div
                       className={`w-full h-full ${
                         project.image
@@ -414,7 +414,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Image Placeholder */}
-                  <div className="w-full bg-[#E1F0F2] overflow-hidden h-80 p-5 flex items-center justify-center">
+                  <div className="mx-3 mt-3 bg-[#E1F0F2] overflow-hidden rounded-xl h-80 p-5 flex items-center justify-center">
                     <div
                       className={`w-50 h-50 ${
                         project.image
