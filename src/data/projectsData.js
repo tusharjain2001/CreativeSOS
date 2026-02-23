@@ -7,9 +7,13 @@ import Mapmy from "../Images/Mapmy.png";
 import Timor from "../Images/Timor.png";
 import Naxatra from "../Images/Naxatra.png";
 import InfintusBanner from "../Images/InfinitusOv.png";
+import InfinitusStep2 from "../Images/infinitus_step2.png";
+import InfinitusStep3A from "../Images/infinitus_step3a.png";
+import InfinitusStep3B from "../Images/infinitus_step3b.png";
+import InfinitusStep4 from "../Images/infinitus_step4.png";
 
 export const PROJECTS_DATA = {
-  "brand-refresh": {
+  "infinitus": {
     // ========== PORTFOLIO PAGE DATA ==========
     portfolioTitle: "Infinitus Management Consulting",
     portfolioDesc:
@@ -48,54 +52,18 @@ export const PROJECTS_DATA = {
 
     // ========== STEP 2: SCOPE OF PROJECT ==========
     step2: {
-      targetAudience: {
-        description:
-          "Enterprise clients seeking AI-powered industrial automation solutions",
-        image: InfintusBanner,
-        pointers: [
-          "C-level executives in manufacturing",
-          "Operations managers and safety officers",
-          "IT decision makers in industrial sectors",
-          "Forward-thinking companies adopting AI",
-          "Quality assurance and compliance teams",
-        ],
-      },
-      clientGoal: {
-        description:
-          "Revamp the existing website into a modern, visually appealing platform",
-        image: image,
-        pointers: [
-          "Create a modern, premium AI product aesthetic",
-          "Maintain simplicity for smooth development",
-          "Elevate brand perception from IT services to AI product",
-          "Implement clean UI with minimal animations",
-          "Strong structure and intuitive navigation",
-        ],
-      },
-      constraints: {
-        description:
-          "Technical and business limitations that shaped the project scope",
-        image: image,
-        pointers: [
-          "Limited development timeline of 8 weeks",
-          "Must work with existing tech stack",
-          "Budget constraints for custom development",
-          "Maintain brand recognition during transition",
-          "Ensure mobile responsiveness across devices",
-        ],
-      },
+      image: InfinitusStep2,
     },
 
     // ========== STEP 3: BRAND IDENTITY ==========
     step3: {
-      brandImage: image, // Large right-side image
+      logoImages: [InfinitusStep3A, InfinitusStep3B],
+      brandImage: InfinitusStep3A,
     },
 
     // ========== STEP 4: OUR PROCESS ==========
     step4: {
-      sitemapImage: image,
-      wireframeImage: image,
-      finalDesignImage: image,
+      image: InfinitusStep4,
     },
 
     // ========== STEP 5: SYSTEM DESIGN ==========
@@ -1500,3 +1468,4 @@ export const PROJECTS_DATA = {
     },
   },
 };
+

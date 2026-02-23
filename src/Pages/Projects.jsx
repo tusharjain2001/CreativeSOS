@@ -43,7 +43,8 @@ export default function Projects() {
     "Responsive Design",
   ];
   const previousStepLabel = activeStep > 0 ? steps[activeStep - 1] : "";
-  const nextStepLabel = activeStep < steps.length - 1 ? steps[activeStep + 1] : "";
+  const nextStepLabel =
+    activeStep < steps.length - 1 ? steps[activeStep + 1] : "";
 
   const setActiveStepWithDirection = (next) => {
     setActiveStep((prev) => {
@@ -203,10 +204,16 @@ export default function Projects() {
         </div>
 
         {/* Main Content */}
-        <div ref={contentRef} className="flex-1 bg-[#F4F4F4] md:bg-[#F7FBFA]">
-          <div className="mx-auto max-w-7xl px-4 pb-28 pt-4 md:p-10">
+        <div ref={contentRef} className="flex-1">
+          <div className={projectId === "infinitus" ? "w-full" : "mx-auto max-w-7xl"}>
             {/* Render section based on active step with project-specific renderer */}
-            <div className="rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+            <div
+              className={
+                projectId === "infinitus"
+                  ? "w-full p-0"
+                  : "rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+              }
+            >
               <AnimatePresence mode="wait" custom={stepDirection}>
                 <motion.div
                   key={`${projectId}-${activeStep}`}
@@ -285,7 +292,11 @@ export default function Projects() {
                     className="absolute left-0 z-10 w-0.5 rounded-r bg-teal-600"
                     animate={
                       mobileIndicatorY !== null && mobileIndicatorH !== null
-                        ? { y: mobileIndicatorY, height: mobileIndicatorH, opacity: 1 }
+                        ? {
+                            y: mobileIndicatorY,
+                            height: mobileIndicatorH,
+                            opacity: 1,
+                          }
                         : { opacity: 0 }
                     }
                     initial={{ opacity: 0 }}

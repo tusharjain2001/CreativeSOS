@@ -1,11 +1,15 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /**
- * SectionRenderer for "brand-refresh" project
+ * SectionRenderer for "infinitus" project
  * Handles: Project Overview, Scope, Logo Variations, Mood Board, Color, Typography, Shapes, UI Elements, Icons, Stationary, Social Media, Collage
  */
-export default function SectionRendererBrandRefresh({ project, sectionName }) {
+export default function SectionRendererInfinitus({ project, sectionName }) {
+  const [logoSlideIndex, setLogoSlideIndex] = useState(0);
+  const [logoSlideDirection, setLogoSlideDirection] = useState(1);
+
   // PROJECT OVERVIEW
   if (sectionName === "Project Overview") {
     const data = project.step1;
@@ -26,89 +30,26 @@ export default function SectionRendererBrandRefresh({ project, sectionName }) {
 
   // SCOPE OF PROJECT
   if (sectionName === "Scope of the Project") {
-    const { targetAudience, clientGoal, constraints } = project.step2;
-
-    const Card = ({ title, data, reversed = false }) => (
-      <motion.div
-        whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="bg-white border border-gray-200 rounded-xl p-6"
-      >
-        {reversed ? (
-          <>
-            <h3 className="text-xl font-semibold mb-2">{title}</h3>
-            <p className="text-gray-600 text-sm mb-4">{data.description}</p>
-            <ul className="text-sm text-gray-600 space-y-1 mb-4">
-              {data.pointers.map((p, i) => (
-                <li key={i}>• {p}</li>
-              ))}
-            </ul>
-            <img
-              src={data.image}
-              alt={title}
-              className="rounded-lg h-48 w-full object-cover"
-            />
-          </>
-        ) : (
-          <>
-            <img
-              src={data.image}
-              alt={title}
-              className="rounded-lg h-48 w-full object-cover mb-4"
-            />
-            <h3 className="text-xl font-semibold mb-2">{title}</h3>
-            <p className="text-gray-600 text-sm mb-4">{data.description}</p>
-            <ul className="text-sm text-gray-600 space-y-1">
-              {data.pointers.map((p, i) => (
-                <li key={i}>• {p}</li>
-              ))}
-            </ul>
-          </>
-        )}
-      </motion.div>
-    );
-
-    const containerVariants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.15,
-        },
-      },
-    };
-
-    const itemVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.4 },
-      },
-    };
+    const data = project.step2;
 
     return (
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
       >
-        <motion.div variants={itemVariants}>
-          <Card title="Target Audience" data={targetAudience} />
-        </motion.div>
-        <motion.div variants={itemVariants}>
-          <Card title="Client's Goal" data={clientGoal} reversed={true} />
-        </motion.div>
-        <motion.div variants={itemVariants}>
-          <Card title="Constraints" data={constraints} />
-        </motion.div>
+        <img
+          src={data?.image}
+          alt="Scope of the Project"
+          className="w-full rounded-lg object-contain"
+        />
       </motion.div>
     );
   }
 
-  // BRAND IDENTITY / LOGO VARIATIONS
-  if (sectionName === "Brand Identity" || sectionName === "Logo Variations") {
+  // BRAND IDENTITY
+  if (sectionName === "Brand Identity") {
     const data = project.step3;
     return (
       <motion.div
@@ -130,6 +71,118 @@ export default function SectionRendererBrandRefresh({ project, sectionName }) {
           src={data.brandImage}
           alt={sectionName}
           className="w-full rounded-xl"
+        />
+      </motion.div>
+    );
+  }
+
+  // LOGO VARIATIONS
+  if (sectionName === "Logo Variations") {
+    const data = project.step3;
+    const logoImages = data?.logoImages?.length
+      ? data.logoImages
+      : data?.brandImage
+        ? [data.brandImage]
+        : [];
+    const activeLogo = logoImages[logoSlideIndex] || data?.brandImage;
+
+    const slideVariants = {
+      enter: (direction) => ({
+        x: direction > 0 ? 120 : -120,
+        opacity: 0,
+      }),
+      center: {
+        x: 0,
+        opacity: 1,
+      },
+      exit: (direction) => ({
+        x: direction > 0 ? -120 : 120,
+        opacity: 0,
+      }),
+    };
+
+    const moveSlide = (direction) => {
+      if (logoImages.length <= 1) return;
+      setLogoSlideDirection(direction);
+      setLogoSlideIndex(
+        (prev) => (prev + direction + logoImages.length) % logoImages.length,
+      );
+    };
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <div className="relative overflow-hidden rounded-lg">
+          <AnimatePresence mode="wait" custom={logoSlideDirection}>
+            <motion.img
+              key={`${activeLogo}-${logoSlideIndex}`}
+              src={activeLogo}
+              alt="Logo Variation"
+              custom={logoSlideDirection}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full rounded-lg object-contain"
+            />
+          </AnimatePresence>
+
+          <div className="absolute bottom-16 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+            {logoImages.map((_, idx) => (
+              <span
+                key={idx}
+                className={`h-2 w-2 rounded-full ${
+                  idx === logoSlideIndex ? "bg-[#50525a]" : "bg-white"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="absolute bottom-16 right-16.5 z-20">
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => moveSlide(-1)}
+                className="h-10 w-10 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec]"
+                aria-label="Previous logo variation"
+              >
+                <ChevronLeft size={18} className="mx-auto" />
+              </button>
+              <button
+                type="button"
+                onClick={() => moveSlide(1)}
+                className="h-10 w-10 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee]"
+                aria-label="Next logo variation"
+              >
+                <ChevronRight size={18} className="mx-auto" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // MOOD BOARD
+  if (sectionName === "Mood Board") {
+    const data = project.step4;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white border border-gray-200 rounded-xl"
+      >
+        <img
+          src={data?.image}
+          alt="Mood Board"
+          className="w-full rounded-lg object-contain"
         />
       </motion.div>
     );

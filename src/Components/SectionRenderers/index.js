@@ -3,7 +3,7 @@
  * Import match with project IDs from projectsData.js
  */
 
-import SectionRendererBrandRefresh from "./SectionRendererBrandRefresh";
+import SectionRendererInfinitus from "./SectionRendererInfinitus";
 import SectionRendererDemandGen from "./SectionRendererDemandGen";
 import SectionRendererProductLaunch from "./SectionRendererProductLaunch";
 import SectionRendererContentHub from "./SectionRendererContentHub";
@@ -13,7 +13,7 @@ import SectionRendererSocialMediaCampaign from "./SectionRendererSocialMediaCamp
 import SectionRendererLandingPageOptimization from "./SectionRendererLandingPageOptimization";
 
 export const SECTION_RENDERERS = {
-  "brand-refresh": SectionRendererBrandRefresh,
+  "infinitus": SectionRendererInfinitus,
   "demand-gen": SectionRendererDemandGen,
   "product-launch": SectionRendererProductLaunch,
   "content-hub": SectionRendererContentHub,
@@ -32,3 +32,4 @@ export const SECTION_RENDERERS = {
 export function getSectionRenderer(projectId) {
   return SECTION_RENDERERS[projectId];
 }
+
