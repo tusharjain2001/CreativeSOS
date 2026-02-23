@@ -83,7 +83,7 @@ export default function ProjectSidebar({
               project.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded border border-blue-200"
+                  className="text-xs bg-[#E4F0EB] text-[#257D89] px-2 py-1 rounded border border-[#257D89]"
                 >
                   {tag}
                 </span>
@@ -96,7 +96,7 @@ export default function ProjectSidebar({
         <div ref={navRef} className="relative p-6">
           {/* Single persistent sliding bar - always rendered, never conditionally hidden */}
           <motion.div
-            className="absolute left-6 z-10 w-1 bg-teal-600 rounded-r pointer-events-none"
+            className="absolute left-6 z-10 w-1 bg-[#257D89] rounded-r pointer-events-none"
             animate={
               indicatorY !== null && indicatorH !== null
                 ? { y: indicatorY, height: indicatorH, opacity: 1 }
@@ -123,14 +123,16 @@ export default function ProjectSidebar({
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className={`relative w-full text-left px-4 py-4 border-b border-b-gray-200 rounded-r-lg transition-colors duration-200 ${
                   idx === activeStep
-                    ? "text-gray-900 font-medium bg-teal-50"
+                    ? "text-gray-900 font-medium bg-white"
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
-                <span className="font-semibold text-sm">
+                <span className="font-medium font-family-instrument text-sm">
                   {String(idx + 1).padStart(2, "0")}.
                 </span>
-                <span className="ml-3 text-sm">{step}</span>
+                <span className="ml-3 text-sm font-medium font-family-instrument">
+                  {step}
+                </span>
               </motion.button>
             ))}
           </motion.nav>
@@ -159,4 +161,3 @@ export default function ProjectSidebar({
     </div>
   );
 }
-

@@ -1,11 +1,14 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, ChevronUp, List } from "lucide-react";
+import { ChevronDown, ChevronUp, List, PanelLeft } from "lucide-react";
 import { PROJECTS_DATA } from "../data/projectsData";
 import Navbar2 from "./NavBar2";
 import ProjectSidebar from "../Components/ProjectSidebar";
 import { getSectionRenderer } from "../Components/SectionRenderers";
+import uparrow from "../Images/uparrow.png";
+import downarrow from "../Images/downarrow.png";
+import drawer from "../Images/drawer.png";
 
 // Main Componentw
 export default function Projects() {
@@ -239,12 +242,12 @@ export default function Projects() {
       <button
         type="button"
         onClick={() => setIsMobileStepsOpen(true)}
-        className={`fixed bottom-32 left-0 z-40 flex h-12 w-12 items-center justify-center rounded-r-xl bg-teal-600 text-white shadow-lg md:hidden ${
+        className={`fixed bottom-32 left-0 z-40 flex h-12 w-12 items-center justify-center  md:hidden ${
           isMobileStepsOpen ? "hidden" : "flex"
         }`}
         aria-label="Open steps drawer"
       >
-        <List size={20} />
+        <img src={drawer} />
       </button>
 
       {/* Mobile steps drawer */}
@@ -268,19 +271,19 @@ export default function Projects() {
               transition={{ type: "spring", stiffness: 280, damping: 32 }}
             >
               <div className="h-full overflow-y-auto p-4">
-                <div className="mb-4 flex items-center gap-3 border-b border-gray-300 pb-4">
+                <div className="mb-4 flex items-center gap-3 border-b border-[#D9D9D9] pb-4">
                   <button
                     type="button"
                     onClick={() => setIsMobileStepsOpen(false)}
                     className="flex h-6 w-6 items-center justify-center text-teal-700"
                     aria-label="Close steps drawer"
                   >
-                    <List size={16} />
+                    <PanelLeft size={16} />
                   </button>
                   {(project?.tags || []).slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="rounded border border-teal-400 px-2 py-0.5 text-xs text-teal-700"
+                      className="rounded border border-[#257D89] bg-[#E4F0EB] px-2 py-0.5 text-xs text-[#257D89]"
                     >
                       {tag}
                     </span>
@@ -315,10 +318,10 @@ export default function Projects() {
                           : "text-gray-800"
                       }`}
                     >
-                      <span className="mr-3 text-gray-700">
+                      <span className="mr-3 text-[#404040] font-family-instrument">
                         {String(idx + 1).padStart(2, "0")}.
                       </span>
-                      <span>{step}</span>
+                      <span className="text-[#404040] font-medium font-family-instrument">{step}</span>
                     </button>
                   ))}
                 </nav>
@@ -335,7 +338,7 @@ export default function Projects() {
         }`}
       >
         <div className="mx-auto flex max-w-md items-center justify-center gap-2">
-          <p className="w-[40%] truncate text-right text-[13px] text-gray-800">
+          <p className="w-[40%] truncate text-right text-[13px] text-[#101010]">
             {previousStepLabel}
           </p>
 
@@ -344,24 +347,24 @@ export default function Projects() {
               type="button"
               onClick={() => setActiveStepWithDirection((prev) => prev - 1)}
               disabled={activeStep === 0}
-              className="flex h-9 w-9 items-center justify-center rounded bg-teal-100 text-teal-700 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex h-9 w-9 items-center justify-center disabled:cursor-not-allowed disabled:opacity-40"
               aria-label="Previous step"
             >
-              <ChevronUp size={16} />
+              <img src={downarrow} />
             </button>
-            <div className="h-7 w-px bg-teal-700/70" />
+            <div className="h-7 w-0.5 bg-teal-700/70" />
             <button
               type="button"
               onClick={() => setActiveStepWithDirection((prev) => prev + 1)}
               disabled={activeStep === steps.length - 1}
-              className="flex h-9 w-9 items-center justify-center rounded bg-teal-100 text-teal-700 disabled:cursor-not-allowed disabled:opacity-40"
+              className="flex h-9 w-9 items-center justify-center disabled:cursor-not-allowed disabled:opacity-40"
               aria-label="Next step"
             >
-              <ChevronDown size={16} />
+              <img src={uparrow} />
             </button>
           </div>
 
-          <p className="w-[40%] truncate text-left text-[13px] text-gray-800">
+          <p className="w-[40%] truncate text-left text-[13px] text-[#101010]">
             {nextStepLabel}
           </p>
         </div>
