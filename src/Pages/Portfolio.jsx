@@ -233,7 +233,7 @@ export default function Portfolio() {
                   <div
                     className={`w-full h-full ${
                       project.image
-                        ? "bg-cover bg-center rounded"
+                        ? "bg-contain bg-center bg-no-repeat rounded"
                         : "bg-[#E1F0F2] rounded"
                     }`}
                     style={
@@ -367,7 +367,7 @@ export default function Portfolio() {
                     <div
                       className={`w-full h-full ${
                         project.image
-                          ? "bg-cover bg-center rounded"
+                          ? "bg-contain bg-center bg-no-repeat rounded"
                           : "bg-linear-to-br from-blue-100 to-blue-200 rounded"
                       }`}
                       style={
