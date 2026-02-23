@@ -55,11 +55,11 @@ export default function Portfolio() {
   return (
     <>
       <Navbar2 />
-      <div className=" bg-gray-50 py-20 px-4 md:px-16">
+      <div className="bg-gray-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-16 lg:py-20">
         <div className="mx-auto">
           {/* Header */}
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl mb-8 leading-tight">
+            <h1 className="mb-6 text-3xl leading-tight sm:mb-8 sm:text-4xl md:text-5xl">
               <span className="font-bold">Explore</span> my work from various
               <span className="font-bold"> Industries</span> and{" "}
               <span className="font-bold">Styles</span>
@@ -67,25 +67,25 @@ export default function Portfolio() {
           </div>
 
           {/* Search and Sort Bar */}
-          <div className="flex flex-col max-w-5xl md:flex-row gap-10 mb-12 justify-center mx-auto items-center">
-            <div className="flex-1 flex border-2 border-gray-300 rounded bg-white overflow-hidden items-center">
-              <Search size={20} className="ml-3 text-gray-400 shrink-0" />
+          <div className="mx-auto mb-8 flex w-full max-w-5xl flex-col items-stretch justify-center gap-4 sm:mb-12 sm:gap-6 lg:flex-row lg:items-center lg:gap-10">
+            <div className="flex w-full flex-1 items-center overflow-hidden rounded border-2 border-gray-300 bg-white">
+              <Search size={20} className="ml-3 shrink-0 text-gray-400 sm:ml-4" />
               <input
                 type="text"
                 placeholder="Search for your desired project...."
-                className="flex-1 px-3 py-2 text-[20px] outline-none rounded-sm"
+                className="flex-1 rounded-sm px-3 py-2.5 text-base outline-none sm:px-4 sm:text-lg lg:text-[20px]"
               />
-              <button className="px-12 py-3 rounded-sm bg-[#257D89] hover:bg-[#1f5f68] text-white text-[20px] font-medium transition-colors duration-200 shrink-0">
+              <button className="shrink-0 rounded-sm bg-[#257D89] px-4 py-2.5 text-base font-medium text-white transition-colors duration-200 hover:bg-[#1f5f68] sm:px-6 sm:text-lg lg:px-12 lg:py-3 lg:text-[20px]">
                 Search
               </button>
             </div>
-            <div className="relative min-w-[320px]">
+            <div className="relative w-full sm:min-w-[320px] lg:w-auto">
               <button
                 type="button"
                 onClick={() => setIsSortOpen((prev) => !prev)}
-                className="flex w-full items-center justify-between rounded-md border border-gray-400 bg-white px-7 py-3"
+                className="flex w-full items-center justify-between rounded-md border border-gray-400 bg-white px-4 py-2.5 sm:px-6 sm:py-3 lg:px-7"
               >
-                <span className="text-[#4a4a4a] text-[20px]">
+                <span className="text-base text-[#4a4a4a] sm:text-lg lg:text-[20px]">
                   Sort By:{" "}
                   <span className="text-[#257D89] font-family-instrument">
                     {selectedSortLabel}
@@ -109,7 +109,7 @@ export default function Portfolio() {
                         setSortBy(option.key);
                         setIsSortOpen(false);
                       }}
-                      className={`block w-full px-6 py-3 text-left text-[18px] transition-colors ${
+                      className={`block w-full px-4 py-2.5 text-left text-base transition-colors sm:px-6 sm:py-3 sm:text-lg ${
                         sortBy === option.key
                           ? "bg-[#E4F0EB] text-[#257D89]"
                           : "text-gray-700 hover:bg-gray-100"
@@ -153,7 +153,7 @@ export default function Portfolio() {
                   className={`${base}${layout}${index === 0 ? " lg:mb-0" : ""}`}
                 >
                   {/* Tags (absolute top-right) */}
-                  <div className="absolute top-6 right-5 flex items-center gap-2 z-10">
+                  <div className="absolute right-3 top-3 z-10 flex items-center gap-2 sm:right-4 sm:top-4 lg:right-5 lg:top-6">
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
@@ -221,7 +221,7 @@ export default function Portfolio() {
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-xs bg-white border border-gray-200 px-2 py-1 rounded-full shadow-sm"
+                      className="text-xs bg-[#F7FEFF] border border-[#6BC6D4] px-2 py-1 rounded-sm shadow-sm text-[#101010] font-family-instrument"
                     >
                       {tag}
                     </span>
@@ -414,7 +414,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Image Placeholder */}
-                  <div className="mx-3 mt-3 bg-[#E1F0F2] overflow-hidden rounded-xl h-80 p-5 flex items-center justify-center">
+                  <div className="mx-3 mt-3 flex h-56 items-center justify-center overflow-hidden rounded-xl bg-[#E1F0F2] p-4 sm:h-72 sm:p-5 lg:h-80">
                     <div
                       className={`w-50 h-50 ${
                         project.image
