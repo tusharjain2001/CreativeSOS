@@ -17,6 +17,7 @@ export default function Projects() {
   const [mobileIndicatorY, setMobileIndicatorY] = useState(null);
   const [mobileIndicatorH, setMobileIndicatorH] = useState(null);
   const lastWheelAtRef = useRef(0);
+  const boundaryArmRef = useRef({ armed: false, direction: 0 });
   const contentRef = useRef(null);
   const mobileNavRef = useRef(null);
   const mobileButtonRefs = useRef([]);
@@ -88,11 +89,34 @@ export default function Projects() {
     if (!node) return;
 
     const handleContentWheel = (event) => {
+      if (isMobileStepsOpen) return;
+
+      const scrollTop = window.scrollY || window.pageYOffset || 0;
+      const viewportHeight = window.innerHeight || 0;
+      const docHeight = document.documentElement.scrollHeight || 0;
+      const atTop = scrollTop <= 2;
+      const atBottom = scrollTop + viewportHeight >= docHeight - 2;
+
       const now = Date.now();
       if (now - lastWheelAtRef.current < 350) return;
       if (Math.abs(event.deltaY) < 8) return;
 
       const direction = event.deltaY > 0 ? 1 : -1;
+      const atBoundary = direction > 0 ? atBottom : atTop;
+      if (!atBoundary) {
+        boundaryArmRef.current = { armed: false, direction: 0 };
+        return;
+      }
+
+      // Require one extra scroll at boundary before changing steps.
+      if (
+        !boundaryArmRef.current.armed ||
+        boundaryArmRef.current.direction !== direction
+      ) {
+        boundaryArmRef.current = { armed: true, direction };
+        return;
+      }
+
       let didChange = false;
 
       setActiveStepWithDirection((prev) => {
@@ -104,13 +128,14 @@ export default function Projects() {
       if (!didChange) return;
 
       event.preventDefault();
+      boundaryArmRef.current = { armed: false, direction: 0 };
       lastWheelAtRef.current = now;
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     node.addEventListener("wheel", handleContentWheel, { passive: false });
     return () => node.removeEventListener("wheel", handleContentWheel);
-  }, [steps.length]);
+  }, [steps.length, isMobileStepsOpen]);
 
   const stepTransitionVariants = {
     initial: (direction) => ({
