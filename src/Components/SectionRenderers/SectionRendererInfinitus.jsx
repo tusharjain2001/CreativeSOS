@@ -430,7 +430,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`min-h-[72vh] rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
+        className={`flex min-h-[72vh] flex-col rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
           isSocialDarkMode ? "bg-[#5a4fa3]" : "bg-[#d5d3eb]"
         }`}
       >
@@ -467,14 +467,36 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
           </span>
         </div>
 
+        <div className="flex min-h-0 flex-1 items-center justify-center">
+          <img
+            src={activeSocialImage}
+            alt={
+              isSocialDarkMode
+                ? "Social Media Dark Mode"
+                : "Social Media Light Mode"
+            }
+            className="h-full w-full rounded-lg object-contain"
+          />
+        </div>
+      </motion.div>
+    );
+  }
+
+  // COLLAGE
+  if (sectionName === "Collage") {
+    const data = project.step12;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
         <img
-          src={activeSocialImage}
-          alt={
-            isSocialDarkMode
-              ? "Social Media Dark Mode"
-              : "Social Media Light Mode"
-          }
-          className="mx-auto w-full max-w-[840px] rounded-lg object-contain"
+          src={data?.image}
+          alt="Collage"
+          className="w-full rounded-lg object-contain"
         />
       </motion.div>
     );

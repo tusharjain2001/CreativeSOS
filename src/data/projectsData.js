@@ -22,6 +22,7 @@ import InfinitusStep9B from "../Images/infinitus_steps/infinitus_step9b.png";
 import InfinitusStep10 from "../Images/infinitus_steps/infinitus_step10.png";
 import InfinitusStep11A from "../Images/infinitus_steps/infinitus_step11a.png";
 import InfinitusStep11B from "../Images/infinitus_steps/infinitus_step11b.png";
+import collage from "../Images/infinitus_steps/collage.svg";
 
 export const PROJECTS_DATA = {
   infinitus: {
@@ -114,6 +115,10 @@ export const PROJECTS_DATA = {
       lightImage: InfinitusStep11A,
       darkImage: InfinitusStep11B,
       responsiveImage: InfinitusStep11A,
+    },
+    step12: {
+      image: collage,
+      responsiveImage: collage,
     },
   },
 
