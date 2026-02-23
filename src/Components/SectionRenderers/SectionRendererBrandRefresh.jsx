@@ -1,15 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function SectionRenderer({ project, sectionName, stepIndex }) {
-  // Helper component for Info
-  const Info = ({ label, value }) => (
-    <div>
-      <p className="text-sm text-gray-400">{label}</p>
-      <p className="text-gray-800 font-medium">{value}</p>
-    </div>
-  );
-
+/**
+ * SectionRenderer for "brand-refresh" project
+ * Handles: Project Overview, Scope, Logo Variations, Mood Board, Color, Typography, Shapes, UI Elements, Icons, Stationary, Social Media, Collage
+ */
+export default function SectionRendererBrandRefresh({ project, sectionName }) {
   // PROJECT OVERVIEW
   if (sectionName === "Project Overview") {
     const data = project.step1;
@@ -322,7 +318,7 @@ export default function SectionRenderer({ project, sectionName, stepIndex }) {
     );
   }
 
-  // DEFAULT SECTION (For any other section names)
+  // DEFAULT SECTION
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

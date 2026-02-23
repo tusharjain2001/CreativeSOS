@@ -63,12 +63,12 @@ export default function ProjectSidebar({
 
   return (
     <div
-      className={`bg-white border-r border-gray-200 overflow-y-auto transition-all duration-300 flex flex-col ${
+      className={`bg-white overflow-y-auto transition-all duration-300 flex flex-col ${
         isOpen ? "w-80" : "w-20"
       }`}
     >
       {/* Toggle Bar */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 sticky top-0 bg-white">
+      <div className="flex items-center justify-between p-4 sticky top-0 bg-white">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center justify-center text-teal-600 hover:bg-teal-50 rounded transition-colors p-2"
@@ -83,7 +83,7 @@ export default function ProjectSidebar({
               project.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="text-xs bg-[#E4F0EB] text-[#257D89] px-2 py-1 rounded border border-[#257D89]"
+                  className="text-sm bg-[#E4F0EB] text-[#257D89] px-2 py-1 rounded border font-family-instrument border-[#257D89]"
                 >
                   {tag}
                 </span>

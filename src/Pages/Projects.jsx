@@ -195,7 +195,7 @@ export default function Projects() {
   return (
     <section className="bg-white min-h-screen">
       <Navbar2 />
-      <div className="md:flex">
+      <div className="md:flex mt-10 gap-10">
         {/* Project Sidebar Component */}
         <div className="hidden md:block">
           <ProjectSidebar
@@ -283,7 +283,7 @@ export default function Projects() {
                   {(project?.tags || []).slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="rounded border border-[#257D89] bg-[#E4F0EB] px-2 py-0.5 text-xs text-[#257D89]"
+                      className="rounded border border-[#257D89] bg-[#E4F0EB] px-2 py-0.5 text-sm font-family-instrument text-[#257D89]"
                     >
                       {tag}
                     </span>

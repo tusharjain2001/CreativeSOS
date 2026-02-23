@@ -26,7 +26,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data.overviewImage}
           alt={data.projectName}
-          className="w-full h-full object-cover rounded-t-2xl"
+          className="w-full h-full object-cover rounded-lg"
         />
       </motion.div>
     );

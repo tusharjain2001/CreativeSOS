@@ -31,7 +31,7 @@ export const PROJECTS_DATA = {
     portfolioDesc:
       "Infinitus installs GTM systems for cybersecurity companies that need to scale continuously and fast. ",
     portfolioImage: Infinitus, // Your image path
-    tags: ["Brand Identity"],
+    tags: ["Branding","Industry Name"],
 
     // ========== PROJECT STEPS ==========
     steps: [
