@@ -7,10 +7,22 @@ import Mapmy from "../Images/Mapmy.png";
 import Timor from "../Images/Timor.png";
 import Naxatra from "../Images/Naxatra.png";
 import InfintusBanner from "../Images/InfinitusOv.png";
-import InfinitusStep2 from "../Images/infinitus_step2.png";
-import InfinitusStep3A from "../Images/infinitus_step3a.png";
-import InfinitusStep3B from "../Images/infinitus_step3b.png";
-import InfinitusStep4 from "../Images/infinitus_step4.png";
+import InfinitusStep2 from "../Images/infinitus_steps/infinitus_step2.png";
+import InfinitusStep3A from "../Images/infinitus_steps/infinitus_step3a.png";
+import InfinitusStep3B from "../Images/infinitus_steps/infinitus_step3b.png";
+import InfinitusStep4 from "../Images/infinitus_steps/infinitus_step4.png";
+import InfinitusStep5A from "../Images/infinitus_steps/infinitus_step5a.png";
+import InfinitusStep5B from "../Images/infinitus_steps/infinitus_step5b.png";
+import InfinitusStep5C from "../Images/infinitus_steps/infinitus_step5c.png";
+import InfinitusStep5D from "../Images/infinitus_steps/infinitus_step5d.png";
+import InfinitusStep6 from "../Images/infinitus_steps/infinitus_step6.png";
+import InfinitusStep7 from "../Images/infinitus_steps/infinitus_step7.png";
+import InfinitusStep8 from "../Images/infinitus_steps/infinitus_step8.png";
+import InfinitusStep9A from "../Images/infinitus_steps/infinitus_step9a.png";
+import InfinitusStep9B from "../Images/infinitus_steps/infinitus_step9b.png";
+import InfinitusStep10 from "../Images/infinitus_steps/infinitus_step10.png";
+import InfinitusStep11A from "../Images/infinitus_steps/infinitus_step11a.png";
+import InfinitusStep11B from "../Images/infinitus_steps/infinitus_step11b.png";
 
 export const PROJECTS_DATA = {
   "infinitus": {
@@ -66,31 +78,43 @@ export const PROJECTS_DATA = {
       image: InfinitusStep4,
     },
 
-    // ========== STEP 5: SYSTEM DESIGN ==========
+    // ========== STEP 5: COLOR ==========
     step5: {
-      images: [
-        "/images/projects/brand-refresh/system-1.jpg",
-        "/images/projects/brand-refresh/system-2.jpg",
-        "/images/projects/brand-refresh/system-3.jpg",
-        "/images/projects/brand-refresh/system-4.jpg",
-        "/images/projects/brand-refresh/system-5.jpg",
+      colorImages: [
+        InfinitusStep5A,
+        InfinitusStep5B,
+        InfinitusStep5C,
+        InfinitusStep5D,
       ],
     },
 
-    // ========== STEP 6: DESIGN DETAILS ==========
+    // ========== STEP 6: TYPOGRAPHY ==========
     step6: {
-      images: [image, image, image, image, image, image],
+      image: InfinitusStep6,
     },
 
-    // ========== STEP 7: RESPONSIVE DESIGN ==========
+    // ========== STEP 7: SHAPES AND PATTERNS ==========
     step7: {
-      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+      image: InfinitusStep7,
+      responsiveImage: InfinitusStep7,
     },
     step8: {
-      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+      image: InfinitusStep8,
+      responsiveImage: InfinitusStep8,
     },
     step9: {
-      responsiveImage: "/images/projects/brand-refresh/responsive.jpg",
+      lightImage: InfinitusStep9A,
+      darkImage: InfinitusStep9B,
+      responsiveImage: InfinitusStep9A,
+    },
+    step10: {
+      image: InfinitusStep10,
+      responsiveImage: InfinitusStep10,
+    },
+    step11: {
+      lightImage: InfinitusStep11A,
+      darkImage: InfinitusStep11B,
+      responsiveImage: InfinitusStep11A,
     },
   },
 
@@ -1468,4 +1492,5 @@ export const PROJECTS_DATA = {
     },
   },
 };
+
 

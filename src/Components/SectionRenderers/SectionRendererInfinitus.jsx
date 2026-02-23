@@ -9,6 +9,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function SectionRendererInfinitus({ project, sectionName }) {
   const [logoSlideIndex, setLogoSlideIndex] = useState(0);
   const [logoSlideDirection, setLogoSlideDirection] = useState(1);
+  const [colorSlideIndex, setColorSlideIndex] = useState(0);
+  const [colorSlideDirection, setColorSlideDirection] = useState(1);
+  const [isIconsDarkMode, setIsIconsDarkMode] = useState(false);
+  const [isSocialDarkMode, setIsSocialDarkMode] = useState(false);
 
   // PROJECT OVERVIEW
   if (sectionName === "Project Overview") {
@@ -183,6 +187,294 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
           src={data?.image}
           alt="Mood Board"
           className="w-full rounded-lg object-contain"
+        />
+      </motion.div>
+    );
+  }
+
+  // COLOR
+  if (sectionName === "Color") {
+    const data = project.step5;
+    const colorImages = data?.colorImages?.length ? data.colorImages : [];
+    const activeColor = colorImages[colorSlideIndex];
+
+    const slideVariants = {
+      enter: (direction) => ({
+        x: direction > 0 ? 120 : -120,
+        opacity: 0,
+      }),
+      center: {
+        x: 0,
+        opacity: 1,
+      },
+      exit: (direction) => ({
+        x: direction > 0 ? -120 : 120,
+        opacity: 0,
+      }),
+    };
+
+    const moveColorSlide = (direction) => {
+      if (colorImages.length <= 1) return;
+      setColorSlideDirection(direction);
+      setColorSlideIndex(
+        (prev) => (prev + direction + colorImages.length) % colorImages.length,
+      );
+    };
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <div className="relative overflow-hidden rounded-lg">
+          <AnimatePresence mode="wait" custom={colorSlideDirection}>
+            <motion.img
+              key={`${activeColor}-${colorSlideIndex}`}
+              src={activeColor}
+              alt="Color"
+              custom={colorSlideDirection}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full rounded-lg object-contain"
+            />
+          </AnimatePresence>
+
+          <div className="absolute bottom-16 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+            {colorImages.map((_, idx) => (
+              <span
+                key={idx}
+                className={`h-2 w-2 rounded-full ${
+                  idx === colorSlideIndex ? "bg-[#50525a]" : "bg-white"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="absolute bottom-16 right-16 z-20">
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => moveColorSlide(-1)}
+                className="h-10 w-10 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec]"
+                aria-label="Previous color"
+              >
+                <ChevronLeft size={18} className="mx-auto" />
+              </button>
+              <button
+                type="button"
+                onClick={() => moveColorSlide(1)}
+                className="h-10 w-10 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee]"
+                aria-label="Next color"
+              >
+                <ChevronRight size={18} className="mx-auto" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // TYPOGRAPHY
+  if (sectionName === "Typography") {
+    const data = project.step6;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <img
+          src={data?.image}
+          alt="Typography"
+          className="w-full rounded-lg object-contain"
+        />
+      </motion.div>
+    );
+  }
+
+  // SHAPES AND PATTERNS
+  if (sectionName === "Shapes and Patterns") {
+    const data = project.step7;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <img
+          src={data?.image}
+          alt="Shapes and Patterns"
+          className="w-full rounded-lg object-contain"
+        />
+      </motion.div>
+    );
+  }
+
+  // UI ELEMENTS
+  if (sectionName === "UI Elements") {
+    const data = project.step8;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <img
+          src={data?.image}
+          alt="UI Elements"
+          className="w-full rounded-lg object-contain"
+        />
+      </motion.div>
+    );
+  }
+
+  // ICONS
+  if (sectionName === "Icons") {
+    const data = project.step9;
+    const activeIconsImage = isIconsDarkMode
+      ? data?.darkImage
+      : data?.lightImage;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`min-h-[72vh] rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
+          isIconsDarkMode ? "bg-[#5a4fa3]" : "bg-[#d5d3eb]"
+        }`}
+      >
+        <div className="mb-8 flex items-center justify-center gap-4">
+          <span
+            className={`text-xl ${
+              isIconsDarkMode ? "text-[#dfdcff]" : "text-[#241f4a]"
+            }`}
+          >
+            Light Mode
+          </span>
+          <button
+            type="button"
+            onClick={() => setIsIconsDarkMode((prev) => !prev)}
+            className={`relative h-8 w-14 rounded-full border transition ${
+              isIconsDarkMode
+                ? "border-[#d7d2fb] bg-[#433a86]"
+                : "border-[#4c4194] bg-[#eceaff]"
+            }`}
+            aria-label="Toggle icons light and dark mode"
+          >
+            <span
+              className={`absolute top-1 h-6 w-6 rounded-full bg-white shadow transition ${
+                isIconsDarkMode ? "left-7" : "left-1"
+              }`}
+            />
+          </button>
+          <span
+            className={`text-xl ${
+              isIconsDarkMode ? "text-[#ffffff]" : "text-[#241f4a]"
+            }`}
+          >
+            Dark Mode
+          </span>
+        </div>
+
+        <img
+          src={activeIconsImage}
+          alt={isIconsDarkMode ? "Icons Dark Mode" : "Icons Light Mode"}
+          className="mx-auto w-full max-w-[840px] rounded-lg object-contain"
+        />
+      </motion.div>
+    );
+  }
+
+  // STATIONARY
+  if (sectionName === "Stationary") {
+    const data = project.step10;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <img
+          src={data?.image}
+          alt="Stationary"
+          className="w-full rounded-lg object-contain"
+        />
+      </motion.div>
+    );
+  }
+
+  // SOCIAL MEDIA
+  if (sectionName === "Social Media") {
+    const data = project.step11;
+    const activeSocialImage = isSocialDarkMode
+      ? data?.darkImage
+      : data?.lightImage;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`min-h-[72vh] rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
+          isSocialDarkMode ? "bg-[#5a4fa3]" : "bg-[#d5d3eb]"
+        }`}
+      >
+        <div className="mb-8 flex items-center justify-center gap-4">
+          <span
+            className={`text-xl ${
+              isSocialDarkMode ? "text-[#dfdcff]" : "text-[#241f4a]"
+            }`}
+          >
+            Light Mode
+          </span>
+          <button
+            type="button"
+            onClick={() => setIsSocialDarkMode((prev) => !prev)}
+            className={`relative h-8 w-14 rounded-full border transition ${
+              isSocialDarkMode
+                ? "border-[#d7d2fb] bg-[#433a86]"
+                : "border-[#4c4194] bg-[#eceaff]"
+            }`}
+            aria-label="Toggle social media light and dark mode"
+          >
+            <span
+              className={`absolute top-1 h-6 w-6 rounded-full bg-white shadow transition ${
+                isSocialDarkMode ? "left-7" : "left-1"
+              }`}
+            />
+          </button>
+          <span
+            className={`text-xl ${
+              isSocialDarkMode ? "text-[#ffffff]" : "text-[#241f4a]"
+            }`}
+          >
+            Dark Mode
+          </span>
+        </div>
+
+        <img
+          src={activeSocialImage}
+          alt={
+            isSocialDarkMode
+              ? "Social Media Dark Mode"
+              : "Social Media Light Mode"
+          }
+          className="mx-auto w-full max-w-[840px] rounded-lg object-contain"
         />
       </motion.div>
     );
