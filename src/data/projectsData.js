@@ -1,6 +1,5 @@
 // src/data/projectsData.js
 import image from "../Images/Result4.png";
-import Project1 from "../Images/Project1.png";
 import Infinitus from "../Images/Infinitus.png";
 import Desifesst from "../Images/Desifesst.png";
 import Mapmy from "../Images/Mapmy.png";
@@ -25,13 +24,13 @@ import InfinitusStep11A from "../Images/infinitus_steps/infinitus_step11a.png";
 import InfinitusStep11B from "../Images/infinitus_steps/infinitus_step11b.png";
 
 export const PROJECTS_DATA = {
-  "infinitus": {
+  infinitus: {
     // ========== PORTFOLIO PAGE DATA ==========
     portfolioTitle: "Infinitus Management Consulting",
     portfolioDesc:
       "Infinitus installs GTM systems for cybersecurity companies that need to scale continuously and fast. ",
     portfolioImage: Infinitus, // Your image path
-    tags: ["Branding","Industry Name"],
+    tags: ["Branding", "Industry Name"],
 
     // ========== PROJECT STEPS ==========
     steps: [
@@ -931,7 +930,7 @@ export const PROJECTS_DATA = {
         "/images/projects/landing-page-optimization/responsive.jpg",
     },
   },
-  "landing-page-optimizatio": {
+  "landing-page-optimizati": {
     portfolioTitle: "Landing Page Optimization",
     portfolioDesc:
       "Redesigned high-converting landing pages increasing conversion rate from 2% to 8% through data-driven optimization.",
@@ -1492,5 +1491,3 @@ export const PROJECTS_DATA = {
     },
   },
 };
-
-

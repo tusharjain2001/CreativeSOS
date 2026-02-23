@@ -23,7 +23,7 @@ export default function Navbar2({ onMobileMenuClick }) {
 
   return (
     <nav
-      className={`relative top-0 left-0 right-0 z-50 border-b border-gray-200 px-4 py-4 md:border-b-0 md:px-8 transition-colors duration-300 ${
+      className={`relative top-0 left-0 right-0 z-50 border-b border-[#797979] px-4 py-4 md:border-b-0 md:px-8 transition-colors duration-300 ${
         isScrolled ? "bg-white shadow-md" : "bg-white"
       }`}
     >

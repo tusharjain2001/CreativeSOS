@@ -1,10 +1,21 @@
-import React from "react";
-import { Search } from "lucide-react";
+import React, { useMemo, useState } from "react";
+import { ChevronDown, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PROJECTS_DATA } from "../data/projectsData";
 import Navbar2 from "./NavBar2";
 
 export default function Portfolio() {
+  const [sortBy, setSortBy] = useState("brand-identity");
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const sortOptions = [
+    { key: "brand-identity", label: "Brand Identity" },
+    { key: "recent-projects", label: "Recent Projects" },
+    { key: "most-recent", label: "Most Recent" },
+  ];
+  const selectedSortLabel =
+    sortOptions.find((option) => option.key === sortBy)?.label ||
+    "Brand Identity";
+
   const projectsArray = Object.entries(PROJECTS_DATA).map(([id, data]) => ({
     id,
     title:
@@ -17,9 +28,29 @@ export default function Portfolio() {
       data.portfolioImage || (data.step1 && data.step1.overviewImage) || "",
   }));
 
-  const firstGroup = projectsArray.slice(0, 5);
-  const secondGroup = projectsArray.slice(5, 10);
-  const thirdGroup = projectsArray.slice(10);
+  const sortedProjects = useMemo(() => {
+    if (sortBy === "most-recent") {
+      return [...projectsArray].reverse();
+    }
+
+    if (sortBy === "brand-identity") {
+      return [...projectsArray].sort((a, b) => {
+        const aHasBrand = a.tags.some(
+          (tag) => tag.toLowerCase() === "brand identity",
+        );
+        const bHasBrand = b.tags.some(
+          (tag) => tag.toLowerCase() === "brand identity",
+        );
+        return Number(bHasBrand) - Number(aHasBrand);
+      });
+    }
+
+    return projectsArray;
+  }, [projectsArray, sortBy]);
+
+  const firstGroup = sortedProjects.slice(0, 5);
+  const secondGroup = sortedProjects.slice(5, 10);
+  const thirdGroup = sortedProjects.slice(10);
 
   return (
     <>
@@ -27,37 +58,69 @@ export default function Portfolio() {
       <div className=" bg-gray-50 py-20 px-4 md:px-16">
         <div className="mx-auto">
           {/* Header */}
-          <div className="text-center mb-20 py-12">
+          <div className="text-center">
             <h1 className="text-4xl md:text-5xl mb-8 leading-tight">
               <span className="font-bold">Explore</span> my work from various
-              <br />
-              <span className="font-bold">Industries</span> and{" "}
+              <span className="font-bold"> Industries</span> and{" "}
               <span className="font-bold">Styles</span>
             </h1>
-            <p className="text-[24px] text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Forget hourly rates and hidden costs. Calculate, approve, and
-              launch your creative projects — all in a few clicks.
-            </p>
           </div>
 
           {/* Search and Sort Bar */}
           <div className="flex flex-col max-w-5xl md:flex-row gap-10 mb-12 justify-center mx-auto items-center">
             <div className="flex-1 flex border-2 border-gray-300 rounded bg-white overflow-hidden items-center">
-              <Search size={20} className="ml-3 text-gray-400 flex-shrink-0" />
+              <Search size={20} className="ml-3 text-gray-400 shrink-0" />
               <input
                 type="text"
                 placeholder="Search for your desired project...."
                 className="flex-1 px-3 py-2 text-[20px] outline-none rounded-sm"
               />
-              <button className="px-12 py-3 rounded-sm bg-[#257D89] hover:bg-[#1f5f68] text-white text-[20px] font-medium transition-colors duration-200 flex-shrink-0">
+              <button className="px-12 py-3 rounded-sm bg-[#257D89] hover:bg-[#1f5f68] text-white text-[20px] font-medium transition-colors duration-200 shrink-0">
                 Search
               </button>
             </div>
-            <select className="border-2 border-gray-300 rounded px-12 py-3.5 text-[20px] bg-white outline-none font-medium text-gray-700 min-w-max">
-              <option>Sort By: Brand Identity</option>
-              <option>Sort By: Recent Projects</option>
-              <option>Sort By: Most Recent</option>
-            </select>
+            <div className="relative min-w-[320px]">
+              <button
+                type="button"
+                onClick={() => setIsSortOpen((prev) => !prev)}
+                className="flex w-full items-center justify-between rounded-md border border-gray-400 bg-white px-7 py-3"
+              >
+                <span className="text-[#4a4a4a] text-[20px]">
+                  Sort By:{" "}
+                  <span className="text-[#257D89] font-family-instrument">
+                    {selectedSortLabel}
+                  </span>
+                </span>
+                <ChevronDown
+                  size={24}
+                  className={`text-[#797979] transition-transform duration-200 ${
+                    isSortOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {isSortOpen && (
+                <div className="absolute left-0 right-0 z-20 mt-2 overflow-hidden rounded-md border border-gray-300 bg-white shadow-md">
+                  {sortOptions.map((option) => (
+                    <button
+                      key={option.key}
+                      type="button"
+                      onClick={() => {
+                        setSortBy(option.key);
+                        setIsSortOpen(false);
+                      }}
+                      className={`block w-full px-6 py-3 text-left text-[18px] transition-colors ${
+                        sortBy === option.key
+                          ? "bg-[#E4F0EB] text-[#257D89]"
+                          : "text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Projects Grid - First Group (Complex Masonry Layout) */}
@@ -94,7 +157,7 @@ export default function Portfolio() {
                     {project.tags.map((tag, i) => (
                       <span
                         key={i}
-                        className="text-xs bg-white border border-gray-200 px-2 py-1 rounded-full shadow-sm"
+                        className="text-xs bg-[#F7FEFF] border border-[#6BC6D4] px-2 py-1 rounded-sm shadow-sm text-[#101010] font-family-instrument"
                       >
                         {tag}
                       </span>
@@ -133,10 +196,10 @@ export default function Portfolio() {
                       index === 0 ? "lg:pb-0 pb-4" : "pb-4"
                     }`}
                   >
-                    <h3 className="font-semibold text-gray-900 mb-2">
+                    <h3 className="font-helvetica font-medium text-[28px] text-[#101010] mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-[16px] text-gray-600 leading-relaxed mb-4">
+                    <p className="font-helvetica text-[18px] text-[#101010] leading-relaxed mb-4">
                       {project.desc}
                     </p>
                   </div>
@@ -245,7 +308,7 @@ export default function Portfolio() {
                           : index === 1
                             ? "h-56 md:h-60 lg:h-64 p-3 rounded-xl"
                             : index === 4
-                              ? "h-56 md:h-60 lg:h-[430px] p-3"
+                              ? "h-56 md:h-60 lg:h-107.5 p-3"
                               : "h-56 md:h-30 lg:h-72 p-3"
                       }`}
                     >
@@ -305,7 +368,7 @@ export default function Portfolio() {
                       className={`w-full h-full ${
                         project.image
                           ? "bg-cover bg-center rounded"
-                          : "bg-gradient-to-br from-blue-100 to-blue-200 rounded"
+                          : "bg-linear-to-br from-blue-100 to-blue-200 rounded"
                       }`}
                       style={
                         project.image

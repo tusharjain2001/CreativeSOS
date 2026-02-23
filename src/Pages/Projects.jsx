@@ -208,7 +208,11 @@ export default function Projects() {
 
         {/* Main Content */}
         <div ref={contentRef} className="flex-1">
-          <div className={projectId === "infinitus" ? "w-full" : "mx-auto max-w-7xl"}>
+          <div
+            className={
+              projectId === "infinitus" ? "w-full" : "mx-auto max-w-7xl"
+            }
+          >
             {/* Render section based on active step with project-specific renderer */}
             <div
               className={
@@ -321,7 +325,9 @@ export default function Projects() {
                       <span className="mr-3 text-[#404040] font-family-instrument">
                         {String(idx + 1).padStart(2, "0")}.
                       </span>
-                      <span className="text-[#404040] font-medium font-family-instrument">{step}</span>
+                      <span className="text-[#404040] font-medium font-family-instrument">
+                        {step}
+                      </span>
                     </button>
                   ))}
                 </nav>
@@ -333,12 +339,12 @@ export default function Projects() {
 
       {/* Mobile bottom navigator */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white/95 px-3 py-3 backdrop-blur md:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-30 bg-white/95 px-3 py-3 backdrop-blur md:hidden ${
           isMobileStepsOpen ? "hidden" : "block"
         }`}
       >
         <div className="mx-auto flex max-w-md items-center justify-center gap-2">
-          <p className="w-[40%] truncate text-right text-[13px] text-[#101010]">
+          <p className="w-[40%] truncate text-right text-[13px] text-[#101010] font-family-instrument">
             {previousStepLabel}
           </p>
 
@@ -364,7 +370,7 @@ export default function Projects() {
             </button>
           </div>
 
-          <p className="w-[40%] truncate text-left text-[13px] text-[#101010]">
+          <p className="w-[40%] truncate text-left text-[13px] text-[#101010] font-family-instrument">
             {nextStepLabel}
           </p>
         </div>
