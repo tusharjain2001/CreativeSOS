@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { PanelLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -9,15 +9,46 @@ export default function ProjectSidebar({
   setActiveStep,
 }) {
   const [isOpen, setIsOpen] = useState(true);
+  const [indicatorY, setIndicatorY] = useState(null);
+  const [indicatorH, setIndicatorH] = useState(null);
+  const navRef = useRef(null);
+  const buttonRefs = useRef([]);
 
-  // Stagger animation variants
+  const measureIndicator = (idx) => {
+    const btn = buttonRefs.current[idx];
+    const nav = navRef.current;
+    if (!btn || !nav) {
+      setIndicatorY(null);
+      setIndicatorH(null);
+      return;
+    }
+    const navRect = nav.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    setIndicatorY(btnRect.top - navRect.top);
+    setIndicatorH(btnRect.height);
+  };
+
+  // Measure immediately on mount (synchronous so no flicker)
+  useLayoutEffect(() => {
+    measureIndicator(activeStep);
+  }, [isOpen, activeStep, steps]);
+
+  // Re-measure on step change
+  useEffect(() => {
+    measureIndicator(activeStep);
+  }, [activeStep]);
+
+  useEffect(() => {
+    const onResize = () => measureIndicator(activeStep);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [activeStep, steps, isOpen]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
@@ -62,10 +93,22 @@ export default function ProjectSidebar({
       </div>
 
       {isOpen && (
-        <>
-          {/* Steps List */}
+        <div ref={navRef} className="relative p-6">
+          {/* Single persistent sliding bar - always rendered, never conditionally hidden */}
+          <motion.div
+            className="absolute left-6 z-10 w-1 bg-teal-600 rounded-r pointer-events-none"
+            animate={
+              indicatorY !== null && indicatorH !== null
+                ? { y: indicatorY, height: indicatorH, opacity: 1 }
+                : { opacity: 0 }
+            }
+            initial={{ opacity: 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 35 }}
+            style={{ top: 0 }}
+          />
+
           <motion.nav
-            className="space-y-0 p-6"
+            className="relative z-0"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -73,14 +116,15 @@ export default function ProjectSidebar({
             {steps.map((step, idx) => (
               <motion.button
                 key={idx}
+                ref={(el) => (buttonRefs.current[idx] = el)}
                 onClick={() => setActiveStep(idx)}
                 variants={itemVariants}
                 whileHover={{ x: 8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className={`w-full text-left px-4 py-4 transition-colors duration-200 border-l-4 border-b border-b-gray-200 rounded-r-lg ${
+                className={`relative w-full text-left px-4 py-4 border-b border-b-gray-200 rounded-r-lg transition-colors duration-200 ${
                   idx === activeStep
-                    ? "border-l-teal-600 text-gray-900 font-medium bg-teal-50"
-                    : "border-l-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    ? "text-gray-900 font-medium bg-teal-50"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
                 <span className="font-semibold text-sm">
@@ -90,7 +134,7 @@ export default function ProjectSidebar({
               </motion.button>
             ))}
           </motion.nav>
-        </>
+        </div>
       )}
 
       {!isOpen && (
@@ -115,3 +159,4 @@ export default function ProjectSidebar({
     </div>
   );
 }
+
