@@ -152,23 +152,29 @@ export default function ProjectSidebar({
       )}
 
       {!isOpen && (
-        <nav className="flex flex-col items-center gap-3 flex-1 p-4">
+        <nav className="flex-1 px-3 pb-4">
           {steps.map((step, idx) => (
             <button
               key={idx}
               onClick={() => {
-                setIsOpen(true);
                 setActiveStep(idx);
               }}
               title={step}
-              className={`w-3 h-3 rounded-sm transition-colors ${
+              className={`relative block w-full border-b border-b-gray-200 py-3 text-center text-sm font-family-instrument transition-colors ${
                 idx === activeStep
-                  ? isFusionProject
-                    ? "bg-violet-600"
-                    : "bg-teal-600"
-                  : "bg-gray-300 hover:bg-gray-400"
+                  ? "font-medium text-[#404040]"
+                  : "text-[#6b7280] hover:text-[#404040]"
               }`}
-            />
+            >
+              {idx === activeStep && (
+                <span
+                  className={`absolute left-0 top-1/2 h-6 w-0.5 -translate-y-1/2 rounded-r ${
+                    isFusionProject ? "bg-[#7c3aed]" : "bg-[#257D89]"
+                  }`}
+                />
+              )}
+              {String(idx + 1).padStart(2, "0")}.
+            </button>
           ))}
         </nav>
       )}
