@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { PanelLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -10,41 +10,7 @@ export default function ProjectSidebar({
   setActiveStep,
 }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [indicatorY, setIndicatorY] = useState(null);
-  const [indicatorH, setIndicatorH] = useState(null);
-  const navRef = useRef(null);
-  const buttonRefs = useRef([]);
   const isFusionProject = projectId === "fusion";
-
-  const measureIndicator = (idx) => {
-    const btn = buttonRefs.current[idx];
-    const nav = navRef.current;
-    if (!btn || !nav) {
-      setIndicatorY(null);
-      setIndicatorH(null);
-      return;
-    }
-    const navRect = nav.getBoundingClientRect();
-    const btnRect = btn.getBoundingClientRect();
-    setIndicatorY(btnRect.top - navRect.top);
-    setIndicatorH(btnRect.height);
-  };
-
-  // Measure immediately on mount (synchronous so no flicker)
-  useLayoutEffect(() => {
-    measureIndicator(activeStep);
-  }, [isOpen, activeStep, steps]);
-
-  // Re-measure on step change
-  useEffect(() => {
-    measureIndicator(activeStep);
-  }, [activeStep]);
-
-  useEffect(() => {
-    const onResize = () => measureIndicator(activeStep);
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeStep, steps, isOpen]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -69,8 +35,7 @@ export default function ProjectSidebar({
         isOpen ? "w-80" : "w-20"
       }`}
     >
-      {/* Toggle Bar */}
-      <div className="flex items-center justify-between p-4 sticky top-0 bg-white">
+      <div className="sticky top-0 flex items-center justify-between bg-white p-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`flex items-center justify-center rounded p-2 transition-colors ${
@@ -103,22 +68,7 @@ export default function ProjectSidebar({
       </div>
 
       {isOpen && (
-        <div ref={navRef} className="relative p-6">
-          {/* Single persistent sliding bar - always rendered, never conditionally hidden */}
-          <motion.div
-            className={`absolute left-6 z-10 w-1 rounded-r pointer-events-none ${
-              isFusionProject ? "bg-[#7c3aed]" : "bg-[#257D89]"
-            }`}
-            animate={
-              indicatorY !== null && indicatorH !== null
-                ? { y: indicatorY, height: indicatorH, opacity: 1 }
-                : { opacity: 0 }
-            }
-            initial={{ opacity: 0 }}
-            transition={{ type: "spring", stiffness: 400, damping: 35 }}
-            style={{ top: 0 }}
-          />
-
+        <div className="relative p-6">
           <motion.nav
             className="relative z-0"
             variants={containerVariants}
@@ -128,18 +78,26 @@ export default function ProjectSidebar({
             {steps.map((step, idx) => (
               <motion.button
                 key={idx}
-                ref={(el) => (buttonRefs.current[idx] = el)}
                 onClick={() => setActiveStep(idx)}
                 variants={itemVariants}
                 whileHover={{ x: 8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className={`relative w-full text-left px-4 py-4 border-b border-b-gray-200 rounded-r-lg transition-colors duration-200 ${
+                className={`relative w-full rounded-r-lg border-b border-b-gray-200 px-4 py-4 text-left transition-colors duration-200 ${
                   idx === activeStep
-                    ? "text-gray-900 font-medium bg-white"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    ? "bg-white font-medium text-gray-900"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
               >
-                <span className="font-medium font-family-instrument text-sm">
+                {idx === activeStep && (
+                  <motion.span
+                    layoutId="desktop-sidebar-active-indicator"
+                    className={`absolute left-0 top-0 h-full w-1 rounded-r ${
+                      isFusionProject ? "bg-[#7c3aed]" : "bg-[#257D89]"
+                    }`}
+                    transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                  />
+                )}
+                <span className="font-family-instrument text-sm font-medium">
                   {String(idx + 1).padStart(2, "0")}.
                 </span>
                 <span className="ml-3 text-sm font-medium font-family-instrument">
