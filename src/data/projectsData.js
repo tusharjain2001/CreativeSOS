@@ -22,6 +22,15 @@ import InfinitusStep9B from "../Images/infinitus_steps/infinitus_step9b.png";
 import InfinitusStep10 from "../Images/infinitus_steps/infinitus_step10.png";
 import InfinitusStep11A from "../Images/infinitus_steps/infinitus_step11a.png";
 import InfinitusStep11B from "../Images/infinitus_steps/infinitus_step11b.png";
+import fusion from "../assets/fusion/fusionlogo.png";
+import FusionStep1 from "../assets/fusion/stepone.png";
+import FusionStep2 from "../assets/fusion/steptwo.png";
+import FusionStep4 from "../assets/fusion/stepfour.png";
+import FusionStep6 from "../assets/fusion/stepsix.png";
+import FusionStep7 from "../assets/fusion/stepseven.png";
+import FusionStep8light from "../assets/fusion/stepeightlight.png";
+import FusionStep8Dark from "../assets/fusion/stepeightdark.png";
+import FusionStep9 from "../assets/fusion/stepnine.png";
 import collage from "../Images/infinitus_steps/collage.svg";
 
 export const PROJECTS_DATA = {
@@ -121,13 +130,76 @@ export const PROJECTS_DATA = {
       responsiveImage: collage,
     },
   },
+  fusion: {
+    portfolioTitle: "FUSION",
+    portfolioDesc:
+      "Godesyn is built on conversion-driven services; the brands and people we partner with.",
+    portfolioImage: fusion,
+    tags: ["Branding", "Industry Name"],
+
+    steps: [
+      "Project Overview",
+      "Scope of the Project",
+      "Logo Variations",
+      "Mood Board",
+      "Color",
+      "Typography",
+      "Shapes and elements",
+      "Icons",
+      "Design Collection",
+      "View Project",
+    ],
+
+    step1: {
+      projectName: "FUSION",
+      overview:
+        "For a brand tailored for corporate clients in manufacturing technology, the identity should convey reliability and technical expertise while showcasing the synergy between software and hardware.",
+      industry: "Manufacturing Technology",
+      client: "Fusion Platform",
+      deliverables: "Brand Guidelines, Logo System, Social Media Kit",
+      overviewImage: FusionStep1,
+    },
+    step2: {
+      image: FusionStep2,
+    },
+    step3: {
+      image: FusionStep2,
+    },
+    step4: {
+      image: FusionStep4,
+    },
+    step5: {
+      colorImages: [
+        InfinitusStep5A,
+        InfinitusStep5B,
+        InfinitusStep5C,
+        InfinitusStep5D,
+      ],
+    },
+    step6: {
+      image: FusionStep6,
+    },
+    step7: {
+      image: FusionStep7,
+    },
+    step8: {
+      lightImage: FusionStep8light,
+      darkImage: FusionStep8Dark,
+    },
+    step9: {
+      image: FusionStep9,
+    },
+    step10: {
+      responsiveImage: FusionStep9,
+    },
+  },
 
   "demand-gen": {
     portfolioTitle: "Demand Generation Campaign",
     portfolioDesc:
       "Multi-channel marketing campaign driving 300% increase in qualified leads through strategic content and targeted advertising.",
     portfolioImage: image,
-    tags: ["Video - Animated"],
+    tags: ["Branding", "Industry Name"],
 
     // ========== PROJECT STEPS ==========
     steps: [

@@ -48,6 +48,7 @@ export default function Projects() {
   const previousStepLabel = activeStep > 0 ? steps[activeStep - 1] : "";
   const nextStepLabel =
     activeStep < steps.length - 1 ? steps[activeStep + 1] : "";
+  const isFusionProject = projectId === "fusion";
 
   const setActiveStepWithDirection = (next) => {
     setActiveStep((prev) => {
@@ -176,6 +177,7 @@ export default function Projects() {
         <div className="md:flex">
           <div className="hidden md:block">
             <ProjectSidebar
+              projectId={projectId}
               project={project}
               steps={steps}
               activeStep={activeStep}
@@ -199,6 +201,7 @@ export default function Projects() {
         {/* Project Sidebar Component */}
         <div className="hidden md:block">
           <ProjectSidebar
+            projectId={projectId}
             project={project}
             steps={steps}
             activeStep={activeStep}
@@ -279,7 +282,9 @@ export default function Projects() {
                   <button
                     type="button"
                     onClick={() => setIsMobileStepsOpen(false)}
-                    className="flex h-6 w-6 items-center justify-center text-teal-700"
+                    className={`flex h-6 w-6 items-center justify-center ${
+                      isFusionProject ? "text-violet-700" : "text-teal-700"
+                    }`}
                     aria-label="Close steps drawer"
                   >
                     <PanelLeft size={16} />
@@ -287,7 +292,11 @@ export default function Projects() {
                   {(project?.tags || []).slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="rounded border border-[#257D89] bg-[#E4F0EB] px-2 py-0.5 text-sm font-family-instrument text-[#257D89]"
+                      className={`rounded border px-2 py-0.5 text-sm font-family-instrument ${
+                        isFusionProject
+                          ? "border-[#8b5cf6] bg-[#f3e8ff] text-[#7c3aed]"
+                          : "border-[#257D89] bg-[#E4F0EB] text-[#257D89]"
+                      }`}
                     >
                       {tag}
                     </span>
@@ -296,7 +305,9 @@ export default function Projects() {
 
                 <nav ref={mobileNavRef} className="relative">
                   <motion.div
-                    className="absolute left-0 z-10 w-0.5 rounded-r bg-teal-600"
+                    className={`absolute left-0 z-10 w-0.5 rounded-r ${
+                      isFusionProject ? "bg-violet-600" : "bg-teal-600"
+                    }`}
                     animate={
                       mobileIndicatorY !== null && mobileIndicatorH !== null
                         ? {
@@ -358,7 +369,11 @@ export default function Projects() {
             >
               <img src={downarrow} />
             </button>
-            <div className="h-7 w-0.5 bg-teal-700/70" />
+            <div
+              className={`h-7 w-0.5 ${
+                isFusionProject ? "bg-violet-700/70" : "bg-teal-700/70"
+              }`}
+            />
             <button
               type="button"
               onClick={() => setActiveStepWithDirection((prev) => prev + 1)}

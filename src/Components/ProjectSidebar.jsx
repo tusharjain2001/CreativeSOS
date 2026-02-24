@@ -3,6 +3,7 @@ import { PanelLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ProjectSidebar({
+  projectId,
   project,
   steps,
   activeStep,
@@ -13,6 +14,7 @@ export default function ProjectSidebar({
   const [indicatorH, setIndicatorH] = useState(null);
   const navRef = useRef(null);
   const buttonRefs = useRef([]);
+  const isFusionProject = projectId === "fusion";
 
   const measureIndicator = (idx) => {
     const btn = buttonRefs.current[idx];
@@ -71,7 +73,11 @@ export default function ProjectSidebar({
       <div className="flex items-center justify-between p-4 sticky top-0 bg-white">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-center text-teal-600 hover:bg-teal-50 rounded transition-colors p-2"
+          className={`flex items-center justify-center rounded p-2 transition-colors ${
+            isFusionProject
+              ? "text-[#853FFF] hover:bg-violet-50"
+              : "text-[#257D89] hover:bg-teal-50"
+          }`}
           aria-label="Toggle sidebar"
         >
           <PanelLeft size={20} />
@@ -83,7 +89,11 @@ export default function ProjectSidebar({
               project.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="text-sm bg-[#E4F0EB] text-[#257D89] px-2 py-1 rounded border font-family-instrument border-[#257D89]"
+                  className={`text-sm px-2 py-1 rounded border font-family-instrument ${
+                    isFusionProject
+                      ? "bg-[#f3e8ff] text-[#7c3aed] border-[#8b5cf6]"
+                      : "bg-[#E4F0EB] text-[#257D89] border-[#257D89]"
+                  }`}
                 >
                   {tag}
                 </span>
@@ -96,7 +106,9 @@ export default function ProjectSidebar({
         <div ref={navRef} className="relative p-6">
           {/* Single persistent sliding bar - always rendered, never conditionally hidden */}
           <motion.div
-            className="absolute left-6 z-10 w-1 bg-[#257D89] rounded-r pointer-events-none"
+            className={`absolute left-6 z-10 w-1 rounded-r pointer-events-none ${
+              isFusionProject ? "bg-[#7c3aed]" : "bg-[#257D89]"
+            }`}
             animate={
               indicatorY !== null && indicatorH !== null
                 ? { y: indicatorY, height: indicatorH, opacity: 1 }
@@ -151,7 +163,9 @@ export default function ProjectSidebar({
               title={step}
               className={`w-3 h-3 rounded-sm transition-colors ${
                 idx === activeStep
-                  ? "bg-teal-600"
+                  ? isFusionProject
+                    ? "bg-violet-600"
+                    : "bg-teal-600"
                   : "bg-gray-300 hover:bg-gray-400"
               }`}
             />

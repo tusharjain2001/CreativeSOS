@@ -301,7 +301,10 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
   }
 
   // SHAPES AND PATTERNS
-  if (sectionName === "Shapes and Patterns") {
+  if (
+    sectionName === "Shapes and Patterns" ||
+    sectionName === "Shapes and elements"
+  ) {
     const data = project.step7;
 
     return (
@@ -313,7 +316,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
       >
         <img
           src={data?.image}
-          alt="Shapes and Patterns"
+          alt={sectionName}
           className="w-full rounded-lg object-contain"
         />
       </motion.div>
@@ -342,7 +345,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
 
   // ICONS
   if (sectionName === "Icons") {
-    const data = project.step9;
+    const data = project.step8 || project.step9;
     const activeIconsImage = isIconsDarkMode
       ? data?.darkImage
       : data?.lightImage;
@@ -478,6 +481,26 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             className="h-full w-full rounded-lg object-contain"
           />
         </div>
+      </motion.div>
+    );
+  }
+
+  // DESIGN COLLECTION
+  if (sectionName === "Design Collection") {
+    const data = project.step9 || project.step10;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white"
+      >
+        <img
+          src={data?.image}
+          alt="Design Collection"
+          className="w-full rounded-lg object-contain"
+        />
       </motion.div>
     );
   }
@@ -656,7 +679,10 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
 
   // RESPONSIVE DESIGN / VIEW PROJECT
   if (sectionName === "Responsive Design" || sectionName === "View Project") {
-    const data = project.step7;
+    const data =
+      sectionName === "View Project"
+        ? { responsiveImage: project.step10?.responsiveImage || project.step7?.responsiveImage }
+        : project.step7;
     return (
       <motion.div
         initial={{ opacity: 0 }}

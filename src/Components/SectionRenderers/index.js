@@ -14,6 +14,7 @@ import SectionRendererLandingPageOptimization from "./SectionRendererLandingPage
 
 export const SECTION_RENDERERS = {
   "infinitus": SectionRendererInfinitus,
+  "fusion": SectionRendererInfinitus,
   "demand-gen": SectionRendererDemandGen,
   "product-launch": SectionRendererProductLaunch,
   "content-hub": SectionRendererContentHub,
