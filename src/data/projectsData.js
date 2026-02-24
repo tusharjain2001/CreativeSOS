@@ -22,6 +22,7 @@ import InfinitusStep9B from "../Images/infinitus_steps/infinitus_step9b.png";
 import InfinitusStep10 from "../Images/infinitus_steps/infinitus_step10.png";
 import InfinitusStep11A from "../Images/infinitus_steps/infinitus_step11a.png";
 import InfinitusStep11B from "../Images/infinitus_steps/infinitus_step11b.png";
+import Infinitussection12 from "../Images/infinitus_steps/Infinitussection12.png";
 import fusion from "../assets/fusion/fusionlogo.png";
 import FusionStep1 from "../assets/fusion/stepone.png";
 import FusionStep2 from "../assets/fusion/steptwo.png";
@@ -129,8 +130,8 @@ export const PROJECTS_DATA = {
       responsiveImage: InfinitusStep11A,
     },
     step12: {
-      image: collage,
-      responsiveImage: collage,
+      image: Infinitussection12,
+      responsiveImage: Infinitussection12,
     },
   },
   fusion: {

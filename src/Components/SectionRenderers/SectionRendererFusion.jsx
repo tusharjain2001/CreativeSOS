@@ -61,14 +61,6 @@ export default function SectionRendererFusion({ project, sectionName }) {
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className="bg-white border border-gray-200 rounded-xl p-10"
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold mb-8"
-        >
-          {sectionName}
-        </motion.h2>
         <motion.img
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -551,14 +543,6 @@ export default function SectionRendererFusion({ project, sectionName }) {
         transition={{ duration: 0.5 }}
         className="bg-white border border-gray-200 rounded-xl p-10"
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold mb-8"
-        >
-          Our Process
-        </motion.h2>
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
           initial={{ opacity: 0 }}
@@ -600,14 +584,6 @@ export default function SectionRendererFusion({ project, sectionName }) {
         transition={{ duration: 0.5 }}
         className="bg-white border border-gray-200 rounded-xl p-10"
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold mb-8"
-        >
-          System Design
-        </motion.h2>
         <motion.div
           className="grid grid-cols-2 md:grid-cols-3 gap-6"
           initial={{ opacity: 0 }}
@@ -643,14 +619,6 @@ export default function SectionRendererFusion({ project, sectionName }) {
         transition={{ duration: 0.5 }}
         className="bg-white border border-gray-200 rounded-xl p-10"
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold mb-8"
-        >
-          Design Details
-        </motion.h2>
         <motion.div
           className="grid grid-cols-2 md:grid-cols-3 gap-6"
           initial={{ opacity: 0 }}
@@ -681,7 +649,10 @@ export default function SectionRendererFusion({ project, sectionName }) {
   if (sectionName === "Responsive Design" || sectionName === "View Project") {
     const data =
       sectionName === "View Project"
-        ? { responsiveImage: project.step10?.responsiveImage || project.step7?.responsiveImage }
+        ? {
+            responsiveImage:
+              project.step10?.responsiveImage || project.step7?.responsiveImage,
+          }
         : project.step7;
     return (
       <motion.div
@@ -690,14 +661,6 @@ export default function SectionRendererFusion({ project, sectionName }) {
         transition={{ duration: 0.5 }}
         className="bg-white border border-gray-200 rounded-xl p-10"
       >
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-bold mb-8"
-        >
-          {sectionName}
-        </motion.h2>
         <motion.img
           src={data?.responsiveImage}
           alt={sectionName}
