@@ -4,6 +4,7 @@
  */
 
 import SectionRendererInfinitus from "./SectionRendererInfinitus";
+import SectionRendererFusion from "./SectionRendererFusion";
 import SectionRendererDemandGen from "./SectionRendererDemandGen";
 import SectionRendererProductLaunch from "./SectionRendererProductLaunch";
 import SectionRendererContentHub from "./SectionRendererContentHub";
@@ -14,7 +15,7 @@ import SectionRendererLandingPageOptimization from "./SectionRendererLandingPage
 
 export const SECTION_RENDERERS = {
   "infinitus": SectionRendererInfinitus,
-  "fusion": SectionRendererInfinitus,
+  "fusion": SectionRendererFusion,
   "demand-gen": SectionRendererDemandGen,
   "product-launch": SectionRendererProductLaunch,
   "content-hub": SectionRendererContentHub,
