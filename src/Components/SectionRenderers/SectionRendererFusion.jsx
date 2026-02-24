@@ -659,7 +659,7 @@ export default function SectionRendererFusion({ project, sectionName }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="bg-white border border-gray-200 rounded-xl p-10"
+        className="bg-white rounded-xl"
       >
         <motion.img
           src={data?.responsiveImage}
