@@ -25,6 +25,9 @@ import InfinitusStep11B from "../Images/infinitus_steps/infinitus_step11b.png";
 import fusion from "../assets/fusion/fusionlogo.png";
 import FusionStep1 from "../assets/fusion/stepone.png";
 import FusionStep2 from "../assets/fusion/steptwo.png";
+import fusion3a from "../assets/fusion/step3a.png";
+import fusion3b from "../assets/fusion/step3b.png";
+import fusion3c from "../assets/fusion/step3c.png";
 import FusionStep4 from "../assets/fusion/stepfour.png";
 import FusionStep6 from "../assets/fusion/stepsix.png";
 import FusionStep7 from "../assets/fusion/stepseven.png";
@@ -163,7 +166,8 @@ export const PROJECTS_DATA = {
       image: FusionStep2,
     },
     step3: {
-      image: FusionStep2,
+      logoImages: [fusion3a, fusion3b, fusion3c],
+      brandImage: fusion3a,
     },
     step4: {
       image: FusionStep4,
