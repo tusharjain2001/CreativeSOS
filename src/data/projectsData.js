@@ -35,7 +35,10 @@ import FusionStep7 from "../assets/fusion/stepseven.png";
 import FusionStep8light from "../assets/fusion/stepeightlight.png";
 import FusionStep8Dark from "../assets/fusion/stepeightdark.png";
 import FusionStep9 from "../assets/fusion/stepnine.png";
-import collage from "../Images/infinitus_steps/collage.svg";
+import FusionStepFiveA from "../assets/fusion/stepfive_a.png";
+import FusionStepFiveB from "../assets/fusion/stepfive_b.png";
+import FusionStepFiveC from "../assets/fusion/stepfive_c.png";
+import FusionStepFiveD from "../assets/fusion/stepfive_d.png";
 
 export const PROJECTS_DATA = {
   infinitus: {
@@ -175,10 +178,10 @@ export const PROJECTS_DATA = {
     },
     step5: {
       colorImages: [
-        InfinitusStep5A,
-        InfinitusStep5B,
-        InfinitusStep5C,
-        InfinitusStep5D,
+        FusionStepFiveA,
+        FusionStepFiveB,
+        FusionStepFiveC,
+        FusionStepFiveD,
       ],
     },
     step6: {

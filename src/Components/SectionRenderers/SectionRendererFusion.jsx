@@ -144,7 +144,7 @@ export default function SectionRendererFusion({ project, sectionName }) {
               <button
                 type="button"
                 onClick={() => moveSlide(-1)}
-                className="h-10 w-10 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec]"
+                className="h-10 w-10 rounded-full border border-[#008F8D] bg-[#008F8D] text-lg leading-none text-[#4f3d91] transition "
                 aria-label="Previous logo variation"
               >
                 <ChevronLeft size={18} className="mx-auto" />
@@ -152,7 +152,7 @@ export default function SectionRendererFusion({ project, sectionName }) {
               <button
                 type="button"
                 onClick={() => moveSlide(1)}
-                className="h-10 w-10 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee]"
+                className="h-10 w-10 rounded-full border border-[#008F8D] bg-[#008F8D] text-lg leading-none text-[#8578b5] transition"
                 aria-label="Next logo variation"
               >
                 <ChevronRight size={18} className="mx-auto" />
@@ -247,23 +247,23 @@ export default function SectionRendererFusion({ project, sectionName }) {
             ))}
           </div>
 
-          <div className="absolute bottom-16 right-16 z-20">
+          <div className="absolute bottom-15 right-16 z-20">
             <div className="flex items-center gap-4">
               <button
                 type="button"
                 onClick={() => moveColorSlide(-1)}
-                className="h-10 w-10 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec]"
+                className="h-10 w-10 rounded-full border border-[#008F8D1F] bg-[#008F8D1F] text-xl leading-none text-[#4f3d91] transition"
                 aria-label="Previous color"
               >
-                <ChevronLeft size={18} className="mx-auto" />
+                <ChevronLeft size={18} className="mx-auto text-[#008F8D1F]" />
               </button>
               <button
                 type="button"
                 onClick={() => moveColorSlide(1)}
-                className="h-10 w-10 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee]"
+                className="h-10 w-10 rounded-full border border-[#008F8D1F] bg-[#008F8D1F] text-xl leading-none text-[#8578b5] transition"
                 aria-label="Next color"
               >
-                <ChevronRight size={18} className="mx-auto" />
+                <ChevronRight size={18} className="mx-auto text-[#008F8D1F]" />
               </button>
             </div>
           </div>
@@ -348,7 +348,9 @@ export default function SectionRendererFusion({ project, sectionName }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className={`min-h-[72vh] rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
-          isIconsDarkMode ? "bg-[#5a4fa3]" : "bg-[#d5d3eb]"
+          isIconsDarkMode
+            ? "bg-[#2A3638]"
+            : "bg-gradient-to-br from-[#F4F4F4] to-[#C1E8E7]"
         }`}
       >
         <div className="mb-8 flex items-center justify-center gap-4">
@@ -364,7 +366,7 @@ export default function SectionRendererFusion({ project, sectionName }) {
             onClick={() => setIsIconsDarkMode((prev) => !prev)}
             className={`relative h-8 w-14 rounded-full border transition ${
               isIconsDarkMode
-                ? "border-[#d7d2fb] bg-[#433a86]"
+                ? "border-[#d7d2fb] bg-[#008F8D]"
                 : "border-[#4c4194] bg-[#eceaff]"
             }`}
             aria-label="Toggle icons light and dark mode"
