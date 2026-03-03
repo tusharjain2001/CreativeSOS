@@ -29,7 +29,7 @@ export default function SLAs() {
   ];
 
   return (
-    <section id="my-slas" className="bg-[#f6f6f6] py-14">
+    <section id="my-slas" className="bg-[#f6f6f6] scroll-mt-15 py-14">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <div className=" bg-[#C5EBF0] text-[#1E8898] font-family-instrument px-8 py-2 inline-block">
           My SLAs

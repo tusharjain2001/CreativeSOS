@@ -60,17 +60,19 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument"
+                  className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument transition-colors relative group"
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 h-[1.5px] bg-gray-800 w-0 group-hover:w-full" />
                 </Link>
               ) : (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument"
+                  className="text-[#1C1D22BF] hover:text-gray-800 text-[20px] font-family-instrument transition-colors relative group"
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 h-[1.5px] bg-gray-800 w-0 group-hover:w-full" />
                 </a>
               ),
             )}

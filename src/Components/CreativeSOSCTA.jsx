@@ -38,7 +38,7 @@ const CreativeSOSCTA = () => {
       </div>
 
       {/* Content Section */}
-      <div className="flex-grow flex flex-col justify-center gap-6 md:gap-8 px-4 py-6">
+      <div className="flex-grow flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8 px-4 py-6 mt-5">
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
           {/* Profile Image */}
           <div className="flex-shrink-0">
@@ -61,8 +61,8 @@ const CreativeSOSCTA = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="flex justify-center px-4">
-          <button className="bg-[#257D89] text-white text-base sm:text-lg font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-md hover:shadow-lg hover:bg-[#1f6770] transition-all duration-200 w-full sm:w-auto max-w-sm">
+        <div className="flex justify-center px-4 ">
+          <button className="bg-[#257D89]  text-white text-base sm:text-lg font-medium px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-md hover:shadow-lg hover:bg-[#1f6770] transition-all duration-200 w-full sm:w-auto max-w-sm">
             Book a 30-minute fit call
           </button>
         </div>

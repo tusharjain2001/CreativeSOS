@@ -17,7 +17,7 @@ export default function Navbar2({ onMobileMenuClick }) {
   }, []);
 
   const navItems = [
-    { label: "Why me?", href: "#why-me" },
+    { label: "Home", href: "/" },
     { label: "Portfolio", href: "/portfolio" },
   ];
 

@@ -68,7 +68,7 @@ export default function YouAndI() {
             <Row
               key={`desktop-${index}`}
               item={item}
-              noAnimation={index === 0}
+              initiallyOpen={index === 0}
             />
             <MobileRow key={`mobile-${index}`} item={item} />
           </>
@@ -78,18 +78,17 @@ export default function YouAndI() {
   );
 }
 
-function Row({ item, noAnimation }) {
-  const [isHovered, setIsHovered] = useState(false);
+function Row({ item, initiallyOpen }) {
+  // First row starts hovered (image visible), all rows respond to hover normally
+  const [isHovered, setIsHovered] = useState(initiallyOpen);
 
   const figmaSpring = { type: "spring", stiffness: 200, damping: 28, mass: 1 };
   const textTransition = { duration: 0.2 };
 
-  const hovered = noAnimation ? false : isHovered;
-
   return (
     <motion.div
-      onMouseEnter={() => !noAnimation && setIsHovered(true)}
-      onMouseLeave={() => !noAnimation && setIsHovered(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(initiallyOpen ? false : false)}
       animate={{ height: 170 }}
       transition={figmaSpring}
       className="relative hidden md:flex w-full gap-3 overflow-hidden"
@@ -97,7 +96,7 @@ function Row({ item, noAnimation }) {
       {/* LEFT PANEL (YOU) - Reduces width on hover */}
       <motion.div
         animate={{
-          flex: noAnimation || hovered ? 0.6 : 1,
+          flex: isHovered ? 0.6 : 1,
           backgroundColor: "#F5DEDC",
         }}
         transition={figmaSpring}
@@ -106,7 +105,7 @@ function Row({ item, noAnimation }) {
         {/* Full Width Text - Shows when NOT hovered */}
         <motion.div
           animate={{
-            opacity: hovered ? 0 : 1,
+            opacity: isHovered ? 0 : 1,
           }}
           transition={textTransition}
           className="absolute inset-0 flex items-center justify-center px-8"
@@ -120,7 +119,7 @@ function Row({ item, noAnimation }) {
         {/* Adjusted Width Text - Shows when hovered */}
         <motion.div
           animate={{
-            opacity: hovered ? 1 : 0,
+            opacity: isHovered ? 1 : 0,
           }}
           transition={textTransition}
           className="absolute inset-0 flex items-center justify-center"
@@ -134,11 +133,11 @@ function Row({ item, noAnimation }) {
         </motion.div>
       </motion.div>
 
-      {/* CENTER IMAGE - Always visible for noAnimation, otherwise slides in on hover */}
+      {/* CENTER IMAGE - Visible on hover (and on load for first row) */}
       <motion.div
         animate={{
-          width: noAnimation ? "180px" : hovered ? "180px" : "0px",
-          opacity: noAnimation ? 1 : hovered ? 1 : 0,
+          width: isHovered ? "180px" : "0px",
+          opacity: isHovered ? 1 : 0,
         }}
         transition={figmaSpring}
         className="relative h-full overflow-hidden"
@@ -152,11 +151,11 @@ function Row({ item, noAnimation }) {
         />
       </motion.div>
 
-      {/* RIGHT PANEL (I) - Stays large */}
+      {/* RIGHT PANEL (I) */}
       <motion.div
         animate={{
-          flex: noAnimation ? 1.0 : 1,
-          backgroundColor: hovered ? "#6BC6D366" : "#D7EEF1",
+          flex: 1,
+          backgroundColor: isHovered ? "#6BC6D366" : "#D7EEF1",
         }}
         transition={figmaSpring}
         className="relative flex items-center justify-center overflow-hidden h-full px-8"

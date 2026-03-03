@@ -218,7 +218,7 @@ const PricingTabs = () => {
       <style>{style}</style>
       <div
         id="contact"
-        className="min-h-screen bg-[#F8F8F8] py-8 sm:py-12 lg:py-16 px-4"
+        className="min-h-screen bg-[#F8F8F8] scroll-mt-10 py-8 sm:py-12 lg:py-16 px-4"
       >
         <div className="">
           {/* Mobile Layout */}

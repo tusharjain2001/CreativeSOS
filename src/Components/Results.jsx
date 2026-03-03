@@ -142,7 +142,7 @@ export default function Results() {
   }, []);
 
   return (
-    <section id="results" className="py-12 md:py-16 bg-[#1C1D22]">
+    <section id="results" className="py-12 md:py-16 scroll-mt-20 bg-[#1C1D22]">
       <div className=" pl-4 md:pl-8 ">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-20">
           {/* Left heading column */}

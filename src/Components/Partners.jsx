@@ -20,7 +20,7 @@ export default function Partners() {
     {
       img: Logo2,
       name: "Selector",
-      desc: "AI-driven data and decision SaaS ",
+      desc: "AI-driven data and decision SaaS ",
     },
     {
       img: Logo3,
@@ -40,17 +40,17 @@ export default function Partners() {
     {
       img: Logo6,
       name: "Fortifydata",
-      desc: "Cybersecurity SaaS (enterprise clients) ",
+      desc: "Cybersecurity SaaS (enterprise clients) ",
     },
     {
       img: Logo7,
       name: "Cosmia",
-      desc: "Market & insights / research platform ",
+      desc: "Market & insights / research platform ",
     },
     {
       img: Logo8,
       name: "Bingin",
-      desc: "AI-driven data and decision SaaS ",
+      desc: "AI-driven data and decision SaaS ",
     },
     {
       img: Logo9,
@@ -87,7 +87,7 @@ export default function Partners() {
     <section
       ref={sectionRef}
       id="partners"
-      className={`bg-[#1C1D22] py-4 md:py-6 px-4 md:px-8 ${
+      className={`scroll-mt-20 bg-[#1C1D22] py-4 md:py-6 px-4 md:px-8 ${
         visible ? "in-view" : ""
       }`}
     >
