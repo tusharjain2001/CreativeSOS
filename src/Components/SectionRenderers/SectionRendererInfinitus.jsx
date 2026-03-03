@@ -128,7 +128,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             />
           </AnimatePresence>
 
-          <div className="absolute bottom-16 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+          <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 md:bottom-16 md:gap-2">
             {logoImages.map((_, idx) => (
               <span
                 key={idx}
@@ -139,23 +139,23 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             ))}
           </div>
 
-          <div className="absolute bottom-16 right-16.5 z-20">
-            <div className="flex items-center gap-4">
+          <div className="absolute bottom-2 right-2 z-20 md:bottom-16 md:right-16">
+            <div className="flex items-center gap-2 md:gap-4">
               <button
                 type="button"
                 onClick={() => moveSlide(-1)}
-                className="h-10 w-10 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec]"
+                className="h-7 w-7 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec] md:h-10 md:w-10"
                 aria-label="Previous logo variation"
               >
-                <ChevronLeft size={18} className="mx-auto" />
+                <ChevronLeft size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
               </button>
               <button
                 type="button"
                 onClick={() => moveSlide(1)}
-                className="h-10 w-10 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee]"
+                className="h-7 w-7 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee] md:h-10 md:w-10"
                 aria-label="Next logo variation"
               >
-                <ChevronRight size={18} className="mx-auto" />
+                <ChevronRight size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
               </button>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             />
           </AnimatePresence>
 
-          <div className="absolute bottom-16 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+          <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 md:bottom-16 md:gap-2">
             {colorImages.map((_, idx) => (
               <span
                 key={idx}
@@ -247,23 +247,23 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             ))}
           </div>
 
-          <div className="absolute bottom-16 right-16 z-20">
-            <div className="flex items-center gap-4">
+          <div className="absolute bottom-2 right-2 z-20 md:bottom-16 md:right-16">
+            <div className="flex items-center gap-2 md:gap-4">
               <button
                 type="button"
                 onClick={() => moveColorSlide(-1)}
-                className="h-10 w-10 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec]"
+                className="h-7 w-7 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec] md:h-10 md:w-10"
                 aria-label="Previous color"
               >
-                <ChevronLeft size={18} className="mx-auto" />
+                <ChevronLeft size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
               </button>
               <button
                 type="button"
                 onClick={() => moveColorSlide(1)}
-                className="h-10 w-10 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee]"
+                className="h-7 w-7 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee] md:h-10 md:w-10"
                 aria-label="Next color"
               >
-                <ChevronRight size={18} className="mx-auto" />
+                <ChevronRight size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
               </button>
             </div>
           </div>
@@ -347,13 +347,13 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`min-h-[72vh] rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
+        className={`rounded-lg p-4 md:min-h-[76vh] md:p-10 ${
           isIconsDarkMode ? "bg-[#5a4fa3]" : "bg-[#d5d3eb]"
         }`}
       >
-        <div className="mb-8 flex items-center justify-center gap-4">
+        <div className="mb-4 flex items-center justify-center gap-3 md:mb-8 md:gap-4">
           <span
-            className={`text-xl ${
+            className={`text-base md:text-xl ${
               isIconsDarkMode ? "text-[#dfdcff]" : "text-[#241f4a]"
             }`}
           >
@@ -376,7 +376,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             />
           </button>
           <span
-            className={`text-xl ${
+            className={`text-base md:text-xl ${
               isIconsDarkMode ? "text-[#ffffff]" : "text-[#241f4a]"
             }`}
           >
@@ -425,13 +425,13 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`flex min-h-[72vh] flex-col rounded-lg p-6 md:min-h-[76vh] md:p-10 ${
+        className={`flex flex-col rounded-lg p-4 md:min-h-[76vh] md:p-10 ${
           isSocialDarkMode ? "bg-[#5a4fa3]" : "bg-[#d5d3eb]"
         }`}
       >
-        <div className="mb-8 flex items-center justify-center gap-4">
+        <div className="mb-4 flex items-center justify-center gap-3 md:mb-8 md:gap-4">
           <span
-            className={`text-xl ${
+            className={`text-base md:text-xl ${
               isSocialDarkMode ? "text-[#dfdcff]" : "text-[#241f4a]"
             }`}
           >
@@ -454,7 +454,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
             />
           </button>
           <span
-            className={`text-xl ${
+            className={`text-base md:text-xl ${
               isSocialDarkMode ? "text-[#ffffff]" : "text-[#241f4a]"
             }`}
           >

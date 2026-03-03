@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, ChevronUp, List, PanelLeft } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 import { PROJECTS_DATA } from "../data/projectsData";
 import Navbar2 from "./NavBar2";
 import ProjectSidebar from "../Components/ProjectSidebar";
@@ -48,8 +48,32 @@ export default function Projects() {
   const previousStepLabel = activeStep > 0 ? steps[activeStep - 1] : "";
   const nextStepLabel =
     activeStep < steps.length - 1 ? steps[activeStep + 1] : "";
+  const isInfinitusProject = projectId === "infinitus";
   const isFusionProject = projectId === "fusion";
+  const shouldUseShowcaseMobileLayout = isInfinitusProject || isFusionProject;
+  const mobileAccentClasses = isFusionProject
+    ? "border-[#257D89] bg-[#E4F0EB] text-[#257D89]"
+    : "border-[#8b5cf6] bg-[#f3e8ff] text-[#7c3aed]";
+  const mobileActiveIndicatorClass = isFusionProject
+    ? "bg-[#257D89]"
+    : "bg-violet-600";
   const isFullWidthProject = projectId === "infinitus" || projectId === "fusion";
+  const relatedProjects = Object.entries(PROJECTS_DATA)
+    .filter(
+      ([id, data]) =>
+        id !== projectId && data?.portfolioImage && data?.portfolioTitle,
+    )
+    .slice(0, 3)
+    .map(([id, data]) => ({
+      id,
+      title: data.portfolioTitle,
+      image: data.portfolioImage,
+    }));
+  const mobileStepGroupStart = Math.floor(activeStep / 3) * 3;
+  const mobileInfinitusSteps = steps.slice(
+    mobileStepGroupStart,
+    mobileStepGroupStart + 3,
+  );
 
   const setActiveStepWithDirection = (next) => {
     setActiveStep((prev) => {
@@ -198,7 +222,7 @@ export default function Projects() {
   return (
     <section className="bg-white min-h-screen">
       <Navbar2 />
-      <div className="md:flex mt-10 gap-10">
+      <div className="mt-0 gap-10 md:mt-10 md:flex">
         {/* Project Sidebar Component */}
         <div className="hidden md:block">
           <ProjectSidebar
@@ -214,9 +238,63 @@ export default function Projects() {
         <div ref={contentRef} className="flex-1">
           <div
             className={
-              isFullWidthProject ? "w-full" : "mx-auto max-w-7xl"
+              shouldUseShowcaseMobileLayout
+                ? "w-full px-4 pb-8 md:px-0"
+                : isFullWidthProject
+                  ? "w-full"
+                  : "mx-auto max-w-7xl"
             }
           >
+            {shouldUseShowcaseMobileLayout && (
+              <div className="mb-4 pt-4 md:hidden">
+                <h1 className="font-helvetica text-[34px] leading-[1.05] text-[#101010]">
+                  {project.portfolioTitle || project.step1?.projectName}
+                </h1>
+                <p className="mt-2 text-[13px] leading-6 text-[#3f3f3f] font-family-instrument">
+                  {project.portfolioDesc || project.step1?.overview}
+                </p>
+                <div className="mt-3 flex items-center gap-2">
+                  {(project?.tags || []).slice(0, 2).map((tag) => (
+                    <span
+                      key={tag}
+                      className={`rounded border px-2 py-0.5 text-[11px] font-family-instrument ${mobileAccentClasses}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <nav className="mt-4 border-t border-[#D6D6D6]">
+                  {mobileInfinitusSteps.map((step, idx) => {
+                    const stepIdx = mobileStepGroupStart + idx;
+                    const isActive = activeStep === stepIdx;
+                    return (
+                      <button
+                        key={step}
+                        type="button"
+                        onClick={() => setActiveStepWithDirection(stepIdx)}
+                        className={`relative w-full border-b border-[#D6D6D6] px-1 py-3 text-left ${
+                          isActive ? "text-[#202020]" : "text-[#4a4a4a]"
+                        }`}
+                      >
+                        {isActive && (
+                          <span
+                            className={`absolute left-0 top-1/2 h-7 w-0.5 -translate-y-1/2 rounded-r ${mobileActiveIndicatorClass}`}
+                          />
+                        )}
+                        <span className="mr-3 text-[14px] font-family-instrument">
+                          {String(stepIdx + 1).padStart(2, "0")}.
+                        </span>
+                        <span className="text-[14px] font-family-instrument">
+                          {step}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+            )}
+
             {/* Render section based on active step with project-specific renderer */}
             <div
               className={
@@ -242,6 +320,31 @@ export default function Projects() {
                 </motion.div>
               </AnimatePresence>
             </div>
+
+            {shouldUseShowcaseMobileLayout && (
+              <div className="mt-5 pb-6 md:hidden">
+                <p className="mb-3 text-[24px] leading-none text-[#202020]">
+                  View other Projects
+                </p>
+                <div className="grid grid-cols-3 gap-2">
+                  {relatedProjects.map((item) => (
+                    <Link
+                      key={item.id}
+                      to={`/projects/${item.id}`}
+                      className="overflow-hidden rounded border border-[#D8D8D8] bg-white p-1.5"
+                    >
+                      <div className="h-14 w-full overflow-hidden rounded bg-[#f2f3f5]">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -251,6 +354,7 @@ export default function Projects() {
         type="button"
         onClick={() => setIsMobileStepsOpen(true)}
         className={`fixed bottom-32 left-0 z-40 flex h-12 w-12 items-center justify-center  md:hidden ${
+          shouldUseShowcaseMobileLayout ? "hidden" :
           isMobileStepsOpen ? "hidden" : "flex"
         }`}
         aria-label="Open steps drawer"
@@ -352,6 +456,7 @@ export default function Projects() {
       {/* Mobile bottom navigator */}
       <div
         className={`fixed inset-x-0 bottom-0 z-30 bg-white/95 px-3 py-3 backdrop-blur md:hidden ${
+          shouldUseShowcaseMobileLayout ? "hidden" :
           isMobileStepsOpen ? "hidden" : "block"
         }`}
       >
