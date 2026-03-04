@@ -58,7 +58,8 @@ export default function Projects() {
   const mobileActiveIndicatorClass = isFusionProject
     ? "bg-[#257D89]"
     : "bg-violet-600";
-  const isFullWidthProject = projectId === "infinitus" || projectId === "fusion";
+  const isFullWidthProject =
+    projectId === "infinitus" || projectId === "fusion";
   const relatedProjects = Object.entries(PROJECTS_DATA)
     .filter(
       ([id, data]) =>
@@ -223,7 +224,9 @@ export default function Projects() {
   return (
     <section
       className={`bg-white min-h-screen ${
-        shouldUseInfinitusFixedDesktopLayout ? "md:h-screen md:overflow-hidden" : ""
+        shouldUseInfinitusFixedDesktopLayout
+          ? "md:h-screen md:overflow-hidden"
+          : ""
       }`}
     >
       <Navbar2 />
@@ -253,14 +256,18 @@ export default function Projects() {
         <div
           ref={contentRef}
           className={`flex-1 ${
-            shouldUseInfinitusFixedDesktopLayout ? "md:h-full md:overflow-hidden" : ""
+            shouldUseInfinitusFixedDesktopLayout
+              ? "md:h-full md:overflow-hidden"
+              : ""
           }`}
         >
           <div
             className={
               shouldUseShowcaseMobileLayout
                 ? `w-full px-4 pb-8 md:px-0 ${
-                    shouldUseInfinitusFixedDesktopLayout ? "md:h-full md:pb-0" : ""
+                    shouldUseInfinitusFixedDesktopLayout
+                      ? "md:h-full md:pb-0"
+                      : ""
                   }`
                 : isFullWidthProject
                   ? "w-full"
@@ -295,16 +302,16 @@ export default function Projects() {
                         key={step}
                         type="button"
                         onClick={() => setActiveStepWithDirection(stepIdx)}
-                        className={`relative w-full border-b border-[#D6D6D6] px-1 py-3 text-left ${
+                        className={`relative w-full border-b border-[#D6D6D6] px-3 py-3 text-left ${
                           isActive ? "text-[#202020]" : "text-[#4a4a4a]"
                         }`}
                       >
                         {isActive && (
                           <span
-                            className={`absolute left-0 top-1/2 h-7 w-0.5 -translate-y-1/2 rounded-r ${mobileActiveIndicatorClass}`}
+                            className={`absolute left-0 top-1/2 h-7 w-1 -translate-y-1/2 rounded-r ${mobileActiveIndicatorClass}`}
                           />
                         )}
-                        <span className="mr-3 text-[14px] font-family-instrument">
+                        <span className="ml-1 mr-3 text-[14px] font-family-instrument">
                           {String(stepIdx + 1).padStart(2, "0")}.
                         </span>
                         <span className="text-[14px] font-family-instrument">
@@ -380,8 +387,11 @@ export default function Projects() {
         type="button"
         onClick={() => setIsMobileStepsOpen(true)}
         className={`fixed bottom-32 left-0 z-40 flex h-12 w-12 items-center justify-center  md:hidden ${
-          shouldUseShowcaseMobileLayout ? "hidden" :
-          isMobileStepsOpen ? "hidden" : "flex"
+          shouldUseShowcaseMobileLayout
+            ? "hidden"
+            : isMobileStepsOpen
+              ? "hidden"
+              : "flex"
         }`}
         aria-label="Open steps drawer"
       >
@@ -436,7 +446,7 @@ export default function Projects() {
 
                 <nav ref={mobileNavRef} className="relative">
                   <motion.div
-                    className={`absolute left-0 z-10 w-0.5 rounded-r ${
+                    className={`absolute left-0 z-10 w-1 rounded-r ${
                       isFusionProject ? "bg-violet-600" : "bg-teal-600"
                     }`}
                     animate={
@@ -482,8 +492,11 @@ export default function Projects() {
       {/* Mobile bottom navigator */}
       <div
         className={`fixed inset-x-0 bottom-0 z-30 bg-white/95 px-3 py-3 backdrop-blur md:hidden ${
-          shouldUseShowcaseMobileLayout ? "hidden" :
-          isMobileStepsOpen ? "hidden" : "block"
+          shouldUseShowcaseMobileLayout
+            ? "hidden"
+            : isMobileStepsOpen
+              ? "hidden"
+              : "block"
         }`}
       >
         <div className="mx-auto flex max-w-md items-center justify-center gap-2">

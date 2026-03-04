@@ -399,7 +399,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={activeIconsImage}
           alt={isIconsDarkMode ? "Icons Dark Mode" : "Icons Light Mode"}
-          className="mx-auto max-w-[840px] block mx-auto rounded-lg object-contain"
+          className="block w-full max-h-[58vh] rounded-lg object-contain md:mx-auto md:max-h-none md:max-w-[840px]"
         />
       </motion.div>
     );
