@@ -26,7 +26,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data.overviewImage}
           alt={data.projectName}
-          className="w-full h-full object-cover rounded-lg"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -46,7 +46,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt="Scope of the Project"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -66,7 +66,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           src={data.brandImage}
           alt={sectionName}
-          className="w-full rounded-xl"
+          className="rounded-xl"
         />
       </motion.div>
     );
@@ -124,7 +124,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
               animate="center"
               exit="exit"
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full rounded-lg object-contain"
+              className="block mx-auto rounded-lg object-contain"
             />
           </AnimatePresence>
 
@@ -147,7 +147,10 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
                 className="h-7 w-7 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec] md:h-10 md:w-10"
                 aria-label="Previous logo variation"
               >
-                <ChevronLeft size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
+                <ChevronLeft
+                  size={14}
+                  className="mx-auto md:h-[18px] md:w-[18px]"
+                />
               </button>
               <button
                 type="button"
@@ -155,7 +158,10 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
                 className="h-7 w-7 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee] md:h-10 md:w-10"
                 aria-label="Next logo variation"
               >
-                <ChevronRight size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
+                <ChevronRight
+                  size={14}
+                  className="mx-auto md:h-[18px] md:w-[18px]"
+                />
               </button>
             </div>
           </div>
@@ -173,12 +179,12 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white border border-gray-200 rounded-xl"
+        className="bg-white rounded-xl"
       >
         <img
           src={data?.image}
           alt="Mood Board"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -232,7 +238,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
               animate="center"
               exit="exit"
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full rounded-lg object-contain"
+              className="block mx-auto rounded-lg object-contain"
             />
           </AnimatePresence>
 
@@ -255,7 +261,10 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
                 className="h-7 w-7 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec] md:h-10 md:w-10"
                 aria-label="Previous color"
               >
-                <ChevronLeft size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
+                <ChevronLeft
+                  size={14}
+                  className="mx-auto md:h-[18px] md:w-[18px]"
+                />
               </button>
               <button
                 type="button"
@@ -263,7 +272,10 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
                 className="h-7 w-7 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee] md:h-10 md:w-10"
                 aria-label="Next color"
               >
-                <ChevronRight size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
+                <ChevronRight
+                  size={14}
+                  className="mx-auto md:h-[18px] md:w-[18px]"
+                />
               </button>
             </div>
           </div>
@@ -286,7 +298,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt="Typography"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -309,7 +321,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt={sectionName}
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -329,7 +341,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt="UI Elements"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -387,7 +399,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={activeIconsImage}
           alt={isIconsDarkMode ? "Icons Dark Mode" : "Icons Light Mode"}
-          className="mx-auto w-full max-w-[840px] rounded-lg object-contain"
+          className="mx-auto max-w-[840px] block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -407,7 +419,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt="Stationary"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -470,7 +482,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
                 ? "Social Media Dark Mode"
                 : "Social Media Light Mode"
             }
-            className="h-full w-full rounded-lg object-contain"
+            className="h-full block mx-auto rounded-lg object-contain"
           />
         </div>
       </motion.div>
@@ -491,7 +503,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt="Design Collection"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );
@@ -511,7 +523,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         <img
           src={data?.image}
           alt="Collage"
-          className="w-full rounded-lg object-contain"
+          className="block mx-auto rounded-lg object-contain"
         />
       </motion.div>
     );

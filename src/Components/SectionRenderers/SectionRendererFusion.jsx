@@ -26,7 +26,7 @@ export default function SectionRendererFusion({ project, sectionName }) {
         <img
           src={data.overviewImage}
           alt={data.projectName}
-          className="w-full h-full object-cover rounded-lg"
+          className="object-contain rounded-lg"
         />
       </motion.div>
     );
@@ -147,7 +147,10 @@ export default function SectionRendererFusion({ project, sectionName }) {
                 className="h-7 w-7 rounded-full border border-[#008F8D] bg-[#008F8D] text-lg leading-none text-[#4f3d91] transition md:h-10 md:w-10"
                 aria-label="Previous logo variation"
               >
-                <ChevronLeft size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
+                <ChevronLeft
+                  size={14}
+                  className="mx-auto md:h-[18px] md:w-[18px]"
+                />
               </button>
               <button
                 type="button"
@@ -155,7 +158,10 @@ export default function SectionRendererFusion({ project, sectionName }) {
                 className="h-7 w-7 rounded-full border border-[#008F8D] bg-[#008F8D] text-lg leading-none text-[#8578b5] transition md:h-10 md:w-10"
                 aria-label="Next logo variation"
               >
-                <ChevronRight size={14} className="mx-auto md:h-[18px] md:w-[18px]" />
+                <ChevronRight
+                  size={14}
+                  className="mx-auto md:h-[18px] md:w-[18px]"
+                />
               </button>
             </div>
           </div>

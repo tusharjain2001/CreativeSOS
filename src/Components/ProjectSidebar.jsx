@@ -31,11 +31,11 @@ export default function ProjectSidebar({
 
   return (
     <div
-      className={`bg-white overflow-y-auto transition-all duration-300 flex flex-col ${
+      className={`bg-white overflow-hidden transition-all duration-300 flex flex-col ${
         isOpen ? "w-80" : "w-20"
-      }`}
+      } h-full`}
     >
-      <div className="sticky top-0 flex items-center justify-between bg-white p-4">
+      <div className="flex shrink-0 items-center justify-between bg-white p-4">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`flex items-center justify-center rounded p-2 transition-colors ${
@@ -68,7 +68,7 @@ export default function ProjectSidebar({
       </div>
 
       {isOpen && (
-        <div className="relative p-6">
+        <div className="relative flex-1 overflow-y-auto p-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <motion.nav
             className="relative z-0"
             variants={containerVariants}
@@ -110,7 +110,7 @@ export default function ProjectSidebar({
       )}
 
       {!isOpen && (
-        <nav className="flex-1 px-3 pb-4">
+        <nav className="flex-1 overflow-y-auto px-3 pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {steps.map((step, idx) => (
             <button
               key={idx}

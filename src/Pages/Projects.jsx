@@ -50,6 +50,7 @@ export default function Projects() {
     activeStep < steps.length - 1 ? steps[activeStep + 1] : "";
   const isInfinitusProject = projectId === "infinitus";
   const isFusionProject = projectId === "fusion";
+  const shouldUseInfinitusFixedDesktopLayout = isInfinitusProject;
   const shouldUseShowcaseMobileLayout = isInfinitusProject || isFusionProject;
   const mobileAccentClasses = isFusionProject
     ? "border-[#257D89] bg-[#E4F0EB] text-[#257D89]"
@@ -220,11 +221,25 @@ export default function Projects() {
   }
 
   return (
-    <section className="bg-white min-h-screen">
+    <section
+      className={`bg-white min-h-screen ${
+        shouldUseInfinitusFixedDesktopLayout ? "md:h-screen md:overflow-hidden" : ""
+      }`}
+    >
       <Navbar2 />
-      <div className="mt-0 gap-10 md:mt-10 md:flex">
+      <div
+        className={`mt-0 gap-10 md:flex ${
+          shouldUseInfinitusFixedDesktopLayout
+            ? "md:h-[calc(100vh-74px)] md:gap-6"
+            : "md:mt-10"
+        }`}
+      >
         {/* Project Sidebar Component */}
-        <div className="hidden md:block">
+        <div
+          className={`hidden md:block ${
+            shouldUseInfinitusFixedDesktopLayout ? "md:h-full" : ""
+          }`}
+        >
           <ProjectSidebar
             projectId={projectId}
             project={project}
@@ -235,11 +250,18 @@ export default function Projects() {
         </div>
 
         {/* Main Content */}
-        <div ref={contentRef} className="flex-1">
+        <div
+          ref={contentRef}
+          className={`flex-1 ${
+            shouldUseInfinitusFixedDesktopLayout ? "md:h-full md:overflow-hidden" : ""
+          }`}
+        >
           <div
             className={
               shouldUseShowcaseMobileLayout
-                ? "w-full px-4 pb-8 md:px-0"
+                ? `w-full px-4 pb-8 md:px-0 ${
+                    shouldUseInfinitusFixedDesktopLayout ? "md:h-full md:pb-0" : ""
+                  }`
                 : isFullWidthProject
                   ? "w-full"
                   : "mx-auto max-w-7xl"
@@ -299,7 +321,11 @@ export default function Projects() {
             <div
               className={
                 isFullWidthProject
-                  ? "w-full p-0"
+                  ? `w-full p-0 ${
+                      shouldUseInfinitusFixedDesktopLayout
+                        ? "md:flex md:h-full md:items-center md:justify-center md:overflow-hidden md:[&_img]:mx-auto md:[&_img]:max-h-[78vh] md:[&_img]:w-auto md:[&_img]:object-contain"
+                        : ""
+                    }`
                   : "rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
               }
             >
