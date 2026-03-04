@@ -75,6 +75,8 @@ export default function Projects() {
     mobileStepGroupStart,
     mobileStepGroupStart + 3,
   );
+  const isMobileViewport =
+    typeof window !== "undefined" && window.innerWidth < 768;
 
   const setActiveStepWithDirection = (next) => {
     setActiveStep((prev) => {
@@ -87,6 +89,13 @@ export default function Projects() {
 
       return clamped;
     });
+  };
+
+  const handleStepChange = (next) => {
+    setActiveStepWithDirection(next);
+    if (isMobileViewport) {
+      setIsMobileStepsOpen(false);
+    }
   };
 
   const measureMobileIndicator = (idx) => {
@@ -168,7 +177,12 @@ export default function Projects() {
     return () => node.removeEventListener("wheel", handleContentWheel);
   }, [steps.length, isMobileStepsOpen]);
 
-  const stepTransitionVariants = {
+  useEffect(() => {
+    if (!isMobileViewport) return;
+    window.scrollTo({ top: 0 });
+  }, [activeStep, isMobileViewport]);
+
+  const desktopStepTransitionVariants = {
     initial: (direction) => ({
       x: 0,
       y: direction > 0 ? "100%" : 0,
@@ -178,7 +192,7 @@ export default function Projects() {
       transformOrigin: "center center",
       zIndex: direction > 0 ? 3 : 1,
     }),
-    animate: (direction) => ({
+    animate: () => ({
       x: 0,
       y: 0,
       opacity: 1,
@@ -197,6 +211,45 @@ export default function Projects() {
       opacity: 1,
       scale: direction > 0 ? 0.7 : 1,
       rotate: direction > 0 ? 5 : 0,
+      transformOrigin: "center center",
+      zIndex: direction > 0 ? 1 : 3,
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: 0,
+      transition: { duration: 0.6, ease: "linear" },
+    }),
+  };
+
+  const mobileStepTransitionVariants = {
+    initial: (direction) => ({
+      x: 0,
+      y: 0,
+      opacity: 1,
+      scale: 0.7,
+      rotate: 5,
+      transformOrigin: "center center",
+      zIndex: direction > 0 ? 3 : 1,
+    }),
+    animate: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
+      transformOrigin: "center center",
+      zIndex: 2,
+      transition: {
+        duration: 0.6,
+        ease: "linear",
+      },
+    },
+    exit: (direction) => ({
+      x: 0,
+      y: "100%",
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
       transformOrigin: "center center",
       zIndex: direction > 0 ? 1 : 3,
       position: "absolute",
@@ -314,7 +367,7 @@ export default function Projects() {
                       <button
                         key={step}
                         type="button"
-                        onClick={() => setActiveStepWithDirection(stepIdx)}
+                        onClick={() => handleStepChange(stepIdx)}
                         className={`relative w-full border-b border-[#D6D6D6] px-3 py-3 text-left ${
                           isActive ? "text-[#202020]" : "text-[#4a4a4a]"
                         }`}
@@ -341,12 +394,16 @@ export default function Projects() {
             <div
               className={
                 isFullWidthProject
-                  ? `relative w-full overflow-visible p-0 ${
+                  ? `relative w-full p-0 ${
+                      isMobileViewport ? "overflow-hidden" : "overflow-visible"
+                    } ${
                       shouldUseInfinitusFixedDesktopLayout
                         ? "md:flex md:h-full md:items-center md:justify-center md:overflow-hidden md:[&_img]:mx-auto md:[&_img]:max-h-[78vh] md:[&_img]:w-auto md:[&_img]:object-contain"
                         : ""
                     }`
-                  : "relative overflow-visible rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+                  : `relative rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm ${
+                      isMobileViewport ? "overflow-hidden" : "overflow-visible"
+                    } md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`
               }
             >
               <AnimatePresence
@@ -357,7 +414,11 @@ export default function Projects() {
                 <motion.div
                   key={`${projectId}-${activeStep}`}
                   custom={stepDirection}
-                  variants={stepTransitionVariants}
+                  variants={
+                    isMobileViewport
+                      ? mobileStepTransitionVariants
+                      : desktopStepTransitionVariants
+                  }
                   initial="initial"
                   animate="animate"
                   exit="exit"
@@ -484,7 +545,7 @@ export default function Projects() {
                     <button
                       key={step}
                       type="button"
-                      onClick={() => setActiveStepWithDirection(idx)}
+                      onClick={() => handleStepChange(idx)}
                       ref={(el) => (mobileButtonRefs.current[idx] = el)}
                       className={`w-full border-b border-gray-300 px-3 py-3 text-left text-[15px] ${
                         idx === activeStep
@@ -525,7 +586,7 @@ export default function Projects() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              onClick={() => setActiveStepWithDirection((prev) => prev - 1)}
+              onClick={() => handleStepChange((prev) => prev - 1)}
               disabled={activeStep === 0}
               className="flex h-9 w-9 items-center justify-center disabled:cursor-not-allowed disabled:opacity-40"
               aria-label="Previous step"
@@ -539,7 +600,7 @@ export default function Projects() {
             />
             <button
               type="button"
-              onClick={() => setActiveStepWithDirection((prev) => prev + 1)}
+              onClick={() => handleStepChange((prev) => prev + 1)}
               disabled={activeStep === steps.length - 1}
               className="flex h-9 w-9 items-center justify-center disabled:cursor-not-allowed disabled:opacity-40"
               aria-label="Next step"
