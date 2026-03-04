@@ -286,7 +286,7 @@ export default function Projects() {
                   {(project?.tags || []).slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className={`rounded border px-2 py-0.5 text-[11px] font-family-instrument ${mobileAccentClasses}`}
+                      className={`rounded-full border px-2 py-0.5 text-[11px] font-family-instrument ${mobileAccentClasses}`}
                     >
                       {tag}
                     </span>
@@ -433,7 +433,7 @@ export default function Projects() {
                   {(project?.tags || []).slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className={`rounded border px-2 py-0.5 text-sm font-family-instrument ${
+                      className={`rounded-full border px-2 py-0.5 text-sm font-family-instrument ${
                         isFusionProject
                           ? "border-[#8b5cf6] bg-[#f3e8ff] text-[#7c3aed]"
                           : "border-[#257D89] bg-[#E4F0EB] text-[#257D89]"
