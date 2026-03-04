@@ -170,26 +170,40 @@ export default function Projects() {
 
   const stepTransitionVariants = {
     initial: (direction) => ({
-      y: direction > 0 ? 90 : -90,
-      opacity: 0,
-      scale: 0.96,
-      rotate: direction > 0 ? 2 : -2,
+      x: 0,
+      y: direction > 0 ? "100%" : "-100%",
+      opacity: 1,
+      scale: 1,
+      rotate: 0,
       transformOrigin: "center center",
+      zIndex: 3,
     }),
     animate: {
+      x: 0,
       y: 0,
       opacity: 1,
       scale: 1,
       rotate: 0,
-      transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+      transformOrigin: "center center",
+      zIndex: 2,
+      transition: {
+        duration: 0.6,
+        ease: "linear",
+      },
     },
     exit: (direction) => ({
-      y: direction > 0 ? -70 : 70,
-      opacity: 0,
-      scale: 0.86,
-      rotate: direction > 0 ? -4 : 4,
+      x: 0,
+      y: 0,
+      opacity: 1,
+      scale: 0.7,
+      rotate: direction > 0 ? 5 : -5,
       transformOrigin: "center center",
-      transition: { duration: 0.35, ease: [0.4, 0, 1, 1] },
+      zIndex: 1,
+      position: "absolute",
+      left: 0,
+      right: 0,
+      top: 0,
+      transition: { duration: 0.6, ease: "linear" },
     }),
   };
 
@@ -327,15 +341,19 @@ export default function Projects() {
             <div
               className={
                 isFullWidthProject
-                  ? `w-full p-0 ${
+                  ? `relative w-full overflow-visible p-0 ${
                       shouldUseInfinitusFixedDesktopLayout
                         ? "md:flex md:h-full md:items-center md:justify-center md:overflow-hidden md:[&_img]:mx-auto md:[&_img]:max-h-[78vh] md:[&_img]:w-auto md:[&_img]:object-contain"
                         : ""
                     }`
-                  : "rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+                  : "relative overflow-visible rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none"
               }
             >
-              <AnimatePresence mode="wait" custom={stepDirection}>
+              <AnimatePresence
+                mode="sync"
+                custom={stepDirection}
+                initial={false}
+              >
                 <motion.div
                   key={`${projectId}-${activeStep}`}
                   custom={stepDirection}
@@ -343,6 +361,7 @@ export default function Projects() {
                   initial="initial"
                   animate="animate"
                   exit="exit"
+                  className="will-change-transform"
                 >
                   <SectionRenderer
                     project={project}
