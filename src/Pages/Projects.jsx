@@ -27,7 +27,6 @@ export default function Projects() {
 
   // Get project data from PROJECTS_DATA
   const project = PROJECTS_DATA[projectId];
-  console.log("Project Data:", project);
 
   // If project not found, redirect to portfolio
   if (!project) {
