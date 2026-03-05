@@ -374,7 +374,7 @@ export default function Projects() {
                       >
                         {isActive && (
                           <span
-                            className={`absolute left-0 top-1/2 h-7 w-1 -translate-y-1/2 rounded-r ${mobileActiveIndicatorClass}`}
+                            className={`absolute left-0 top-0 h-full w-1 ${mobileActiveIndicatorClass}`}
                           />
                         )}
                         <span className="ml-1 mr-3 text-[14px] font-family-instrument">
@@ -434,22 +434,22 @@ export default function Projects() {
             </div>
 
             {shouldUseShowcaseMobileLayout && (
-              <div className="mt-5 pb-6 md:hidden">
-                <p className="mb-3 text-[24px] leading-none text-[#202020]">
+              <div className="mt-6 md:hidden">
+                <p className="mb-4 font-helvetica text-[24px] leading-none text-[#202020]">
                   View other Projects
                 </p>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-3 gap-3">
                   {relatedProjects.map((item) => (
                     <Link
                       key={item.id}
                       to={`/projects/${item.id}`}
-                      className="overflow-hidden rounded border border-[#D8D8D8] bg-white p-1.5"
+                      className="overflow-hidden rounded-[8px] border border-[#D8D8D8] bg-white p-1.5 shadow-[0_2px_10px_rgba(16,24,40,0.08)]"
                     >
-                      <div className="h-14 w-full overflow-hidden rounded bg-[#f2f3f5]">
+                      <div className="aspect-[4/3] w-full overflow-hidden rounded-[6px] bg-[#f2f3f5]">
                         <img
                           src={item.image}
                           alt={item.title}
-                          className="h-full w-full object-contain"
+                          className="h-full w-full object-cover object-center"
                         />
                       </div>
                     </Link>
