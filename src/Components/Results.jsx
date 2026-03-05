@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 
-import Result1 from "../Images/Result1.png";
-import Result2 from "../Images/Result2.png";
-import Result3 from "../Images/Result3.png";
-import Result4 from "../Images/Result4.png";
-import Result5 from "../Images/Result5.png";
+import Result1 from "../Images/Result1.svg";
+import Result2 from "../Images/Result2.svg";
+import Result3 from "../Images/Result3.svg";
+import Result4 from "../Images/Result4.svg";
+import Result5 from "../Images/Result5.svg";
 
 export default function Results() {
   const cards = [

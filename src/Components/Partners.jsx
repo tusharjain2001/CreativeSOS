@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
-import Logo1 from "../Images/Logo1.png";
-import Logo2 from "../Images/Logo2.png";
-import Logo3 from "../Images/Logo3.png";
-import Logo4 from "../Images/Logo4.png";
-import Logo5 from "../Images/Logo5.png";
-import Logo6 from "../Images/Logo6.png";
-import Logo7 from "../Images/Logo7.png";
-import Logo8 from "../Images/Logo8.png";
-import Logo9 from "../Images/Logo9.png";
+import Logo1 from "../Images/Logo1.svg";
+import Logo2 from "../Images/Logo2.svg";
+import Logo3 from "../Images/Logo3.svg";
+import Logo4 from "../Images/Logo4.svg";
+import Logo5 from "../Images/Logo5.svg";
+import Logo6 from "../Images/Logo6.svg";
+import Logo7 from "../Images/Logo7.svg";
+import Logo8 from "../Images/Logo8.svg";
+import Logo9 from "../Images/Logo9.svg";
 
 export default function Partners() {
   const logos = [

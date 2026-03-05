@@ -1,11 +1,11 @@
 import React from "react";
-import Icon1 from "../Images/Icon1.png";
-import Icon2 from "../Images/Icon2.png";
-import Icon3 from "../Images/Icon3.png";
-import Icon4 from "../Images/Icon4.png";
-import Icon5 from "../Images/Icon5.png";
-import Icon6 from "../Images/Icon6.png";
-import Icon7 from "../Images/Icon7.png";
+import Icon1 from "../Images/Icon1.svg";
+import Icon2 from "../Images/Icon2.svg";
+import Icon3 from "../Images/Icon3.svg";
+import Icon4 from "../Images/Icon4.svg";
+import Icon5 from "../Images/Icon5.svg";
+import Icon6 from "../Images/Icon6.svg";
+import Icon7 from "../Images/Icon7.svg";
 
 export default function TrustMe() {
   const features = [

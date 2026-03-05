@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import Rectangle1 from "../Images/Rectangle1.png";
-import Rectangle2 from "../Images/Rectangle2.png";
-import Rectangle3 from "../Images/Rectangle3.png";
-import Rectangle4 from "../Images/Rectangle4.png";
-import Rectangle5 from "../Images/Rectangle5.png";
-import Rectangle6 from "../Images/Rectangle6.png";
-import Rectangle7 from "../Images/Rectangle7.png";
-import Rectangle8 from "../Images/Rectangle8.png";
-import Rectangle9 from "../Images/Rectangle9.png";
+import Rectangle1 from "../Images/Rectangle1.svg";
+import Rectangle2 from "../Images/Rectangle2.svg";
+import Rectangle3 from "../Images/Rectangle3.svg";
+import Rectangle4 from "../Images/Rectangle4.svg";
+import Rectangle5 from "../Images/Rectangle5.svg";
+import Rectangle6 from "../Images/Rectangle6.svg";
+import Rectangle7 from "../Images/Rectangle7.svg";
+import Rectangle8 from "../Images/Rectangle8.svg";
+import Rectangle9 from "../Images/Rectangle9.svg";
 
 const items = [
   {

@@ -1,8 +1,8 @@
 import React from "react";
-import iconone from "../Images/iconone.png";
-import icontwo from "../Images/icontwo.png";
-import iconthree from "../Images/iconthree.png";
-import iconfour from "../Images/iconfour.png";
+import iconone from "../Images/iconone.svg";
+import icontwo from "../Images/icontwo.svg";
+import iconthree from "../Images/iconthree.svg";
+import iconfour from "../Images/iconfour.svg";
 
 export default function SLAs() {
   const items = [
