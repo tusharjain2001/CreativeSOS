@@ -363,7 +363,7 @@ export default function Projects() {
       <div
         className={`mt-0 gap-10 md:flex ${
           shouldUseInfinitusFixedDesktopLayout
-            ? "md:h-[calc(100vh-74px)] md:gap-6"
+            ? "md:h-[calc(100vh-74px)] md:gap-0"
             : "md:mt-10"
         }`}
       >
@@ -462,7 +462,7 @@ export default function Projects() {
                       isMobileViewport ? "overflow-hidden" : "overflow-visible"
                     } ${
                       shouldUseInfinitusFixedDesktopLayout
-                        ? "md:flex md:h-full md:items-center md:justify-center md:overflow-hidden md:[&_img]:mx-auto md:[&_img]:max-h-[78vh] md:[&_img]:w-auto md:[&_img]:object-contain"
+                        ? "md:flex md:h-full md:items-center md:justify-center md:overflow-hidden md:[&_img]:max-h-[90vh] md:[&_img]:w-full md:[&_img]:object-contain"
                         : ""
                     }`
                   : `relative rounded-3xl border border-[#D6D1C2] bg-[#EDE9DB] p-4 shadow-sm ${
