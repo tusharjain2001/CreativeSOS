@@ -21,21 +21,15 @@ export default function Projects() {
   const [mobileIndicatorH, setMobileIndicatorH] = useState(null);
   const lastWheelAtRef = useRef(0);
   const boundaryArmRef = useRef({ armed: false, direction: 0 });
+  const isStepAnimatingRef = useRef(false);
+  const queuedStepDirectionRef = useRef(0);
   const contentRef = useRef(null);
   const mobileNavRef = useRef(null);
   const mobileButtonRefs = useRef([]);
 
   // Get project data from PROJECTS_DATA
   const project = PROJECTS_DATA[projectId];
-
-  // If project not found, redirect to portfolio
-  if (!project) {
-    navigate("/portfolio");
-    return null;
-  }
-
-  // Get steps from project data
-  const steps = project.steps || [
+  const defaultSteps = [
     "Project Overview",
     "Scope of the Project",
     "Brand Identity",
@@ -44,6 +38,8 @@ export default function Projects() {
     "Design Details",
     "Responsive Design",
   ];
+  const steps = project?.steps || defaultSteps;
+
   const previousStepLabel = activeStep > 0 ? steps[activeStep - 1] : "";
   const nextStepLabel =
     activeStep < steps.length - 1 ? steps[activeStep + 1] : "";
@@ -91,6 +87,67 @@ export default function Projects() {
     });
   };
 
+  const requestStepShift = (direction) => {
+    if (isStepAnimatingRef.current) {
+      queuedStepDirectionRef.current = direction;
+      return false;
+    }
+
+    let didChange = false;
+    setActiveStepWithDirection((prev) => {
+      const next = Math.min(steps.length - 1, Math.max(0, prev + direction));
+      didChange = next !== prev;
+      return next;
+    });
+
+    if (didChange) {
+      isStepAnimatingRef.current = true;
+      queuedStepDirectionRef.current = 0;
+    }
+
+    return didChange;
+  };
+
+  useEffect(() => {
+    if (!project) {
+      navigate("/portfolio");
+    }
+  }, [project, navigate]);
+
+  useEffect(() => {
+    setActiveStep((prev) => Math.min(prev, steps.length - 1));
+  }, [steps.length]);
+
+  useEffect(() => {
+    if (!project) return;
+    const images = new Set();
+
+    const collectImageUrls = (value) => {
+      if (!value) return;
+
+      if (typeof value === "string") {
+        images.add(value);
+        return;
+      }
+
+      if (Array.isArray(value)) {
+        value.forEach(collectImageUrls);
+        return;
+      }
+
+      if (typeof value === "object") {
+        Object.values(value).forEach(collectImageUrls);
+      }
+    };
+
+    collectImageUrls(project);
+
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [projectId]);
+
   const handleStepChange = (next) => {
     setActiveStepWithDirection(next);
     if (isMobileViewport) {
@@ -125,11 +182,16 @@ export default function Projects() {
   }, [isMobileStepsOpen, activeStep, steps.length]);
 
   useEffect(() => {
+    if (!project) return;
     const node = contentRef.current;
     if (!node) return;
 
     const handleContentWheel = (event) => {
       if (isMobileStepsOpen) return;
+      if (isStepAnimatingRef.current) {
+        event.preventDefault();
+        return;
+      }
 
       const scrollTop = window.scrollY || window.pageYOffset || 0;
       const viewportHeight = window.innerHeight || 0;
@@ -157,15 +219,13 @@ export default function Projects() {
         return;
       }
 
-      let didChange = false;
+      const didChange = requestStepShift(direction);
 
-      setActiveStepWithDirection((prev) => {
-        const next = Math.min(steps.length - 1, Math.max(0, prev + direction));
-        didChange = next !== prev;
-        return next;
-      });
-
-      if (!didChange) return;
+      if (!didChange) {
+        event.preventDefault();
+        lastWheelAtRef.current = now;
+        return;
+      }
 
       event.preventDefault();
       boundaryArmRef.current = { armed: false, direction: 0 };
@@ -262,6 +322,10 @@ export default function Projects() {
 
   // Get the appropriate SectionRenderer for this project
   const SectionRenderer = getSectionRenderer(projectId);
+
+  if (!project) {
+    return null;
+  }
 
   if (!SectionRenderer) {
     return (
@@ -406,11 +470,7 @@ export default function Projects() {
                     } md:rounded-none md:border-0 md:bg-transparent md:p-0 md:shadow-none`
               }
             >
-              <AnimatePresence
-                mode="sync"
-                custom={stepDirection}
-                initial={false}
-              >
+              <AnimatePresence mode="sync" custom={stepDirection} initial={false}>
                 <motion.div
                   key={`${projectId}-${activeStep}`}
                   custom={stepDirection}
@@ -422,6 +482,14 @@ export default function Projects() {
                   initial="initial"
                   animate="animate"
                   exit="exit"
+                  onAnimationComplete={() => {
+                    isStepAnimatingRef.current = false;
+                    const queuedDirection = queuedStepDirectionRef.current;
+                    queuedStepDirectionRef.current = 0;
+                    if (queuedDirection !== 0) {
+                      requestStepShift(queuedDirection);
+                    }
+                  }}
                   className="will-change-transform"
                 >
                   <SectionRenderer
