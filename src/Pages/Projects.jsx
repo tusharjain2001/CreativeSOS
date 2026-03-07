@@ -183,6 +183,7 @@ export default function Projects() {
 
   useEffect(() => {
     if (!project) return;
+    if (!isMobileViewport) return;
     const node = contentRef.current;
     if (!node) return;
 
@@ -235,7 +236,7 @@ export default function Projects() {
 
     node.addEventListener("wheel", handleContentWheel, { passive: false });
     return () => node.removeEventListener("wheel", handleContentWheel);
-  }, [steps.length, isMobileStepsOpen]);
+  }, [steps.length, isMobileStepsOpen, isMobileViewport]);
 
   useEffect(() => {
     if (!isMobileViewport) return;
@@ -248,7 +249,7 @@ export default function Projects() {
       y: direction > 0 ? "100%" : 0,
       opacity: 1,
       scale: direction > 0 ? 1 : 0.7,
-      rotate: direction > 0 ? 0 : 5,
+      rotate: 0,
       transformOrigin: "center center",
       zIndex: direction > 0 ? 3 : 1,
     }),
@@ -270,7 +271,7 @@ export default function Projects() {
       y: direction > 0 ? 0 : "100%",
       opacity: 1,
       scale: direction > 0 ? 0.7 : 1,
-      rotate: direction > 0 ? 5 : 0,
+      rotate: 0,
       transformOrigin: "center center",
       zIndex: direction > 0 ? 1 : 3,
       position: "absolute",
@@ -287,7 +288,7 @@ export default function Projects() {
       y: 0,
       opacity: 1,
       scale: 0.7,
-      rotate: 5,
+      rotate: 0,
       transformOrigin: "center center",
       zIndex: direction > 0 ? 3 : 1,
     }),
