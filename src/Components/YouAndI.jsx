@@ -91,7 +91,7 @@ function Row({ item, initiallyOpen }) {
       onMouseLeave={() => setIsHovered(initiallyOpen ? false : false)}
       animate={{ height: 170 }}
       transition={figmaSpring}
-      className="relative hidden md:flex w-full gap-3 overflow-hidden"
+      className="relative hidden md:flex w-full gap-2 overflow-hidden"
     >
       {/* LEFT PANEL (YOU) - Reduces width on hover */}
       <motion.div

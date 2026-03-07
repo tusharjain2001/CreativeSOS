@@ -66,10 +66,10 @@ export default function Projects() {
       title: data.portfolioTitle,
       image: data.portfolioImage,
     }));
-  const mobileStepGroupStart = Math.floor(activeStep / 3) * 3;
+  const mobileStepGroupStart = Math.floor(activeStep / 4) * 4;
   const mobileInfinitusSteps = steps.slice(
     mobileStepGroupStart,
-    mobileStepGroupStart + 3,
+    mobileStepGroupStart + 4,
   );
   const isMobileViewport =
     typeof window !== "undefined" && window.innerWidth < 768;
