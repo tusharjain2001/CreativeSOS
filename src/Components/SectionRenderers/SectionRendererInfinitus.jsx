@@ -111,7 +111,7 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
     return (
       <div className="bg-white">
         <div className="relative overflow-hidden rounded-xl">
-          {/* Invisible sizer — holds natural container height per breakpoint */}
+          {/* Invisible sizer — holds container height per breakpoint */}
           <img
             src={activeLogo}
             alt=""
@@ -138,16 +138,16 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
                 transition={{
                   x: {
                     type: "spring",
-                    stiffness: 260,
-                    damping: 28,
-                    mass: 0.8,
+                    stiffness: 180,
+                    damping: 32,
+                    mass: 1.2,
                   },
                   opacity: {
-                    duration: 0.35,
+                    duration: 0.5,
                     ease: "easeInOut",
                   },
                   scale: {
-                    duration: 0.4,
+                    duration: 0.55,
                     ease: [0.32, 0.72, 0, 1],
                   },
                 }}
@@ -236,16 +236,19 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
 
     const slideVariants = {
       enter: (direction) => ({
-        x: direction > 0 ? 120 : -120,
+        x: direction > 0 ? "100%" : "-100%",
         opacity: 0,
+        scale: 0.96,
       }),
       center: {
         x: 0,
         opacity: 1,
+        scale: 1,
       },
       exit: (direction) => ({
-        x: direction > 0 ? -120 : 120,
+        x: direction > 0 ? "-100%" : "100%",
         opacity: 0,
+        scale: 0.96,
       }),
     };
 
@@ -264,59 +267,99 @@ export default function SectionRendererInfinitus({ project, sectionName }) {
         transition={{ duration: 0.5 }}
         className="bg-white"
       >
-        <div className="relative overflow-hidden rounded-lg">
-          <AnimatePresence mode="wait" custom={colorSlideDirection}>
-            <motion.img
-              key={`${activeColor}-${colorSlideIndex}`}
-              src={activeColor}
-              alt="Color"
+        <div className="relative overflow-hidden rounded-xl">
+          {/* Invisible sizer — holds container height per breakpoint */}
+          <img
+            src={activeColor}
+            alt=""
+            aria-hidden
+            className="invisible block w-full object-contain h-64 md:h-[480px] lg:h-[580px]"
+          />
+
+          {/* Animated slide layer */}
+          <div className="absolute inset-0 overflow-hidden rounded-xl">
+            <AnimatePresence
+              mode="popLayout"
               custom={colorSlideDirection}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="block mx-auto rounded-lg object-contain"
-            />
-          </AnimatePresence>
-
-          <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 md:bottom-16 md:gap-2">
-            {colorImages.map((_, idx) => (
-              <span
-                key={idx}
-                className={`h-2 w-2 rounded-full ${
-                  idx === colorSlideIndex ? "bg-[#50525a]" : "bg-white"
-                }`}
+              initial={false}
+            >
+              <motion.img
+                key={`color-${colorSlideIndex}`}
+                src={activeColor}
+                alt="Color"
+                custom={colorSlideDirection}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: {
+                    type: "spring",
+                    stiffness: 180, // was 260 — lower = slower
+                    damping: 32, // was 28 — higher = less bounce
+                    mass: 1.2, // was 0.8 — higher = heavier feel
+                  },
+                  opacity: {
+                    duration: 0.5, // was 0.35
+                    ease: "easeInOut",
+                  },
+                  scale: {
+                    duration: 0.55, // was 0.4
+                    ease: [0.32, 0.72, 0, 1],
+                  },
+                }}
+                className="absolute inset-0 block w-full h-full object-contain will-change-transform"
+                style={{ backfaceVisibility: "hidden" }}
               />
-            ))}
+            </AnimatePresence>
           </div>
 
-          <div className="absolute bottom-2 right-2 z-20 md:bottom-16 md:right-16">
-            <div className="flex items-center gap-2 md:gap-4">
-              <button
-                type="button"
-                onClick={() => moveColorSlide(-1)}
-                className="h-7 w-7 rounded-full border border-[#8a72d2] bg-[#ececf2] text-lg leading-none text-[#4f3d91] transition hover:bg-[#e2e2ec] md:h-10 md:w-10"
-                aria-label="Previous color"
-              >
-                <ChevronLeft
-                  size={14}
-                  className="mx-auto md:h-[18px] md:w-[18px]"
+          {/* Dot indicators */}
+          {colorImages.length > 1 && (
+            <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 md:bottom-5">
+              {colorImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    const dir = idx > colorSlideIndex ? 1 : -1;
+                    setColorSlideDirection(dir);
+                    setColorSlideIndex(idx);
+                  }}
+                  className={`rounded-full transition-all duration-300 ease-out ${
+                    idx === colorSlideIndex
+                      ? "h-2.5 w-2.5 bg-[#4f3d91] scale-110"
+                      : "h-2 w-2 bg-[#50525a] opacity-30 hover:opacity-60"
+                  }`}
+                  aria-label={`Go to color variation ${idx + 1}`}
                 />
-              </button>
-              <button
-                type="button"
-                onClick={() => moveColorSlide(1)}
-                className="h-7 w-7 rounded-full border border-[#b8aed9] bg-[#efeff4] text-lg leading-none text-[#8578b5] transition hover:bg-[#e4e4ee] md:h-10 md:w-10"
-                aria-label="Next color"
-              >
-                <ChevronRight
-                  size={14}
-                  className="mx-auto md:h-[18px] md:w-[18px]"
-                />
-              </button>
+              ))}
             </div>
-          </div>
+          )}
+
+          {/* Navigation arrows */}
+          {colorImages.length > 1 && (
+            <div className="absolute bottom-3 right-3 z-20 md:bottom-5 md:right-5">
+              <div className="flex items-center gap-2 md:gap-3">
+                <button
+                  type="button"
+                  onClick={() => moveColorSlide(-1)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[#8a72d2] bg-white/80 backdrop-blur-sm text-[#4f3d91] shadow-sm transition-all duration-200 hover:bg-[#ececf2] hover:scale-105 active:scale-95 md:h-11 md:w-11"
+                  aria-label="Previous color"
+                >
+                  <ChevronLeft size={15} className="md:h-[18px] md:w-[18px]" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => moveColorSlide(1)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[#b8aed9] bg-white/80 backdrop-blur-sm text-[#8578b5] shadow-sm transition-all duration-200 hover:bg-[#efeff4] hover:scale-105 active:scale-95 md:h-11 md:w-11"
+                  aria-label="Next color"
+                >
+                  <ChevronRight size={15} className="md:h-[18px] md:w-[18px]" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </motion.div>
     );
