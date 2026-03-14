@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { PanelLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -10,6 +10,10 @@ export default function ProjectSidebar({
   setActiveStep,
 }) {
   const [isOpen, setIsOpen] = useState(true);
+  const [indicatorY, setIndicatorY] = useState(null);
+  const [indicatorH, setIndicatorH] = useState(null);
+  const navRef = useRef(null);
+  const buttonRefs = useRef([]);
   const isFusionProject = projectId === "fusion";
 
   const containerVariants = {
@@ -28,6 +32,34 @@ export default function ProjectSidebar({
       transition: { duration: 0.3 },
     },
   };
+
+  const measureIndicator = (idx) => {
+    const btn = buttonRefs.current[idx];
+    const nav = navRef.current;
+
+    if (!btn || !nav) {
+      setIndicatorY(null);
+      setIndicatorH(null);
+      return;
+    }
+
+    const navRect = nav.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    setIndicatorY(btnRect.top - navRect.top);
+    setIndicatorH(btnRect.height);
+  };
+
+  useLayoutEffect(() => {
+    if (!isOpen) return;
+    measureIndicator(activeStep);
+  }, [isOpen, activeStep, steps.length]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onResize = () => measureIndicator(activeStep);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [isOpen, activeStep, steps.length]);
 
   return (
     <div
@@ -70,33 +102,36 @@ export default function ProjectSidebar({
       {isOpen && (
         <div className="relative flex-1 overflow-y-auto p-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <motion.nav
+            ref={navRef}
             className="relative z-0"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
+            <motion.div
+              className={`absolute left-0 top-0 z-10 w-1 rounded-r ${
+                isFusionProject ? "bg-[#7c3aed]" : "bg-[#257D89]"
+              }`}
+              animate={
+                indicatorY !== null && indicatorH !== null
+                  ? { y: indicatorY, height: indicatorH, opacity: 1 }
+                  : { opacity: 0 }
+              }
+              initial={{ opacity: 0 }}
+              transition={{ type: "spring", stiffness: 420, damping: 38 }}
+            />
             {steps.map((step, idx) => (
               <motion.button
                 key={idx}
                 onClick={() => setActiveStep(idx)}
+                ref={(el) => (buttonRefs.current[idx] = el)}
                 variants={itemVariants}
-                whileHover={{ x: 8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className={`relative w-full rounded-r-lg border-b border-b-gray-200 px-4 py-4 text-left transition-colors duration-200 ${
                   idx === activeStep
                     ? "bg-white font-medium text-gray-900"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
               >
-                {idx === activeStep && (
-                  <motion.span
-                    layoutId="desktop-sidebar-active-indicator"
-                    className={`absolute left-0 top-0 h-full w-1 rounded-r ${
-                      isFusionProject ? "bg-[#7c3aed]" : "bg-[#257D89]"
-                    }`}
-                    transition={{ type: "spring", stiffness: 400, damping: 35 }}
-                  />
-                )}
                 <span className="font-family-instrument text-sm font-medium">
                   {String(idx + 1).padStart(2, "0")}.
                 </span>
